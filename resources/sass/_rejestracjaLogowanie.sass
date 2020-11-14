@@ -1,0 +1,175 @@
+.kontenerRejestracja
+
+    height: 100vh
+    background-image: url('../img/rejestracja.jpg')
+    background-size: cover
+    background-position: center center
+    filter: brightness(0.7)
+
+.formularzRejestracyjny
+    display: flex
+    flex-direction: column
+    flex-wrap: wrap
+    justify-content: center
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: 40%
+    height: 70%
+    background-color: #d6d6d6
+    border: 1px solid black
+    z-index: 1
+    border-radius: 20px
+    .naglowekRejestracja
+        flex-basis: 60px
+        width: 100%
+        text-align: center
+        color: black
+        font-size: 3.5em
+        line-height: 60px
+        color: #000000
+        text-shadow: 1px 1px #000000
+        text-transform: uppercase
+        letter-spacing: 2px
+    div
+        display: flex
+        flex-direction: column
+        flex-grow: 1
+        align-items: center
+        padding: 20px
+        .inputRejestracja
+            width: 80%
+            flex-basis: 10%
+            margin-top: 5%
+            padding: 10px
+            border: none
+            background: #b1b1b1
+            border-radius: 5px
+            color: #000
+            font-size: 2em
+            transition: .3s linear
+            &::placeholder
+                color: #00000070
+            &:focus
+                outline: none
+                background-color: #34bb45
+                color: #000
+        button
+            width: 25%
+            height: 40px
+            font-size: 20px
+            background-color: #28bb28
+            border: none
+            margin-top: 10%
+            font-weight: 600
+            text-transform: uppercase
+            color: #fff
+            box-shadow: 0 0 4px 1px black
+            text-shadow: 1px 1px black
+            cursor: pointer
+            &:focus
+                outline: none
+
+.kontenerLogowanie
+
+    height: 100vh
+    background-image: linear-gradient(135deg, #7bcef5, #e5f2ff)
+
+.formularzLogowanie
+    display: flex
+    flex-direction: column
+    flex-wrap: wrap
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: 40%
+    height: 70%
+    background: #e2e2e2
+    border-radius: 20px
+    .naglowekLogowanie
+        flex-basis: 70px
+        width: 100%
+        text-align: center
+        color: black
+        font-size: 3.5em
+        line-height: 70px
+        color: #000000
+        text-shadow: 1px 1px #000000
+        text-transform: uppercase
+        letter-spacing: 2px
+    div.elementyLogowania
+        display: flex
+        align-items: center
+        flex-direction: column
+        flex-grow: 1
+        padding: 20px
+        .inputLogin
+            width: 80%
+            flex-basis: 10%
+            margin-top: 5%
+            padding: 10px
+            border: none
+            background: #ffffff
+            border-radius: 5px
+            color: #000
+            font-size: 2em
+            transition: .3s linear
+            &::placeholder
+                color: #00000070
+            &:focus
+                outline: none
+                background-color: #34bb45
+                color: #000
+        div.kontenerZapamietaj
+            width: 80%
+            margin-top: 2%
+            position: relative
+            flex-basis: 20px
+            span.opisZapamietaj
+                position: absolute
+                top: 0
+                left: 0
+                line-height: 20px
+                font-size: 2em
+                padding-left: 30px
+            input.checkboxZapamietaj
+                position: absolute
+                top: 0
+                left: 0
+                width: 20px
+                height: 20px
+        div.przyciskiLogowanie
+            display: flex
+            flex-direction: row
+            flex-grow: 1
+            align-items: flex-start
+            justify-content: space-around
+            width: 80%
+            padding: 30px
+            button
+                width: 25%
+                height: 40px
+                font-size: 2em
+                background-color: #28bb28
+                border: none
+                font-weight: 600
+                color: #fff
+                border-radius: 10px
+                text-shadow: 1px 1px black
+                cursor: pointer
+                &:focus
+                    outline: none
+            a.przypominjHaslo
+                display: inline-block
+                width: 40%
+                height: 40px
+                font-size: 2em
+                text-decoration: none
+                color: white
+                background-color: #0b8ce8
+                text-align: center
+                line-height: 40px
+                border-radius: 10px
+                text-shadow: 1px 1px black
