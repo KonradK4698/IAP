@@ -21,5 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//dane użytkownika
 Route::get('/home/daneUzytkownika', 'DaneUzytkownikaController@widok')->name('daneUzytkownika');
 Route::post('/home/daneUzytkownika', 'DaneUzytkownikaController@store');
+//dane dodatkowe uzytkownika
+Route::get('/home/daneDodatkowe', 'DaneDodatkoweController@widok')->name('daneDodatkowe');
+Route::post('/home/daneUzytkownika/dodajWzrost', 'DaneUzytkownikaController@dodajWzrost');
+Route::post('/home/daneUzytkownika/dodajObwody', 'DaneUzytkownikaController@dodajObwody');

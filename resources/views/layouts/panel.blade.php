@@ -37,8 +37,8 @@
 </nav>
 
 <aside class="submenu">
-    <a href="{{route('daneUzytkownika')}}"> Uzupełnij dane </a>
-    <a> Uzupełnij dane </a>
+    <a href="{{route('daneUzytkownika')}}"> Dane użytkownika </a>
+    <a href="{{route('daneDodatkowe')}}"> Dane dodatkowe </a>
     <a> Uzupełnij dane </a>
 </aside>
 
