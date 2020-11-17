@@ -16,7 +16,9 @@ class Cisnienie extends Migration
         Schema::create('cisnienie', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idUzytkownika');
-            $table->unsignedInteger('pomiarCisnienia');
+            $table->unsignedInteger('skurczowe');
+            $table->unsignedInteger('rozkurczowe');
+            $table->unsignedInteger('tetno');
             $table->foreign('idUzytkownika')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

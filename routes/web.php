@@ -29,3 +29,6 @@ Route::get('/home/daneDodatkowe', 'DaneDodatkoweController@widok')->name('daneDo
 Route::post('/home/daneUzytkownika/dodajWzrost', 'DaneDodatkoweController@dodajWzrost')->name('dodajWzrostPost');
 Route::post('/home/daneUzytkownika/dodajObwody', 'DaneDodatkoweController@dodajObwody')->name('dodajObwody');
 Route::post('/home/daneUzytkownika/dodajWage', 'DaneDodatkoweController@dodajWage')->name('dodajWage');
+//pomiar ciśnienia użytkownika
+Route::get('/home/pomiarCisnienia', 'PomiarCisnieniaController@widok')->name('pomiarCisnienia');
+Route::post('/home/pomiarCisnienia/dodajPomiary', 'PomiarCisnieniaController@dodajPomiary')->name('dodajPomiary');
