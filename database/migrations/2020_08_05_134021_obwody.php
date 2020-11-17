@@ -16,13 +16,13 @@ class Obwody extends Migration
         Schema::create('obwody', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idUzytkownika');
-            $table->double('biceps',3,2);
-            $table->double('klataPiersiowa',3,2);
-            $table->double('talia',3,2);
-            $table->double('pas',3,2);
-            $table->double('biodra',3,2);
-            $table->double('uda',3,2);
-            $table->double('łydka',3,2);
+            $table->double('biceps',5,2);
+            $table->double('klataPiersiowa',5,2);
+            $table->double('talia',5,2);
+            $table->double('pas',5,2);
+            $table->double('biodra',5,2);
+            $table->double('uda',5,2);
+            $table->double('lydka',5,2);
             $table->foreign('idUzytkownika')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
