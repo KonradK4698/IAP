@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Wzrost;
+use App\Waga;
 use App\Obwody;
 use Illuminate\Http\Request;
 use Auth;
@@ -16,6 +17,16 @@ class DaneDodatkoweController extends Controller
         $dodaj = new Wzrost;
         $dodaj->idUzytkownika = Auth::id();
         $dodaj->wzrost = $request->wzrost;
+        $dodaj->save();
+
+        return redirect()->route('daneDodatkowe');
+    }
+
+    public function dodajWage(Request $pobierz){
+
+        $dodaj = new Waga;
+        $dodaj->idUzytkownika = Auth::id();
+        $dodaj->waga = $pobierz->waga;
         $dodaj->save();
 
         return redirect()->route('daneDodatkowe');

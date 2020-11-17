@@ -10,6 +10,15 @@
         </div>
     </form>
 
+    <form method="POST" action="{{ route('dodajWage') }}" class="uzupelnijDaneFormularz">
+    
+    <input type="hidden" name="_token" value="{{csrf_token()}}" />
+        <input name='waga' placeholder="Podaj wage" type="number" step=".1" />
+        <div class="uzupelnijDanePrzycisk">
+            <button type="submit">Prześlij dane</button>
+        </div>
+    </form>
+
     <form method="POST" action="{{ route('dodajObwody') }}" class="uzupelnijDaneFormularz">
     
     <input type="hidden" name="_token" value="{{csrf_token()}}" />
