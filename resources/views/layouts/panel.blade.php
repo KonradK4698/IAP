@@ -41,6 +41,7 @@
     <a href="{{route('daneDodatkowe')}}"> Dane dodatkowe </a>
     <a href="{{route('pomiarCisnienia')}}"> Pomiar cisnienia </a>
     <a href="{{route('bazaLekow')}}"> Baza lekow </a>
+    <a href="{{route('twojeLeki')}}"> Twoje leki </a>
 </aside>
 
 <div class="glownyDiv">

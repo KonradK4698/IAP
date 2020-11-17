@@ -35,3 +35,6 @@ Route::post('/home/pomiarCisnienia/dodajPomiary', 'PomiarCisnieniaController@dod
 //baza leków 
 Route::get('/home/bazaLekow', 'BazaLekowController@widok')->name('bazaLekow');
 Route::post('/home/bazaLekow/dodajLek', 'BazaLekowController@dodajLek')->name('dodajLek');
+//twoje leki
+Route::get('/home/twojeLeki', 'TwojeLekiController@widok')->name('twojeLeki');
+Route::post('/home/twojeLeki/dodajLek', 'TwojeLekiController@dodajLek')->name('dodajLekUzytkownika');
