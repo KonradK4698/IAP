@@ -26,5 +26,5 @@ Route::get('/home/daneUzytkownika', 'DaneUzytkownikaController@widok')->name('da
 Route::post('/home/daneUzytkownika', 'DaneUzytkownikaController@store');
 //dane dodatkowe uzytkownika
 Route::get('/home/daneDodatkowe', 'DaneDodatkoweController@widok')->name('daneDodatkowe');
-Route::post('/home/daneUzytkownika/dodajWzrost', 'DaneUzytkownikaController@dodajWzrost');
-Route::post('/home/daneUzytkownika/dodajObwody', 'DaneUzytkownikaController@dodajObwody');
+Route::post('/home/daneUzytkownika/dodajWzrost', 'DaneDodatkoweController@dodajWzrost')->name('dodajWzrostPost');
+Route::post('/home/daneUzytkownika/dodajObwody', 'DaneDodatkoweController@dodajObwody');

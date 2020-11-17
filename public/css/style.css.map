@@ -6,7 +6,7 @@
         "../../resources/sass/_ogolne.sass",
         "../../resources/sass/_rejestracjaLogowanie.sass",
         "../../resources/sass/_panel.sass",
-        "../../resources/sass/_uzupelnijDane.sass"
+        "../../resources/sass/_daneUzytkownika.sass"
     ],
     "names": [],
     "file": "style.css"

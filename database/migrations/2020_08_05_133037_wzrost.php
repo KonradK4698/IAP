@@ -16,7 +16,7 @@ class Wzrost extends Migration
         Schema::create('wzrost', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idUzytkownika');
-            $table->double('wzrost',4,2);
+            $table->double('wzrost',5,2);
             $table->foreign('idUzytkownika')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
