@@ -32,3 +32,6 @@ Route::post('/home/daneUzytkownika/dodajWage', 'DaneDodatkoweController@dodajWag
 //pomiar ciśnienia użytkownika
 Route::get('/home/pomiarCisnienia', 'PomiarCisnieniaController@widok')->name('pomiarCisnienia');
 Route::post('/home/pomiarCisnienia/dodajPomiary', 'PomiarCisnieniaController@dodajPomiary')->name('dodajPomiary');
+//baza leków 
+Route::get('/home/bazaLekow', 'BazaLekowController@widok')->name('bazaLekow');
+Route::post('/home/bazaLekow/dodajLek', 'BazaLekowController@dodajLek')->name('dodajLek');
