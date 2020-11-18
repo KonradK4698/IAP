@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\lekiUzytkownika;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class TwojeLekiController extends Controller
@@ -29,6 +30,9 @@ class TwojeLekiController extends Controller
     }
 
     public function widok(){
-        return view('twojeLeki');
+
+        $wybierzLek = DB::table('leki')->select('id', 'nazwa')->get();
+
+        return view('twojeLeki')->with(compact('wybierzLek'));
     }
 }

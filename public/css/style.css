@@ -484,7 +484,7 @@ nav.nawigacjaPrzewinieta {
   margin: 20px 0;
 }
 
-.uzupelnijDaneFormularz input {
+.uzupelnijDaneFormularz input, .uzupelnijDaneFormularz select, .uzupelnijDaneFormularz option {
   width: 80%;
   height: 50px;
   background: #ddd;

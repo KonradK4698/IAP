@@ -14,8 +14,12 @@
 
     <form method="POST" action="{{ route('dodajLekUzytkownika') }}" class="uzupelnijDaneFormularz">
     
-    <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input name="idLeku" placeholder="Podaj id" type="text" />
+        <input type="hidden" name="_token" value="{{csrf_token()}}" />
+        <select class="js-example-basic-single" name="idLeku">
+            @foreach($wybierzLek as $lek)
+            <option value="{{ $lek->id }}">{{ $lek->nazwa }}</option>
+            @endforeach
+        </select>
         <input name="iloscPaczek" placeholder="Podaj iloscPaczek" type="text" />
         <input name="iloscLeku" placeholder="Podaj iloscLeku" type="text" />
         <input name="dawkowanie" placeholder="Podaj dawkowanie" type="text" />
