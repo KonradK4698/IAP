@@ -20,6 +20,7 @@ class LekiUzytkownika extends Migration
             $table->mediumInteger('iloscPaczek');
             $table->mediumInteger('iloscLeku');
             $table->mediumInteger('dawkowanie');
+            $table->mediumInteger('czestotliwosc');
             $table->foreign('idUzytkownika')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('idLeku')->references('id')->on('leki')->onDelete('cascade');
             $table->timestamps();

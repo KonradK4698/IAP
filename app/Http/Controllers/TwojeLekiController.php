@@ -13,19 +13,30 @@ class TwojeLekiController extends Controller
         $walidacja = $dodaj->validate([
             'idLeku' => 'required|numeric',
             'iloscPaczek' => 'required|numeric',
-            'iloscLeku' => 'required|numeric',
-            'dawkowanie' => 'required|numeric',
         ]);
 
+        $idLeku = $dodaj->idLeku;
+        $dawkaUzytkownika =  $dodaj->dawkowanie;
+        $iloscPaczek = $dodaj->iloscPaczek;
 
         $dodajLek = new lekiUzytkownika;
         $dodajLek->idUzytkownika = Auth::id();
-        $dodajLek->idLeku = $dodaj->idLeku;
-        $dodajLek->iloscPaczek = $dodaj->iloscPaczek;
-        $dodajLek->iloscLeku = $dodaj->iloscLeku;
-        $dodajLek->dawkowanie = $dodaj->dawkowanie;
-        $dodajLek->save();
+        $dodajLek->idLeku = $idLeku;
+        $dodajLek->iloscPaczek = $iloscPaczek;
 
+        if(strlen($dawkaUzytkownika) == 0){
+            $dawkaSugerowana = DB::table('leki')->select('zalecaneDawkowanie')->where('id', '=', $idLeku)->get();
+            $dodajLek->dawkowanie = $dawkaSugerowana->first()->zalecaneDawkowanie;
+        }else{
+            $dodajLek->dawkowanie = $dawkaUzytkownika;
+        }
+        
+        $iloscLeku = DB::table('leki')->select('ilosc')->where('id', '=', $idLeku)->get();
+        $iloscLekuUzytkownika = $iloscLeku->first()->ilosc * $iloscPaczek;
+        $dodajLek->iloscLeku =  $iloscLekuUzytkownika;
+
+        $dodajLek->czestotliwosc = $dodaj->czestotliwosc;
+        $dodajLek->save();
         return redirect()->route('twojeLeki');
     }
 
