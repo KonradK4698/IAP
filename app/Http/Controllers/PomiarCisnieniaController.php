@@ -10,6 +10,13 @@ class PomiarCisnieniaController extends Controller
 {
 
     public function dodajPomiary(Request $dodaj){
+
+        $walidacja = $dodaj->validate([
+            'skurczowe' => 'required|max:5|numeric',
+            'rozkurczowe' => 'required|max:5|numeric',
+            'tetno' => 'required|max:5|numeric',
+        ]);
+
         $dodajPomiar = new Cisnienie;
         $dodajPomiar->idUzytkownika = Auth::id();
         $dodajPomiar->skurczowe = $dodaj->skurczowe;

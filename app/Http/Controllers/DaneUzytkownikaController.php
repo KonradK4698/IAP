@@ -16,7 +16,14 @@ class DaneUzytkownikaController extends Controller
 
     public function store(Request $request){
 
-       
+        $walidacja = $request->validate([
+            'imie' => 'required|max:20|string',
+            'nazwisko' => 'required|max:20|string',
+            'dataUrodzenia' => 'required|date',
+            'telefon' => 'required|digits_between:9,12',
+            'telefonPom' => 'required|digits_between:9,12',
+        ]);
+
         $data = new daneUzytkownika;
         $data->idUzytkownika = Auth::id();
         $data->imie = $request->imie;

@@ -1,6 +1,17 @@
 @extends('layouts.panel')
 
 @section('content')
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form method="POST" action="{{ route('dodajWzrostPost') }}" class="uzupelnijDaneFormularz">
     
     <input type="hidden" name="_token" value="{{csrf_token()}}" />

@@ -14,6 +14,10 @@ class DaneDodatkoweController extends Controller
 
     public function dodajWzrost(Request $request){
 
+        $walidacja = $request->validate([
+            'wzrost' => 'required|max:5|numeric',
+        ]);
+
         $dodaj = new Wzrost;
         $dodaj->idUzytkownika = Auth::id();
         $dodaj->wzrost = $request->wzrost;
@@ -24,6 +28,10 @@ class DaneDodatkoweController extends Controller
 
     public function dodajWage(Request $pobierz){
 
+        $walidacja = $pobierz->validate([
+            'waga' => 'required|max:5|numeric',
+        ]);
+
         $dodaj = new Waga;
         $dodaj->idUzytkownika = Auth::id();
         $dodaj->waga = $pobierz->waga;
@@ -33,6 +41,18 @@ class DaneDodatkoweController extends Controller
     }
 
     public function dodajObwody(Request $obwod){
+
+        $walidacja = $obwod->validate([
+            'biceps' => 'required|max:5|numeric',
+            'klataPiersiowa' => 'required|max:5|numeric',
+            'talia' => 'required|max:5|numeric',
+            'pas' => 'required|max:5|numeric',
+            'biodra' => 'required|max:5|numeric',
+            'uda' => 'required|max:5|numeric',
+            'lydka' => 'required|max:5|numeric',
+        ]);
+
+
         $dodajObwod = new Obwody;
         $dodajObwod->idUzytkownika = Auth::id();
         $dodajObwod->biceps = $obwod->biceps;

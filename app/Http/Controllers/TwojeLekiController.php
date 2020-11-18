@@ -9,6 +9,14 @@ class TwojeLekiController extends Controller
 {
     public function dodajLek(Request $dodaj){
 
+        $walidacja = $dodaj->validate([
+            'idLeku' => 'required|numeric',
+            'iloscPaczek' => 'required|numeric',
+            'iloscLeku' => 'required|numeric',
+            'dawkowanie' => 'required|numeric',
+        ]);
+
+
         $dodajLek = new lekiUzytkownika;
         $dodajLek->idUzytkownika = Auth::id();
         $dodajLek->idLeku = $dodaj->idLeku;
