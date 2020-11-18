@@ -22,4 +22,15 @@
             <button type="submit">Prześlij dane</button>
         </div>
     </form>
+
+    <div class="tablica">
+        <div class="wiersz"> skurczowe </div>
+        <div class="wiersz"> rozkurczowe </div>
+        <div class="wiersz"> tetno </div>
+        @foreach($pomiary as $pomiar)
+        <div class="wiersz"> {{ $pomiar->skurczowe }} </div>
+        <div class="wiersz"> {{ $pomiar->rozkurczowe }}</div>
+        <div class="wiersz"> {{ $pomiar->tetno }} </div>
+        @endforeach
+    </div>
 @endsection

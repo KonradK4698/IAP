@@ -21,6 +21,15 @@
         </div>
     </form>
 
+    <div class="tablica">
+        <div class="wiersz2"> data </div>
+        <div class="wiersz2"> wzrost </div>
+        @foreach($wzrosty as $wzrost)
+        <div class="wiersz2"> {{ $wzrost->created_at}} </div>
+        <div class="wiersz2"> {{ $wzrost->wzrost }}</div>
+        @endforeach
+    </div>
+
     <form method="POST" action="{{ route('dodajWage') }}" class="uzupelnijDaneFormularz">
     
     <input type="hidden" name="_token" value="{{csrf_token()}}" />
@@ -29,6 +38,15 @@
             <button type="submit">Prześlij dane</button>
         </div>
     </form>
+
+    <div class="tablica">
+        <div class="wiersz2"> data </div>
+        <div class="wiersz2"> waga </div>
+        @foreach($wagi as $waga)
+        <div class="wiersz2"> {{ $waga->created_at}} </div>
+        <div class="wiersz2"> {{ $waga->waga }}</div>
+        @endforeach
+    </div>
 
     <form method="POST" action="{{ route('dodajObwody') }}" class="uzupelnijDaneFormularz">
     
@@ -44,4 +62,25 @@
             <button type="submit">Prześlij dane</button>
         </div>
     </form>
+
+    <div class="tablica">
+        <div class="wiersz3"> data </div>
+        <div class="wiersz3"> biceps </div>
+        <div class="wiersz3"> klatka</div>
+        <div class="wiersz3"> talia </div>
+        <div class="wiersz3"> pas </div>
+        <div class="wiersz3"> biodra </div>
+        <div class="wiersz3"> uda </div>
+        <div class="wiersz3"> lydka </div>
+        @foreach($obwody as $obwod)
+        <div class="wiersz3"> {{ $obwod->created_at}} </div>
+        <div class="wiersz3"> {{ $obwod->biceps }}</div>
+        <div class="wiersz3"> {{ $obwod->klataPiersiowa }}</div>
+        <div class="wiersz3"> {{ $obwod->talia }}</div>
+        <div class="wiersz3"> {{ $obwod->pas }}</div>
+        <div class="wiersz3"> {{ $obwod->biodra }}</div>
+        <div class="wiersz3"> {{ $obwod->uda }}</div>
+        <div class="wiersz3"> {{ $obwod->lydka }}</div>
+        @endforeach
+    </div>
 @endsection

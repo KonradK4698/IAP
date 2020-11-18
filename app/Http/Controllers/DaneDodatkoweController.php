@@ -15,7 +15,7 @@ class DaneDodatkoweController extends Controller
     public function dodajWzrost(Request $request){
 
         $walidacja = $request->validate([
-            'wzrost' => 'required|max:5|numeric',
+            'wzrost' => 'required|digits_between:1,5|numeric',
         ]);
 
         $dodaj = new Wzrost;
@@ -29,7 +29,7 @@ class DaneDodatkoweController extends Controller
     public function dodajWage(Request $pobierz){
 
         $walidacja = $pobierz->validate([
-            'waga' => 'required|max:5|numeric',
+            'waga' => 'required|digits_between:1,5|numeric',
         ]);
 
         $dodaj = new Waga;
@@ -43,13 +43,13 @@ class DaneDodatkoweController extends Controller
     public function dodajObwody(Request $obwod){
 
         $walidacja = $obwod->validate([
-            'biceps' => 'required|max:5|numeric',
-            'klataPiersiowa' => 'required|max:5|numeric',
-            'talia' => 'required|max:5|numeric',
-            'pas' => 'required|max:5|numeric',
-            'biodra' => 'required|max:5|numeric',
-            'uda' => 'required|max:5|numeric',
-            'lydka' => 'required|max:5|numeric',
+            'biceps' => 'required|digits_between:1,5|numeric',
+            'klataPiersiowa' => 'required|digits_between:1,5|numeric',
+            'talia' => 'required|digits_between:1,5|numeric',
+            'pas' => 'required|digits_between:1,5|numeric',
+            'biodra' => 'required|digits_between:1,5|numeric',
+            'uda' => 'required|digits_between:1,5|numeric',
+            'lydka' => 'required|digits_between:1,5|numeric',
         ]);
 
 
@@ -68,6 +68,10 @@ class DaneDodatkoweController extends Controller
     }
 
     public function widok(){
-        return view('daneDodatkowe');
+
+        $wagi = DB::table('waga')->select('waga', 'created_at')->where('idUzytkownika', '=', Auth::id())->get();
+        $wzrosty = DB::table('wzrost')->select('wzrost', 'created_at')->where('idUzytkownika', '=', Auth::id())->get();
+        $obwody = DB::table('obwody')->select('biceps', 'klataPiersiowa', 'talia', 'pas', 'biodra', 'uda', 'lydka', 'created_at')->where('idUzytkownika', '=', Auth::id())->get();
+        return view('daneDodatkowe')->with(compact('wagi', 'wzrosty', 'obwody'));
     }
 }

@@ -10,9 +10,7 @@ use Auth;
 
 class DaneUzytkownikaController extends Controller
 {
-    public function widok(){
-        return view('daneUzytkownika');
-    }
+    
 
     public function store(Request $request){
 
@@ -34,6 +32,14 @@ class DaneUzytkownikaController extends Controller
         $data->save();
 
         return redirect()->route('daneUzytkownika');
+    }
+
+    public function widok(){
+
+        $daneUzytkownika = DB::table('dane_uzytkownika')->get();
+
+
+        return view('daneUzytkownika')->with(compact('daneUzytkownika'));
     }
     
     

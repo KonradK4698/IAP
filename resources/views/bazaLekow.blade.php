@@ -2,6 +2,21 @@
 
 @section('content')
 
+<div class="tablica">
+        <div class="wiersz4"> nazwa </div>
+        <div class="wiersz4"> dawkowanie </div>
+        <div class="wiersz4"> ilosc </div>
+        <div class="wiersz4"> cena </div>
+        <div class="wiersz4"> opis </div>
+        @foreach($leki as $lek)
+        <div class="wiersz4"> {{ $lek->nazwa}} </div>
+        <div class="wiersz4"> {{ $lek->zalecaneDawkowanie }}</div>
+        <div class="wiersz4"> {{ $lek->ilosc}} </div>
+        <div class="wiersz4"> {{ $lek->cena }}</div>
+        <div class="wiersz4"> {{ $lek->opis }}</div>
+        @endforeach
+</div>
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>

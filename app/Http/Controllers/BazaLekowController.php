@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Leki;
+use DB;
 use Illuminate\Http\Request;
 
 class BazaLekowController extends Controller
@@ -9,10 +10,10 @@ class BazaLekowController extends Controller
     public function dodajLek(Request $dodaj){
 
         $walidacja = $dodaj->validate([
-            'nazwa' => 'required|max:5|string',
+            'nazwa' => 'required|string',
             'zalecaneDawkowanie' => 'required|numeric',
             'ilosc' => 'required|numeric',
-            'cena' => 'required|max:6|numeric',
+            'cena' => 'required|numeric',
             'opis' => 'required|string',
         ]);
 
@@ -28,6 +29,9 @@ class BazaLekowController extends Controller
     }
 
     public function widok(){
-        return view('bazaLekow');
+
+        $leki = DB::table('leki')->select('nazwa', 'zalecaneDawkowanie', 'ilosc', 'cena', 'opis')->get();
+
+        return view('bazaLekow')->with(compact('leki'));
     }
 }

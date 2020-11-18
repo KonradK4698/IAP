@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use DB;
 use App\Cisnienie;
 
 use Illuminate\Http\Request;
@@ -12,9 +13,9 @@ class PomiarCisnieniaController extends Controller
     public function dodajPomiary(Request $dodaj){
 
         $walidacja = $dodaj->validate([
-            'skurczowe' => 'required|max:5|numeric',
-            'rozkurczowe' => 'required|max:5|numeric',
-            'tetno' => 'required|max:5|numeric',
+            'skurczowe' => 'required|digits_between:1,5|numeric',
+            'rozkurczowe' => 'required|digits_between:1,5|numeric',
+            'tetno' => 'required|digits_between:1,5|numeric',
         ]);
 
         $dodajPomiar = new Cisnienie;
@@ -28,6 +29,9 @@ class PomiarCisnieniaController extends Controller
     }
 
     public function widok(){
-        return view('pomiarCisnienia');
+
+        $pomiary = DB::table('cisnienie')->select('skurczowe', 'rozkurczowe', 'tetno')->where('idUzytkownika', '=', Auth::id())->get();
+        
+        return view('pomiarCisnienia')->with(compact('pomiary'));
     }
 }

@@ -22,4 +22,15 @@
             <button type="submit">Prześlij dane</button>
         </div>
     </form>
+
+    <div class="kontenerInformacji"> 
+        @foreach($daneUzytkownika as $dana)
+        <span> {{ $dana->imie }} </span>
+        <span> {{ $dana->nazwisko }} </span>
+        <span> {{ $dana->dataUrodzenia }} </span>
+        <span> {{ $dana->telefon }} </span>
+        <span> {{ $dana->telefonPomocniczy }} </span>
+        @endforeach
+    </div>
+
 @endsection
