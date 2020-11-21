@@ -15,7 +15,7 @@ class DaneDodatkoweController extends Controller
     public function dodajWzrost(Request $request){
 
         $walidacja = $request->validate([
-            'wzrost' => 'required|digits_between:1,5|numeric',
+            'wzrost' => 'required|numeric',
         ]);
 
         $dodaj = new Wzrost;
@@ -26,10 +26,16 @@ class DaneDodatkoweController extends Controller
         return redirect()->route('daneDodatkowe');
     }
 
+    public function usunWzrost( $id){
+        $usuwanieWzrostu = Wzrost::findOrFail($id);
+        $usuwanieWzrostu->delete();
+        return redirect()->route('daneDodatkowe');
+    }
+
     public function dodajWage(Request $pobierz){
 
         $walidacja = $pobierz->validate([
-            'waga' => 'required|digits_between:1,5|numeric',
+            'waga' => 'required|numeric',
         ]);
 
         $dodaj = new Waga;
@@ -40,16 +46,21 @@ class DaneDodatkoweController extends Controller
         return redirect()->route('daneDodatkowe');
     }
 
+    public function usunWage($id){
+        $usuwanieWagi = Waga::findOrFail($id)->delete();
+        return redirect()->route('daneDodatkowe');
+    }
+
     public function dodajObwody(Request $obwod){
 
         $walidacja = $obwod->validate([
-            'biceps' => 'required|digits_between:1,5|numeric',
-            'klataPiersiowa' => 'required|digits_between:1,5|numeric',
-            'talia' => 'required|digits_between:1,5|numeric',
-            'pas' => 'required|digits_between:1,5|numeric',
-            'biodra' => 'required|digits_between:1,5|numeric',
-            'uda' => 'required|digits_between:1,5|numeric',
-            'lydka' => 'required|digits_between:1,5|numeric',
+            'biceps' => 'required|numeric',
+            'klataPiersiowa' => 'required|numeric',
+            'talia' => 'required|numeric',
+            'pas' => 'required|numeric',
+            'biodra' => 'required|numeric',
+            'uda' => 'required|numeric',
+            'lydka' => 'required|numeric',
         ]);
 
 
@@ -67,11 +78,37 @@ class DaneDodatkoweController extends Controller
         return redirect()->route('daneDodatkowe');
     }
 
+    public function edytuj($id){
+        $obwodyEdit = DB::table('obwody')->where('id', '=', $id)->get();
+        $idObwodu = $id;
+        return view('edytujObwody')->with(compact('obwodyEdit', 'idObwodu'));
+    }
+
+    public function zaktualizuj(Request $aktualizuj, $id){
+        $zaktualizujObwod = Obwody::findOrFail($id);
+        $zaktualizujObwod->biceps = $aktualizuj->biceps;
+        $zaktualizujObwod->klataPiersiowa = $aktualizuj->klataPiersiowa;
+        $zaktualizujObwod->talia = $aktualizuj->talia;
+        $zaktualizujObwod->pas = $aktualizuj->pas;
+        $zaktualizujObwod->biodra = $aktualizuj->biodra;
+        $zaktualizujObwod->uda = $aktualizuj->uda;
+        $zaktualizujObwod->lydka = $aktualizuj->lydka;
+        $zaktualizujObwod->save();
+
+        return redirect()->route('daneDodatkowe');
+    }
+
+    public function usunObwody($id){
+        Obwody::findOrFail($id)->delete();
+
+        return redirect()->route('daneDodatkowe');
+    }
+
     public function widok(){
 
-        $wagi = DB::table('waga')->select('waga', 'created_at')->where('idUzytkownika', '=', Auth::id())->get();
-        $wzrosty = DB::table('wzrost')->select('wzrost', 'created_at')->where('idUzytkownika', '=', Auth::id())->get();
-        $obwody = DB::table('obwody')->select('biceps', 'klataPiersiowa', 'talia', 'pas', 'biodra', 'uda', 'lydka', 'created_at')->where('idUzytkownika', '=', Auth::id())->get();
+        $wagi = DB::table('waga')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->limit(1)->get();
+        $wzrosty = DB::table('wzrost')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->limit(1)->get();;
+        $obwody = DB::table('obwody')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->limit(1)->get();;
         return view('daneDodatkowe')->with(compact('wagi', 'wzrosty', 'obwody'));
     }
 }

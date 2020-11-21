@@ -27,13 +27,18 @@
         @foreach($wzrosty as $wzrost)
         <div class="wiersz2"> {{ $wzrost->created_at}} </div>
         <div class="wiersz2"> {{ $wzrost->wzrost }}</div>
+        <form method="POST" action="{{ route('usunWzrostRoute' , $wzrost->id) }}" class="deleteForm">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+            <button type="submit" class="deleteButton">Usuń wzrost</button>
+        </form>
         @endforeach
     </div>
 
     <form method="POST" action="{{ route('dodajWage') }}" class="uzupelnijDaneFormularz">
     
     <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input name='waga' placeholder="Podaj wage" type="number" step=".1" />
+        <input name='waga' placeholder="Podaj wage" type="number" step=".01" />
         <div class="uzupelnijDanePrzycisk">
             <button type="submit">Prześlij dane</button>
         </div>
@@ -45,6 +50,11 @@
         @foreach($wagi as $waga)
         <div class="wiersz2"> {{ $waga->created_at}} </div>
         <div class="wiersz2"> {{ $waga->waga }}</div>
+        <form method="POST" action="{{ route('usunWageRoute' , $waga->id) }}" class="deleteForm">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+            <button type="submit" class="deleteButton">Usuń wagę</button>
+        </form>
         @endforeach
     </div>
 
@@ -73,7 +83,7 @@
         <div class="wiersz3"> uda </div>
         <div class="wiersz3"> lydka </div>
         @foreach($obwody as $obwod)
-        <div class="wiersz3"> {{ $obwod->created_at}} </div>
+        <div class="wiersz3"> {{ $obwod->updated_at}} </div>
         <div class="wiersz3"> {{ $obwod->biceps }}</div>
         <div class="wiersz3"> {{ $obwod->klataPiersiowa }}</div>
         <div class="wiersz3"> {{ $obwod->talia }}</div>
@@ -81,6 +91,12 @@
         <div class="wiersz3"> {{ $obwod->biodra }}</div>
         <div class="wiersz3"> {{ $obwod->uda }}</div>
         <div class="wiersz3"> {{ $obwod->lydka }}</div>
+        <a href="{{route('aktualizacjaObwodowWidok' , $obwod->id)}}" class="update"> Zakutalizuj </a>
+        <form method="POST" action="{{ route('usunObwody' , $obwod->id) }}" class="deleteForm">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+            <button type="submit" class="deleteButton">Usuń obwody</button>
+        </form>
         @endforeach
     </div>
 @endsection
