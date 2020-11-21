@@ -28,9 +28,14 @@ class PomiarCisnieniaController extends Controller
         return redirect()->route('pomiarCisnienia');
     }
 
+    public function usunPomiary($id){
+        Cisnienie::findOrFail($id)->delete();
+        return redirect()->route('pomiarCisnienia');
+    }
+
     public function widok(){
 
-        $pomiary = DB::table('cisnienie')->select('skurczowe', 'rozkurczowe', 'tetno')->where('idUzytkownika', '=', Auth::id())->get();
+        $pomiary = DB::table('cisnienie')->select('id','skurczowe', 'rozkurczowe', 'tetno')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->limit(1)->get();
         
         return view('pomiarCisnienia')->with(compact('pomiary'));
     }

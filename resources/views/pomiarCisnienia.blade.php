@@ -31,6 +31,11 @@
         <div class="wiersz"> {{ $pomiar->skurczowe }} </div>
         <div class="wiersz"> {{ $pomiar->rozkurczowe }}</div>
         <div class="wiersz"> {{ $pomiar->tetno }} </div>
+        <form method="POST" action="{{ route('usunPomiary' , $pomiar->id) }}" class="deleteForm">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+            <button type="submit" class="deleteButton">Usuń pomiary</button>
+        </form>
         @endforeach
     </div>
 @endsection
