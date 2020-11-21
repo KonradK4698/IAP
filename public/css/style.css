@@ -6,10 +6,6 @@
   font-size: 10px;
 }
 
-body {
-  height: 200vh;
-}
-
 .nawigacjaStronaGlowna {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -156,6 +152,33 @@ nav.nawigacjaPrzewinieta {
   width: 80%;
   background: #eeeeee;
   padding: 50px;
+}
+
+.deleteForm {
+  position: relative;
+  display: block;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+}
+
+.deleteButton {
+  position: relative;
+  display: block;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 150px;
+  margin: 10px 0;
+  padding: 10px;
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+  font-size: 20px;
+  background: #ff0000;
 }
 
 .kontenerRejestracja {
@@ -532,6 +555,23 @@ nav.nawigacjaPrzewinieta {
   font-size: 25px;
   color: #ffffff;
   padding: 10px;
+}
+
+.update {
+  position: relative;
+  display: block;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  margin: 15px 0;
+  background: #00ff00;
+  color: #000000;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  width: 80%;
+  text-decoration: none;
 }
 
 .tablica {
