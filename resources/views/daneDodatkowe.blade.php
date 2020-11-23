@@ -12,13 +12,10 @@
     </div>
 @endif
 
-<form method="POST" action="{{ route('dodajWzrostPost') }}" class="uzupelnijDaneFormularz">
-    
-    <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input name="wzrost" placeholder="Podaj wzrost" type="number" step=".01"/>
-        <div class="uzupelnijDanePrzycisk">
-            <button type="submit">Prześlij dane</button>
-        </div>
+    <form id="wzrostForm" method="POST" action="{{ route('dodajWzrostPost') }}" class="uzupelnijDaneFormularz">
+        <input type="hidden" name="_token" value="{{csrf_token()}}" />
+        <input data-opis="Wzrost" name="wzrost" placeholder="Wpisz wzrost" type="number" step=".01"/>
+        <div class="openConfirm">Dodaj wzrost</div>
     </form>
 
     <div class="tablica">
@@ -27,50 +24,36 @@
         @foreach($wzrosty as $wzrost)
         <div class="wiersz2"> {{ $wzrost->created_at}} </div>
         <div class="wiersz2"> {{ $wzrost->wzrost }}</div>
-        <form method="POST" action="{{ route('usunWzrostRoute' , $wzrost->id) }}" class="deleteForm">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
-            <button type="submit" class="deleteButton">Usuń wzrost</button>
-        </form>
         @endforeach
     </div>
 
-    <form method="POST" action="{{ route('dodajWage') }}" class="uzupelnijDaneFormularz">
+    <form id="wagaForm" method="POST" action="{{ route('dodajWage') }}" class="uzupelnijDaneFormularz">
     
-    <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input name='waga' placeholder="Podaj wage" type="number" step=".01" />
-        <div class="uzupelnijDanePrzycisk">
-            <button type="submit">Prześlij dane</button>
-        </div>
+        <input type="hidden" name="_token" value="{{csrf_token()}}" />
+        <input data-opis="Waga" name='waga' placeholder="Wpisz wagę" type="number" step=".01" />
+        <div class="openConfirm">Dodaj wagę</div>
     </form>
-
+    
     <div class="tablica">
         <div class="wiersz2"> data </div>
         <div class="wiersz2"> waga </div>
         @foreach($wagi as $waga)
         <div class="wiersz2"> {{ $waga->created_at}} </div>
         <div class="wiersz2"> {{ $waga->waga }}</div>
-        <form method="POST" action="{{ route('usunWageRoute' , $waga->id) }}" class="deleteForm">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
-            <button type="submit" class="deleteButton">Usuń wagę</button>
-        </form>
         @endforeach
     </div>
 
-    <form method="POST" action="{{ route('dodajObwody') }}" class="uzupelnijDaneFormularz">
+    <form id="obwodyTable" method="POST" action="{{ route('dodajObwody') }}" class="uzupelnijDaneFormularz">
     
-    <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input name='biceps' placeholder="Podaj wymiar biceps" type="number" step=".1" />
-        <input name='klataPiersiowa' placeholder="Podaj wymiar klataPiersiowa" type="number" step=".1" />
-        <input name='talia' placeholder="Podaj wymiar talia" type="number" step=".1" />
-        <input name='pas' placeholder="Podaj wymiar pas" type="number" step=".1" />
-        <input name='biodra' placeholder="Podaj wymiar biodra" type="number" step=".1" />
-        <input name='uda' placeholder="Podaj wymiar uda" type="number" step=".1" />
-        <input name='lydka' placeholder="Podaj wymiar łydka" type="number" step=".1" />
-        <div class="uzupelnijDanePrzycisk">
-            <button type="submit">Prześlij dane</button>
-        </div>
+        <input type="hidden" name="_token" value="{{csrf_token()}}" />
+        <input data-opis="Biceps" name='biceps' placeholder="Wymiar bicepsu" type="number" step=".1" />
+        <input data-opis="Klatka piersiowa" name='klataPiersiowa' placeholder="Wymiar klatki piersiowej" type="number" step=".1" />
+        <input data-opis="Talia" name='talia' placeholder="Wymiar talii" type="number" step=".1" />
+        <input data-opis="Pas" name='pas' placeholder="Wymar pasa" type="number" step=".1" />
+        <input data-opis="Biodra" name='biodra' placeholder="Wymiar bioder" type="number" step=".1" />
+        <input data-opis="Uda" name='uda' placeholder="Wymiar uda" type="number" step=".1" />
+        <input data-opis="Łydka" name='lydka' placeholder="Wymiar łydki" type="number" step=".1" />
+        <div class="openConfirm">Dodaj obwody</div>
     </form>
 
     <div class="tablica">
@@ -92,11 +75,17 @@
         <div class="wiersz3"> {{ $obwod->uda }}</div>
         <div class="wiersz3"> {{ $obwod->lydka }}</div>
         <a href="{{route('aktualizacjaObwodowWidok' , $obwod->id)}}" class="update"> Zakutalizuj </a>
-        <form method="POST" action="{{ route('usunObwody' , $obwod->id) }}" class="deleteForm">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
-            <button type="submit" class="deleteButton">Usuń obwody</button>
-        </form>
         @endforeach
     </div>
+
+
+    
 @endsection
+<div class="overlay"></div>
+<div class="confirmPopupBox">
+    <div class="popupInformacjeBox">
+        <span class="sprawdzDane"> Sprawdź poprawnośc danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
+    </div>
+    <button class="potwierdzDane" type="submit"> Tak </button>
+    <button class="zmienDane"> Nie </button>
+</div>

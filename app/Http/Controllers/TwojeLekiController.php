@@ -40,10 +40,49 @@ class TwojeLekiController extends Controller
         return redirect()->route('twojeLeki');
     }
 
+    public function usunLek($id){
+        lekiUzytkownika::findOrFail($id)->delete();
+        return redirect()->route('twojeLeki');
+    }
+
+    public function dodajOpakowanie(Request $dodaj, $id, $idLeku){
+        $iloscOpakowan = $dodaj->ilosc;
+
+        $stareDane = DB::table('leki_uzytkownika')->select('iloscPaczek', 'iloscLeku')->where('id','=',$id)->get();
+        $szutkWPaczce = DB::table('leki')->select('ilosc')->where('id','=',$idLeku)->get();
+
+        $nowaIloscOpakowan = $iloscOpakowan + $stareDane->first()->iloscPaczek;
+        $nowaIloscSztuk = $iloscOpakowan * $szutkWPaczce->first()->ilosc + $stareDane->first()->iloscLeku;
+
+        lekiUzytkownika::Where('id', '=', $id)->update(['iloscPaczek'=> $nowaIloscOpakowan, 'iloscLeku'=> $nowaIloscSztuk]);
+        return redirect()->route('twojeLeki');
+    }
+
+    public function dodajLekiNaSztuki(Request $dodaj, $id, $idLeku){
+        $iloscSztuk = $dodaj->iloscSztuk;
+
+        $stareDane = DB::table('leki_uzytkownika')->select('iloscPaczek', 'iloscLeku')->where('id','=',$id)->get();
+        $szutkWPaczce = DB::table('leki')->select('ilosc')->where('id','=',$idLeku)->get();
+
+        $nowaIloscSztuk = $stareDane->first()->iloscLeku + $iloscSztuk;
+        $nowaIloscOpakowan = ceil($nowaIloscSztuk / $szutkWPaczce->first()->ilosc);
+
+        
+
+        lekiUzytkownika::Where('id', '=', $id)->update(['iloscPaczek'=> $nowaIloscOpakowan,'iloscLeku' => $nowaIloscSztuk]);
+
+        return redirect()->route('twojeLeki');
+
+    }
+
     public function widok(){
 
         $wybierzLek = DB::table('leki')->select('id', 'nazwa')->get();
-
-        return view('twojeLeki')->with(compact('wybierzLek'));
+        $lekiUzytkownika = DB::table('leki_uzytkownika')
+                            ->join('leki', 'leki_uzytkownika.idLeku', '=','leki.id')
+                            ->select('leki_uzytkownika.*', 'leki.nazwa')
+                            ->where('idUzytkownika', '=', Auth::id())->get();
+        
+        return view('twojeLeki')->with(compact('wybierzLek', 'lekiUzytkownika'));
     }
 }

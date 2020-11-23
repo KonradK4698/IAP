@@ -12,15 +12,13 @@
     </div>
 @endif
 
-    <form method="POST" action="{{ route('dodajPomiary') }}" class="uzupelnijDaneFormularz">
+    <form id="dodajPomiarTable" method="POST" action="{{ route('dodajPomiary') }}" class="uzupelnijDaneFormularz">
     
     <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input name="skurczowe" placeholder="Podaj cisnienie skurczowe" type="text" />
-        <input name="rozkurczowe" placeholder="Podaj cisnienie rozkurczowe" type="text" />
-        <input name="tetno" placeholder="Podaj tętno" type="text" />
-        <div class="uzupelnijDanePrzycisk">
-            <button type="submit">Prześlij dane</button>
-        </div>
+        <input data-opis="Skurczowe" name="skurczowe" placeholder="Podaj cisnienie skurczowe" type="text" />
+        <input data-opis="Rozkurczowe" name="rozkurczowe" placeholder="Podaj cisnienie rozkurczowe" type="text" />
+        <input data-opis="Tętno" name="tetno" placeholder="Podaj tętno" type="text" />
+        <div class="openConfirm">Dodaj pomiar</div>
     </form>
 
     <div class="tablica">
@@ -31,11 +29,15 @@
         <div class="wiersz"> {{ $pomiar->skurczowe }} </div>
         <div class="wiersz"> {{ $pomiar->rozkurczowe }}</div>
         <div class="wiersz"> {{ $pomiar->tetno }} </div>
-        <form method="POST" action="{{ route('usunPomiary' , $pomiar->id) }}" class="deleteForm">
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
-            <button type="submit" class="deleteButton">Usuń pomiary</button>
-        </form>
         @endforeach
     </div>
 @endsection
+
+<div class="overlay"></div>
+<div class="confirmPopupBox">
+    <div class="popupInformacjeBox">
+        <span class="sprawdzDane"> Sprawdź poprawnośc danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
+    </div>
+    <button class="potwierdzDane" type="submit"> Tak </button>
+    <button class="zmienDane"> Nie </button>
+</div>
