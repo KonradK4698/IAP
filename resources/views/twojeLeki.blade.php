@@ -22,8 +22,10 @@
             @endforeach
         </select>
         <input name="iloscPaczek" placeholder="Podaj iloscPaczek przepisanych przez lekarza" type="text" />
-        <input name="dawkowanie" placeholder="Podaj dawkowanie zlecone przez lekarza" type="text" />
-        <input name="czestotliwosc" placeholder="Podaj ile raz w tygodniu musisz przyjmować lek" type="text" />
+        <input name="dawkowanie" placeholder="Podaj ile razy w ciągu dnia musisz przyjąć lek" type="text" />
+        <input name="czestotliwosc" placeholder="Podaj częstotliwość przyjmowania leku w ciągu dnia (w godzinach)" type="text" />
+        <input name="rozpocznij" placeholder="Podaj godzine rozpoczęcia przyjmowania leku" type="time" />
+        <input name="rozpocznijData" placeholder="Podaj date rozpoczęcia przyjmowania leku" type="date" />
         <div class="uzupelnijDanePrzycisk">
             <button type="submit">Prześlij dane</button>
         </div>

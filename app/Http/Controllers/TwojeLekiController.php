@@ -2,12 +2,41 @@
 
 namespace App\Http\Controllers;
 use App\lekiUzytkownika;
+use Carbon\Carbon;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
 
+function test(){
+    $pobierzDaneLeku = DB::table('leki_uzytkownika')
+                        ->join('harmonogram_daty', 'leki_uzytkownika.id', '=', 'harmonogram_daty.idLekuUzytkownika')
+                        ->select('leki_uzytkownika.*', 'harmonogram_daty.*')->where('idUzytkownika','=',Auth::id())->get();
+    
+    foreach($pobierzDaneLeku as $daneLeku){
+        DB::table('harmonogram')->where('idLekuUzytkownika','=',$daneLeku->id)->delete();
+        $rozpoczecie = Carbon::parse($daneLeku->rozpocznij);
+        $zakonczenie = Carbon::parse($daneLeku->zakoncz);
+        $czasTrwania = $zakonczenie->diffInDays($rozpoczecie);
+        $godziny = DB::table('harmonogram_godziny')->select('godzinaPrzyjmowania')->where('idLekuUzytkownika','=',$daneLeku->id)->get();
+        $nowaData = $rozpoczecie;
+        for($dzien = 0; $dzien < $czasTrwania; $dzien++){
+            for($i = 0; $i < count($godziny); $i++){
+                DB::table('harmonogram')->insertOrIgnore([
+                    'idLekuUzytkownika' => $daneLeku->id,
+                    'data' => $nowaData,
+                    'godzina' => $godziny[$i]->godzinaPrzyjmowania
+                ]);
+            }
+            $nowaData->addDay()->format('Y-m-d');
+        }
+
+    }
+    
+}
+
 class TwojeLekiController extends Controller
 {
+    
     public function dodajLek(Request $dodaj){
 
         $walidacja = $dodaj->validate([
@@ -23,22 +52,70 @@ class TwojeLekiController extends Controller
         $dodajLek->idUzytkownika = Auth::id();
         $dodajLek->idLeku = $idLeku;
         $dodajLek->iloscPaczek = $iloscPaczek;
+        
 
         if(strlen($dawkaUzytkownika) == 0){
             $dawkaSugerowana = DB::table('leki')->select('zalecaneDawkowanie')->where('id', '=', $idLeku)->get();
-            $dodajLek->dawkowanie = $dawkaSugerowana->first()->zalecaneDawkowanie;
+            $dawkowanie = $dawkaSugerowana->first()->zalecaneDawkowanie;
+            $dodajLek->dawkowanie = $dawkowanie;
         }else{
-            $dodajLek->dawkowanie = $dawkaUzytkownika;
+            $dawkowanie = $dawkaUzytkownika;
+            $dodajLek->dawkowanie = $dawkowanie;
         }
         
         $iloscLeku = DB::table('leki')->select('ilosc')->where('id', '=', $idLeku)->get();
         $iloscLekuUzytkownika = $iloscLeku->first()->ilosc * $iloscPaczek;
         $dodajLek->iloscLeku =  $iloscLekuUzytkownika;
-
         $dodajLek->czestotliwosc = $dodaj->czestotliwosc;
         $dodajLek->save();
+        $idDodanegoLeku = $dodajLek->id;
+
+        //tworzenie dat do harmonogramu
+        if(strlen($dodaj->rozpocznijData) == 0){
+            $dataRozpoczecia = Carbon::now()->addDay()->format('Y-m-d');
+        }else{
+            $dataRozpoczecia = $dodaj->rozpocznijData;
+        }
+
+        $jakDlugoPrzyjmowac = ceil($iloscLekuUzytkownika / $dodaj->dawkowanie);
+
+        $dataZakonczenia = Carbon::parse($dataRozpoczecia)->addDays($jakDlugoPrzyjmowac)->format('Y-m-d');
+
+        DB::table('harmonogram_daty')->insert([
+            'idLekuUzytkownika' => $idDodanegoLeku,
+            'rozpocznij' => $dataRozpoczecia,
+            'zakoncz' => $dataZakonczenia
+        ]);
+        //zakonczenie tworzenia dat harmonogramu
+        
+        //utworzenie godzin przyjmowania leków
+        $godzinyPrzyjmowania = [];
+        if(strlen($dodaj->rozpocznij) == 0){
+            $godzinaRozpoczecia = Carbon::parse("8:00");
+        }else{
+            $godzinaRozpoczecia = $dodaj->rozpocznij;
+        }
+        
+        for($i = 0; $i < $dawkowanie; $i++ ){
+            $dodajCzas = $dodaj->czestotliwosc * $i;
+            $godzinyPrzyjmowania[$i] = Carbon::parse($godzinaRozpoczecia)->addHours($dodajCzas)->format('H:i:s');
+        }
+
+        foreach($godzinyPrzyjmowania as $godzina){
+            DB::table('harmonogram_godziny')->insert([
+                'idLekuUzytkownika' => $idDodanegoLeku,
+                'godzinaPrzyjmowania' => $godzina
+            ]);
+        }
+        //koniec tworzenia godzin przyjmowania leków
+
+
+        test();
         return redirect()->route('twojeLeki');
+        
     }
+
+    
 
     public function usunLek($id){
         lekiUzytkownika::findOrFail($id)->delete();
@@ -82,6 +159,8 @@ class TwojeLekiController extends Controller
                             ->join('leki', 'leki_uzytkownika.idLeku', '=','leki.id')
                             ->select('leki_uzytkownika.*', 'leki.nazwa')
                             ->where('idUzytkownika', '=', Auth::id())->get();
+        
+
         
         return view('twojeLeki')->with(compact('wybierzLek', 'lekiUzytkownika'));
     }

@@ -94,16 +94,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-        DB::table('leki_uzytkownika')->insert([
-            'idUzytkownika' => 1,
-            'idLeku' => 1,
-            'iloscPaczek' => 3,
-            'iloscLeku' => 450,
-            'dawkowanie' => 2,
-            'czestotliwosc' => 7,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
+        
 
     }
 }
