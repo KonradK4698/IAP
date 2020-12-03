@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home/przyjmijLek/{id}', 'HomeController@przyjmijLek')->name('przyjmijLek');
 
 //dane użytkownika
 Route::get('/home/daneUzytkownika', 'DaneUzytkownikaController@widok')->name('daneUzytkownika');
@@ -53,3 +54,7 @@ Route::post('/home/twojeLeki/dodajLek', 'TwojeLekiController@dodajLek')->name('d
 Route::post('/home/twojeLeki/dodajOpakowanie/{id}/{idLeku}', 'TwojeLekiController@dodajOpakowanie')->name('dodajOpakowanie');
 Route::post('/home/twojeLeki/dodajLekiNaSztuki/{id}/{idLeku}', 'TwojeLekiController@dodajLekiNaSztuki')->name('dodajLekiNaSztuki');
 Route::delete('/home/twojeLeki/usunLek/{id}', 'TwojeLekiController@usunLek')->name('usunLek');
+
+//wydarzenia
+Route::get('/home/wydarzenia', 'WydarzeniaController@widok')->name('wydarzenia');
+Route::post('/home/wydarzenia/dodajWydarzenie', 'WydarzeniaController@dodaj')->name('dodajWydarzenie');

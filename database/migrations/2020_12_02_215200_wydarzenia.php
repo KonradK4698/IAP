@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class LekiUzytkownika extends Migration
+class Wydarzenia extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class LekiUzytkownika extends Migration
      */
     public function up()
     {
-        Schema::create('leki_uzytkownika', function (Blueprint $table) {
+        Schema::create('wydarzenia', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idUzytkownika');
-            $table->unsignedBigInteger('idLeku');
-            $table->mediumInteger('iloscPaczek');
-            $table->mediumInteger('iloscLeku');
-            $table->mediumInteger('dawkowanie');
-            $table->mediumInteger('czestotliwosc');
-            $table->date('rozpocznij');
-            $table->date('zakoncz');
+            $table->string('tytul');
+            $table->date('data');
+            $table->time('godzina');
+            $table->text('opis');
             $table->foreign('idUzytkownika')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('idLeku')->references('id')->on('leki')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -36,6 +32,6 @@ class LekiUzytkownika extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leki_uzytkownika');
+        Schema::dropIfExists('wydarzenia');
     }
 }

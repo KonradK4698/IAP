@@ -181,6 +181,27 @@ nav.nawigacjaPrzewinieta {
   background: #ff0000;
 }
 
+.harmonogramTest {
+  width: 100%;
+  margin: 5px 0;
+  background: #333333;
+  color: white;
+  text-align: center;
+}
+
+.harmonogramTest .harmonogramTestSpan {
+  display: inline-block;
+  font-size: 2em;
+  width: 18%;
+  padding: 10px 0;
+}
+
+.harmonogramTest .harmonogramTestSpan a {
+  font-size: 1em;
+  text-decoration: none;
+  color: white;
+}
+
 .kontenerRejestracja {
   height: 100vh;
   background-image: url("../img/rejestracja.jpg");

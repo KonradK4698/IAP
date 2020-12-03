@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Mail\Przypomnij;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +26,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        
+            $schedule->call(function(){
+                Mail::to("inzyniermedic@gmail.com")->send(new Przypomnij());
+            })->everyMinute();
+            // $schedule->command('inspire')->hourly();
+        
     }
 
     /**

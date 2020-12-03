@@ -2,36 +2,46 @@
 
 namespace App\Http\Controllers;
 use App\lekiUzytkownika;
+use App\Harmonogram;
+
 use Carbon\Carbon;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
 
-function test(){
-    $pobierzDaneLeku = DB::table('leki_uzytkownika')
-                        ->join('harmonogram_daty', 'leki_uzytkownika.id', '=', 'harmonogram_daty.idLekuUzytkownika')
-                        ->select('leki_uzytkownika.*', 'harmonogram_daty.*')->where('idUzytkownika','=',Auth::id())->get();
-    
-    foreach($pobierzDaneLeku as $daneLeku){
-        DB::table('harmonogram')->where('idLekuUzytkownika','=',$daneLeku->id)->delete();
-        $rozpoczecie = Carbon::parse($daneLeku->rozpocznij);
-        $zakonczenie = Carbon::parse($daneLeku->zakoncz);
-        $czasTrwania = $zakonczenie->diffInDays($rozpoczecie);
-        $godziny = DB::table('harmonogram_godziny')->select('godzinaPrzyjmowania')->where('idLekuUzytkownika','=',$daneLeku->id)->get();
-        $nowaData = $rozpoczecie;
-        for($dzien = 0; $dzien < $czasTrwania; $dzien++){
-            for($i = 0; $i < count($godziny); $i++){
-                DB::table('harmonogram')->insertOrIgnore([
-                    'idLekuUzytkownika' => $daneLeku->id,
-                    'data' => $nowaData,
-                    'godzina' => $godziny[$i]->godzinaPrzyjmowania
-                ]);
-            }
-            $nowaData->addDay()->format('Y-m-d');
-        }
 
-    }
-    
+function harmonogram($idDodanegoLeku){
+        $pobierzDaneLeku = DB::table('leki_uzytkownika')->where('id','=',$idDodanegoLeku)->get();
+
+        $nowaData = Carbon::parse($pobierzDaneLeku->first()->rozpocznij);
+        //$zakonczenie = Carbon::parse($pobierzDaneLeku->first()->zakoncz);
+        //$czasTrwania = $zakonczenie->diffInDays($rozpoczecie);
+        $iloscLeku = $pobierzDaneLeku->first()->iloscLeku;
+        $dawkowanie = $pobierzDaneLeku->first()->dawkowanie;
+        $i = 0;
+        $godziny = DB::table('harmonogram_godziny')->select('godzinaPrzyjmowania')->where('idLekuUzytkownika','=',$idDodanegoLeku)->get();
+        do{
+
+            Harmonogram::firstOrCreate([
+                'idLekuUzytkownika' => $idDodanegoLeku,
+                'data' => $nowaData,
+                'godzina' => $godziny[$i]->godzinaPrzyjmowania
+            ]);
+           /* DB::table('harmonogram')->insertOrIgnore([
+                'idLekuUzytkownika' => $idDodanegoLeku,
+                'data' => $nowaData,
+                'godzina' => $godziny[$i]->godzinaPrzyjmowania
+            ]);*/
+            
+            if($i == $dawkowanie-1){
+                $i =0;
+                $nowaData->addDay()->format('Y-m-d');
+            }else{
+                $i++;
+            }
+            $iloscLeku--;
+
+        }while($iloscLeku > 0);
 }
 
 class TwojeLekiController extends Controller
@@ -67,8 +77,6 @@ class TwojeLekiController extends Controller
         $iloscLekuUzytkownika = $iloscLeku->first()->ilosc * $iloscPaczek;
         $dodajLek->iloscLeku =  $iloscLekuUzytkownika;
         $dodajLek->czestotliwosc = $dodaj->czestotliwosc;
-        $dodajLek->save();
-        $idDodanegoLeku = $dodajLek->id;
 
         //tworzenie dat do harmonogramu
         if(strlen($dodaj->rozpocznijData) == 0){
@@ -77,16 +85,20 @@ class TwojeLekiController extends Controller
             $dataRozpoczecia = $dodaj->rozpocznijData;
         }
 
-        $jakDlugoPrzyjmowac = ceil($iloscLekuUzytkownika / $dodaj->dawkowanie);
+        $jakDlugoPrzyjmowac = floor($iloscLekuUzytkownika / $dodaj->dawkowanie);
 
         $dataZakonczenia = Carbon::parse($dataRozpoczecia)->addDays($jakDlugoPrzyjmowac)->format('Y-m-d');
 
-        DB::table('harmonogram_daty')->insert([
-            'idLekuUzytkownika' => $idDodanegoLeku,
-            'rozpocznij' => $dataRozpoczecia,
-            'zakoncz' => $dataZakonczenia
-        ]);
+        $dodajLek->rozpocznij = $dataRozpoczecia;
+        $dodajLek->zakoncz = $dataZakonczenia;
         //zakonczenie tworzenia dat harmonogramu
+
+        $dodajLek->save();
+        $idDodanegoLeku = $dodajLek->id;
+
+        
+
+        
         
         //utworzenie godzin przyjmowania leków
         $godzinyPrzyjmowania = [];
@@ -110,7 +122,9 @@ class TwojeLekiController extends Controller
         //koniec tworzenia godzin przyjmowania leków
 
 
-        test();
+        harmonogram($idDodanegoLeku);
+        
+
         return redirect()->route('twojeLeki');
         
     }
@@ -125,32 +139,45 @@ class TwojeLekiController extends Controller
     public function dodajOpakowanie(Request $dodaj, $id, $idLeku){
         $iloscOpakowan = $dodaj->ilosc;
 
-        $stareDane = DB::table('leki_uzytkownika')->select('iloscPaczek', 'iloscLeku')->where('id','=',$id)->get();
+        $stareDane = DB::table('leki_uzytkownika')->select('iloscPaczek', 'iloscLeku', 'rozpocznij', 'dawkowanie')->where('id','=',$id)->get();
         $szutkWPaczce = DB::table('leki')->select('ilosc')->where('id','=',$idLeku)->get();
 
         $nowaIloscOpakowan = $iloscOpakowan + $stareDane->first()->iloscPaczek;
         $nowaIloscSztuk = $iloscOpakowan * $szutkWPaczce->first()->ilosc + $stareDane->first()->iloscLeku;
 
-        lekiUzytkownika::Where('id', '=', $id)->update(['iloscPaczek'=> $nowaIloscOpakowan, 'iloscLeku'=> $nowaIloscSztuk]);
+        $dataRozpoczecia = $stareDane->first()->rozpocznij;
+        $dawkowanie = $stareDane->first()->dawkowanie;
+        $jakDlugoPrzyjmowac = floor($nowaIloscSztuk / $dawkowanie);
+        $nowaDataZakonczenia = Carbon::parse($dataRozpoczecia)->addDays($jakDlugoPrzyjmowac)->format('Y-m-d');
+        
+        //dd($dataRozpoczecia , $nowaDataZakonczenia);
+        
+        lekiUzytkownika::Where('id', '=', $id)->update(['iloscPaczek'=> $nowaIloscOpakowan, 'iloscLeku'=> $nowaIloscSztuk, 'zakoncz'=>$nowaDataZakonczenia]);
+        harmonogram($id);
         return redirect()->route('twojeLeki');
     }
 
     public function dodajLekiNaSztuki(Request $dodaj, $id, $idLeku){
         $iloscSztuk = $dodaj->iloscSztuk;
 
-        $stareDane = DB::table('leki_uzytkownika')->select('iloscPaczek', 'iloscLeku')->where('id','=',$id)->get();
+        $stareDane = DB::table('leki_uzytkownika')->select('iloscPaczek', 'iloscLeku', 'rozpocznij', 'dawkowanie')->where('id','=',$id)->get();
         $szutkWPaczce = DB::table('leki')->select('ilosc')->where('id','=',$idLeku)->get();
 
         $nowaIloscSztuk = $stareDane->first()->iloscLeku + $iloscSztuk;
         $nowaIloscOpakowan = ceil($nowaIloscSztuk / $szutkWPaczce->first()->ilosc);
 
-        
+        $dataRozpoczecia = $stareDane->first()->rozpocznij;
+        $dawkowanie = $stareDane->first()->dawkowanie;
+        $jakDlugoPrzyjmowac = floor($nowaIloscSztuk / $dawkowanie);
+        $nowaDataZakonczenia = Carbon::parse($dataRozpoczecia)->addDays($jakDlugoPrzyjmowac)->format('Y-m-d');
 
-        lekiUzytkownika::Where('id', '=', $id)->update(['iloscPaczek'=> $nowaIloscOpakowan,'iloscLeku' => $nowaIloscSztuk]);
-
+        lekiUzytkownika::where('id', '=', $id)->update(['iloscPaczek'=> $nowaIloscOpakowan,'iloscLeku' => $nowaIloscSztuk, 'zakoncz'=>$nowaDataZakonczenia]);
+        harmonogram($id);
         return redirect()->route('twojeLeki');
 
     }
+
+    
 
     public function widok(){
 

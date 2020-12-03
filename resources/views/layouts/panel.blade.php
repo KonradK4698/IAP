@@ -38,11 +38,13 @@
 </nav>
 
 <aside class="submenu">
+    <a href="{{route('home')}}"> Panel </a>
     <a href="{{route('daneUzytkownika')}}"> Dane użytkownika </a>
     <a href="{{route('daneDodatkowe')}}"> Dane dodatkowe </a>
     <a href="{{route('pomiarCisnienia')}}"> Pomiar cisnienia </a>
     <a href="{{route('bazaLekow')}}"> Baza lekow </a>
     <a href="{{route('twojeLeki')}}"> Twoje leki </a>
+    <a href="{{route('wydarzenia')}}"> Dodaj wydarzenie </a>
 </aside>
 
 <div class="glownyDiv">
