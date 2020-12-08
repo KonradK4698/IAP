@@ -58,3 +58,7 @@ Route::delete('/home/twojeLeki/usunLek/{id}', 'TwojeLekiController@usunLek')->na
 //wydarzenia
 Route::get('/home/wydarzenia', 'WydarzeniaController@widok')->name('wydarzenia');
 Route::post('/home/wydarzenia/dodajWydarzenie', 'WydarzeniaController@dodaj')->name('dodajWydarzenie');
+
+Route::get('/home/mail', function() {
+    return new App\Mail\Przypomnij();
+});

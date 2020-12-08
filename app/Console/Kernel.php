@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use Illuminate\Support\Collection;
+use Carbon\Carbon;
+use App\Harmonogram;
+use App\lekiUzytkownika;
+use App\Wydarzenia;
+use Auth;
+use DB;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -15,7 +22,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\przypomnijCodziennie',
     ];
 
     /**
@@ -27,9 +34,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         
-            $schedule->call(function(){
-                Mail::to("inzyniermedic@gmail.com")->send(new Przypomnij());
-            })->everyMinute();
+
+
+            $schedule->command('przypomnij:codziennie')->everyMinute();
             // $schedule->command('inspire')->hourly();
         
     }

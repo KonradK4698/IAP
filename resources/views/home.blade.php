@@ -7,23 +7,13 @@
 
 </div>
 
-@foreach($wydarzenia as $wydarzenie)
 
-<div class="harmonogramTest">
-        <span class="harmonogramTestSpan"> {{$wydarzenie->tytul}}</span>
-        <span class="harmonogramTestSpan"> {{$wydarzenie->data}}</span>
-        <span class="harmonogramTestSpan"> {{$wydarzenie->godzina}}</span>
-        <span class="harmonogramTestSpan"> {{$wydarzenie->opis}}</span>
-    </div>
 
-@endforeach
-
-@foreach($harmonogram as $dane)
+@foreach($posortowane as $dane)
     <div class="harmonogramTest">
         <span class="harmonogramTestSpan"> {{$dane->id}}</span>
         <span class="harmonogramTestSpan"> {{$dane->data}}</span>
         <span class="harmonogramTestSpan"> {{$dane->godzina}}</span>
-        <span class="harmonogramTestSpan"> {{$dane->potwierdzenie}}</span>
         <span class="harmonogramTestSpan">
             <form method="post" action="{{route('przyjmijLek', $dane->id)}}"> 
             <input type="hidden" name="_token" value="{{csrf_token()}}" />

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+
 class Przypomnij extends Mailable
 {
     use Queueable, SerializesModels;
@@ -17,9 +18,13 @@ class Przypomnij extends Mailable
      * @return void
      */
     
-    public function __construct()
+    
+    public $leki;
+    public $wydarzenia;
+    public function __construct($leki, $wydarzenia)
     {
-        
+        $this->leki = $leki;
+        $this->wydarzenia = $wydarzenia;
     }
 
     /**
@@ -29,6 +34,7 @@ class Przypomnij extends Mailable
      */
     public function build()
     {
+        
         return $this->view('email.test');
     }
 }
