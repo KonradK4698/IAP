@@ -74,7 +74,6 @@
         <div class="wiersz3"> {{ $obwod->biodra }}</div>
         <div class="wiersz3"> {{ $obwod->uda }}</div>
         <div class="wiersz3"> {{ $obwod->lydka }}</div>
-        <a href="{{route('aktualizacjaObwodowWidok' , $obwod->id)}}" class="update"> Zakutalizuj </a>
         @endforeach
     </div>
 

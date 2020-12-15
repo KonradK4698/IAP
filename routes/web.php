@@ -30,7 +30,7 @@ Route::post('/home/daneUzytkownika/aktualizacjaDanych/{id}', 'DaneUzytkownikaCon
 //dane dodatkowe uzytkownika
 Route::get('/home/daneDodatkowe', 'DaneDodatkoweController@widok')->name('daneDodatkowe');
 //wzrost
-Route::post('/home/daneDodatkowe/dodajWzrost', 'DaneDodatkoweController@dodajWzrost')->name('dodajWzrostPost');
+Route::post('/home/daneDodatkowe/dodajWrost', 'DaneDodatkoweController@dodajWzrost')->name('dodajWzrostPost');
 Route::delete('/home/daneDodatkowe/usunWzrost/{id}', 'DaneDodatkoweController@usunWzrost')->name('usunWzrostRoute');
 //waga
 Route::post('/home/daneDodatkowe/dodajWage', 'DaneDodatkoweController@dodajWage')->name('dodajWage');
@@ -59,6 +59,5 @@ Route::delete('/home/twojeLeki/usunLek/{id}', 'TwojeLekiController@usunLek')->na
 Route::get('/home/wydarzenia', 'WydarzeniaController@widok')->name('wydarzenia');
 Route::post('/home/wydarzenia/dodajWydarzenie', 'WydarzeniaController@dodaj')->name('dodajWydarzenie');
 
-Route::get('/home/mail', function() {
-    return new App\Mail\Przypomnij();
-});
+//statystyka
+Route::get('/home/statystyka', 'StatystykaController@widok')->name('statystyka');

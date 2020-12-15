@@ -23,7 +23,7 @@ class DaneDodatkoweController extends Controller
         $dodaj->wzrost = $request->wzrost;
         $dodaj->save();
 
-        return redirect()->route('daneDodatkowe');
+        return  redirect()->route('daneDodatkowe');
     }
 
     public function usunWzrost( $id){

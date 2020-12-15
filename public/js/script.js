@@ -1,4 +1,10 @@
 
+const errorContener = document.querySelector('.errorContener');
+
+setTimeout(function(){
+    errorContener.style.display = 'none';
+}, 5000);
+
 // obsługa scrolowania nawigacji
 var nawigacja = document.querySelector('.nawigacjaStronaGlowna');
 

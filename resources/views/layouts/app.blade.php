@@ -50,10 +50,19 @@
 </nav>
 
         <main class="py-4">
+        @if ($errors->any())
+<div class="errorContener">
+    <p>Wystąpiły błędy!!!</p>
+    @foreach ($errors->all() as $error)
+        <span>{{ $error }}</span>
+    @endforeach
+</div>
+@endif
             @yield('content')
         </main>
 
 
-        <script src="{{ '../resources/js/script.js' }}"></script>
+        
+        <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

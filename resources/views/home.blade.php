@@ -2,14 +2,17 @@
 
 @section('content')
 <div class="homeKontener">
-    <span> Witaj Użytkowniku </span>
-
+    @isset($imieUzytkownika)
+    <span> Witaj {{ $imieUzytkownika }} </span>
+    @else
+    <span> Witaj użytkowniku </span>
+    @endisset
 
 </div>
+@endsection
+{{--<div id="chartdiv"></div>
 
-
-
-@foreach($posortowane as $dane)
+ @foreach($posortowane as $dane)
     <div class="harmonogramTest">
         <span class="harmonogramTestSpan"> {{$dane->id}}</span>
         <span class="harmonogramTestSpan"> {{$dane->data}}</span>
@@ -22,4 +25,13 @@
         </span>
     </div>
     @endforeach
-@endsection
+
+
+
+@section('statystykaCisnienie')
+    @foreach($daneCisnienia as $dana)
+        {"data" : new Date("{{$dana->created_at->format('Y-m-d H:M:s')}}"),"skurczowe" : {{$dana->skurczowe}},"rozkurczowe" : {{$dana->rozkurczowe}},"tetno" : {{$dana->tetno}}},
+    @endforeach
+@endSection --}}
+
+    

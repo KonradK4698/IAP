@@ -8,8 +8,10 @@ use Illuminate\Support\Collection;
 use App\Harmonogram;
 use App\lekiUzytkownika;
 use App\Wydarzenia;
+use App\Cisnienie;
 use Auth;
 use DB;
+use daneUzytkownika;
 class HomeController extends Controller
 {
     /**
@@ -34,13 +36,12 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $harmonogram = collect();
+        /*$harmonogram = collect();
         $leki = lekiUzytkownika::where('idUzytkownika', '=', Auth::id())->get();
         $wydarzenia = DB::table('wydarzenia')->where('idUzytkownika', '=', Auth::id())->get();
         foreach($leki as $lek){
             $daneHarmonogram = DB::table('harmonogram')->where('idLekuUzytkownika','=',$lek->id)->get();
         }
-
         $kolekcja = collect([
             'harmonogram' => $daneHarmonogram,
             'wydarzenia' => $wydarzenia
@@ -52,8 +53,13 @@ class HomeController extends Controller
         }
         //dd($harmonogram->sortByDesc('data')->where('data', '2020-12-08'));
         $posortowane = $harmonogram->sortByDesc('data');
-
        
-        return view('home')->with(compact('posortowane'));
+        $daneCisnienia = Cisnienie::where('idUzytkownika', '=', 
+        Auth::id())->get();
+        return view('home')->with(compact('posortowane', 'daneCisnienia'));*/
+        $imieUzytkownika = DB::table('dane_uzytkownika')->select('imie')->where('idUzytkownika', '=', Auth::id())->get();
+        $imieUzytkownika = $imieUzytkownika->first()->imie;
+        
+        return view('home')->with(compact('imieUzytkownika'));
     }
 }

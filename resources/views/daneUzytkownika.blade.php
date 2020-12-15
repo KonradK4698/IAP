@@ -18,6 +18,7 @@
         <input name='dataUrodzenia' placeholder="Data urodzenia" type="date" />
         <input name='telefon' placeholder="Numer telefonu" type="phone" />
         <input name='telefonPom' placeholder="Pomocniczny telefon" type="phone" />
+        <input type="checkbox" id="horns" name="polityka"> Polityka prywatności potwierdź.
         <div class="uzupelnijDanePrzycisk">
             <button type="submit">Prześlij dane</button>
         </div>

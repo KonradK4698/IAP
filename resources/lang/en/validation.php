@@ -130,8 +130,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'polityka' => [
+            'required' => 'Polityka prywatności jest wymagana',
         ],
     ],
 

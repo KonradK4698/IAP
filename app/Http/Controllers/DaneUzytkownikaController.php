@@ -11,8 +11,10 @@ use Auth;
 class DaneUzytkownikaController extends Controller
 {
     
-
+    
     public function store(Request $request){
+
+        
 
         $walidacja = $request->validate([
             'imie' => 'required|max:20|string',
@@ -20,8 +22,9 @@ class DaneUzytkownikaController extends Controller
             'dataUrodzenia' => 'required|date',
             'telefon' => 'required|digits_between:9,12',
             'telefonPom' => 'required|digits_between:9,12',
+            'polityka' => 'required'
         ]);
-
+        
         $data = new daneUzytkownika;
         $data->idUzytkownika = Auth::id();
         $data->imie = $request->imie;

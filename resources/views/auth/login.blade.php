@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="kontenerLogowanie"></div>
     <form method="POST" action="{{ route('login') }}" class="formularzLogowanie">
         @csrf
@@ -12,8 +13,9 @@
             <input id="password" type="password" name="password" required autocomplete="current-password" class="inputLogin" placeholder="Podaj haslo">
 
             <div class="kontenerZapamietaj">
-                <input class="checkboxZapamietaj" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                <span class="opisZapamietaj">Zapamietaj</span>
+                <span >Zapamietaj</span>
+                <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                
             </div>
 
             <div class="przyciskiLogowanie">
