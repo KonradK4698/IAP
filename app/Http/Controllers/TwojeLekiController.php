@@ -14,25 +14,28 @@ function harmonogram($idDodanegoLeku){
         $pobierzDaneLeku = DB::table('leki_uzytkownika')->where('id','=',$idDodanegoLeku)->get();
 
         $nowaData = Carbon::parse($pobierzDaneLeku->first()->rozpocznij);
-        //$zakonczenie = Carbon::parse($pobierzDaneLeku->first()->zakoncz);
-        //$czasTrwania = $zakonczenie->diffInDays($rozpoczecie);
         $iloscLeku = $pobierzDaneLeku->first()->iloscLeku;
         $dawkowanie = $pobierzDaneLeku->first()->dawkowanie;
         $i = 0;
         $godziny = DB::table('harmonogram_godziny')->select('godzinaPrzyjmowania')->where('idLekuUzytkownika','=',$idDodanegoLeku)->get();
+        $godzinaStart = $godziny->first()->godzinaPrzyjmowania;
+        $polnoc = Carbon::parse("23:59:59")->format('H:i:s');
         do{
-
-            Harmonogram::firstOrCreate([
-                'idLekuUzytkownika' => $idDodanegoLeku,
-                'data' => $nowaData,
-                'godzina' => $godziny[$i]->godzinaPrzyjmowania
-            ]);
-           /* DB::table('harmonogram')->insertOrIgnore([
-                'idLekuUzytkownika' => $idDodanegoLeku,
-                'data' => $nowaData,
-                'godzina' => $godziny[$i]->godzinaPrzyjmowania
-            ]);*/
-            
+                if(Carbon::parse($godziny[$i]->godzinaPrzyjmowania)->between($godzinaStart, $polnoc)){
+                    Harmonogram::firstOrCreate([
+                    'idLekuUzytkownika' => $idDodanegoLeku,
+                    'data' => $nowaData,
+                    'godzina' => $godziny[$i]->godzinaPrzyjmowania
+                ]);
+                }else{
+                    $copyDate = clone $nowaData;
+                    $dateTmp = $copyDate->addDay()->format('Y-m-d');
+                    Harmonogram::firstOrCreate([
+                    'idLekuUzytkownika' => $idDodanegoLeku,
+                    'data' => $dateTmp,
+                    'godzina' => $godziny[$i]->godzinaPrzyjmowania
+                    ]);
+                }
             if($i == $dawkowanie-1){
                 $i =0;
                 $nowaData->addDay()->format('Y-m-d');

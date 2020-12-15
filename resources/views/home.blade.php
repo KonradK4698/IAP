@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="homeKontener">
-    @isset($imieUzytkownika)
-    <span> Witaj {{ $imieUzytkownika }} </span>
+    @if($imieUzytkownika->count() > 0)
+    <span> Witaj {{ $imieUzytkownika->first()->imie }} </span>
     @else
     <span> Witaj użytkowniku </span>
-    @endisset
+    @endif
 
 </div>
 @endsection

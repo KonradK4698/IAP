@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use DB;
 use App\Cisnienie;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class PomiarCisnieniaController extends Controller
     public function dodajPomiary(Request $dodaj){
 
         $walidacja = $dodaj->validate([
-            'skurczowe' => 'required|digits_between:1,5|numeric',
-            'rozkurczowe' => 'required|digits_between:1,5|numeric',
-            'tetno' => 'required|digits_between:1,5|numeric',
+            'skurczowe' => 'required|numeric',
+            'rozkurczowe' => 'required|numeric',
+            'tetno' => 'required|numeric',
         ]);
 
         $dodajPomiar = new Cisnienie;
@@ -34,8 +35,11 @@ class PomiarCisnieniaController extends Controller
     }
 
     public function widok(){
+        $aktualnaData = Carbon::now()->format('Y-m-d');
 
-        $pomiary = DB::table('cisnienie')->select('id','skurczowe', 'rozkurczowe', 'tetno')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->limit(1)->get();
+        
+
+        $pomiary = DB::table('cisnienie')->select('id','skurczowe', 'rozkurczowe', 'tetno')->where('idUzytkownika', '=', Auth::id())->whereDate('created_at', '=', $aktualnaData)->get();
         
         return view('pomiarCisnienia')->with(compact('pomiary'));
     }

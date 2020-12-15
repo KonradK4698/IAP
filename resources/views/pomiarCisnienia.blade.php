@@ -20,7 +20,7 @@
         <input data-opis="Tętno" name="tetno" placeholder="Podaj tętno" type="text" />
         <div class="openConfirm">Dodaj pomiar</div>
     </form>
-
+    @if($pomiary->count() > 0)
     <div class="tablica">
         <div class="wiersz"> skurczowe </div>
         <div class="wiersz"> rozkurczowe </div>
@@ -31,6 +31,10 @@
         <div class="wiersz"> {{ $pomiar->tetno }} </div>
         @endforeach
     </div>
+    @else
+    <span> Brak pomiarów ciśnienia w dzisiejszym dniu <span>
+    
+     @endif
 @endsection
 
 <div class="overlay"></div>

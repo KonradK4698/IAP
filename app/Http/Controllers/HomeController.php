@@ -58,7 +58,8 @@ class HomeController extends Controller
         Auth::id())->get();
         return view('home')->with(compact('posortowane', 'daneCisnienia'));*/
         $imieUzytkownika = DB::table('dane_uzytkownika')->select('imie')->where('idUzytkownika', '=', Auth::id())->get();
-        $imieUzytkownika = $imieUzytkownika->first()->imie;
+        
+        
         
         return view('home')->with(compact('imieUzytkownika'));
     }
