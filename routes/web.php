@@ -61,3 +61,7 @@ Route::post('/home/wydarzenia/dodajWydarzenie', 'WydarzeniaController@dodaj')->n
 
 //statystyka
 Route::get('/home/statystyka', 'StatystykaController@widok')->name('statystyka');
+
+//raport
+
+Route::get('/home/raport', 'RaportUzytkownikaController@widok')->name('raport');

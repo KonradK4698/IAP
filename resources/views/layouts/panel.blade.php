@@ -46,6 +46,7 @@
     <a href="{{route('bazaLekow')}}"> Baza lekow </a>
     <a href="{{route('twojeLeki')}}"> Twoje leki </a>
     <a href="{{route('wydarzenia')}}"> Dodaj wydarzenie </a>
+    <a href="{{route('raport')}}"> Raport </a>
 </aside>
 
 <div class="glownyDiv">

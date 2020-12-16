@@ -54,7 +54,7 @@ class przypomnijCodziennie extends Command
     public function handle()
     {
         $aktualnaData = Carbon::now()->toDateString();
-        $lekUzytownika = DB::table('harmonogram')->select('idLekuUzytkownika','data')->where('data', '=', $aktualnaData)->get();
+        $lekUzytownika = DB::table('harmonogram')->select('idLekuUzytkownika','data')->get();
         
         foreach($lekUzytownika as $idLeku){
            $uzytkownicy = DB::table('leki_uzytkownika')->select('idUzytkownika')->where('id', '=', $idLeku->idLekuUzytkownika)->get();
@@ -62,10 +62,10 @@ class przypomnijCodziennie extends Command
        
         foreach($uzytkownicy as $uzytkownik){
             $leki = lekiUzytkownika::where('idUzytkownika', '=', $uzytkownik->idUzytkownika)->get();
-        $wydarzeniaNaDzis = DB::table('wydarzenia')->where('idUzytkownika', '=', $uzytkownik->idUzytkownika)->where('data', '=', $aktualnaData)->get();
+        $wydarzeniaNaDzis = DB::table('wydarzenia')->where('idUzytkownika', '=', $uzytkownik->idUzytkownika)->get();
             foreach($leki as $lek){
                 $lekiNaDzis = DB::table('harmonogram')->join('leki_uzytkownika', 'harmonogram.idLekuUzytkownika' ,'=','leki_uzytkownika.id')
-                                                      ->join('leki', 'leki_uzytkownika.idLeku' ,'=', 'leki.id')->select('harmonogram.*', 'leki.nazwa')->where('leki_uzytkownika.id','=',$lek->id)->where('data', '=', $aktualnaData)->get();
+                                                      ->join('leki', 'leki_uzytkownika.idLeku' ,'=', 'leki.id')->select('harmonogram.*', 'leki.nazwa')->where('leki_uzytkownika.id','=',$lek->id)->get();
             }
 
             $posortowane = $lekiNaDzis->sortBy('data');

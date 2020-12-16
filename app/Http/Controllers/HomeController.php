@@ -36,15 +36,15 @@ class HomeController extends Controller
     }
     public function index()
     {
-        /*$harmonogram = collect();
+        $harmonogram = collect();
         $leki = lekiUzytkownika::where('idUzytkownika', '=', Auth::id())->get();
-        $wydarzenia = DB::table('wydarzenia')->where('idUzytkownika', '=', Auth::id())->get();
+       // $wydarzenia = DB::table('wydarzenia')->where('idUzytkownika', '=', Auth::id())->get();
         foreach($leki as $lek){
             $daneHarmonogram = DB::table('harmonogram')->where('idLekuUzytkownika','=',$lek->id)->get();
         }
         $kolekcja = collect([
             'harmonogram' => $daneHarmonogram,
-            'wydarzenia' => $wydarzenia
+            //'wydarzenia' => $wydarzenia
         ]);
         foreach($kolekcja as $element){
             foreach($element as $dane){
@@ -52,15 +52,14 @@ class HomeController extends Controller
             }
         }
         //dd($harmonogram->sortByDesc('data')->where('data', '2020-12-08'));
-        $posortowane = $harmonogram->sortByDesc('data');
+        $posortowane = $harmonogram->sortBy('data');
        
         $daneCisnienia = Cisnienie::where('idUzytkownika', '=', 
         Auth::id())->get();
-        return view('home')->with(compact('posortowane', 'daneCisnienia'));*/
+        
         $imieUzytkownika = DB::table('dane_uzytkownika')->select('imie')->where('idUzytkownika', '=', Auth::id())->get();
         
-        
-        
-        return view('home')->with(compact('imieUzytkownika'));
+       
+        return view('home')->with(compact('posortowane', 'daneCisnienia','imieUzytkownika'));
     }
 }
