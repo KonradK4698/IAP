@@ -1,6 +1,4 @@
-@extends('layouts.panel')
 
-@section('content')
 
 Twój raport {{$imieNazwisko->first()->imie}} {{$imieNazwisko->first()->nazwisko}}
 
@@ -24,4 +22,5 @@ Twoje obwody
     Max: {{$obwod['max']}}
     <br/><br/>
 @endforeach
-@endsection
+
+<a href="{{route('utworzPDF')}}"> PDF pobierz </a>
