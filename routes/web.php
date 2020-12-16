@@ -65,4 +65,4 @@ Route::get('/home/statystyka', 'StatystykaController@widok')->name('statystyka')
 //raport
 
 Route::get('/home/raport', 'RaportUzytkownikaController@widok')->name('raport');
-Route::get('/home/raport/pdf', 'RaportUzytkownikaController@utworzPDF')->name('utworzPDF');
+Route::get('/home/raport/pdf/{miesiac}', 'RaportUzytkownikaController@utworzPDF')->name('utworzPDF');
