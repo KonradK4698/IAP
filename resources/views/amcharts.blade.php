@@ -8,125 +8,159 @@
 
 
 @if(Route::current()->getName() == 'home')
-    <script>
-    am4core.ready(function() {
 
-    // Themes begin
-    am4core.useTheme(am4themes_animated);
-    // Themes end
-
-    // Create chart instance
-    var chart = am4core.create("chartdiv", am4charts.XYChart);
-
-    chart.colors.step = 2;
-    chart.maskBullets = false;
-
-    // Add data
-    chart.data = [@yield('statystykaCisnienie')];
-
-    // Create axes
-    
-    var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-    dateAxis.baseInterval = {
+<script>
+//Dane statystyczne ciśnienia
+am4core.ready(function() {
+am4core.useTheme(am4themes_animated);
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+var data = [@yield('statystykaCisnienie')];
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "czasDodania";
+categoryAxis.baseInterval = {
     "timeUnit": "second",
     "count": 1
     }
-    dateAxis.skipEmptyPeriods = true;
-    dateAxis.tooltipDateFormat = "HH:mm, d MMMM";
-    dateAxis.renderer.grid.template.location = 0;
-    dateAxis.renderer.minGridDistance = 50;
-    dateAxis.renderer.grid.template.disabled = true;
-    dateAxis.renderer.fullWidthTooltip = true;
+categoryAxis.skipEmptyPeriods = true;
+categoryAxis.tooltipDateFormat = "HH:mm, d MMMM";
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.renderer.minGridDistance = 30;
+categoryAxis.renderer.grid.template.disabled = true;
+categoryAxis.renderer.fullWidthTooltip = true;
+categoryAxis.renderer.labels.template.fontSize = 20;
 
-    var distanceAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    distanceAxis.title.text = "Skurczowe";
-    //distanceAxis.renderer.grid.template.disabled = true;
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
-    var durationAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    durationAxis.title.text = "Rozkurczowe";
-    //durationAxis.baseUnit = "lolo";
-    //durationAxis.renderer.grid.template.disabled = true;
-    durationAxis.renderer.opposite = true;
-    durationAxis.syncWithAxis = distanceAxis;
+var columnSeries = chart.series.push(new am4charts.ColumnSeries());
+columnSeries.name = "Tętno";
+columnSeries.dataFields.valueY = "tetno";
+columnSeries.dataFields.categoryX = "czasDodania";
 
-    //durationAxis.durationFormatter.durationFormat = "hh'h' mm'min'";
+columnSeries.columns.template.tooltipText = "[#fff font-size: 15px]Wartość tętna\n W dniu: {categoryX}\n[/][#fff font-size: 20px]{valueY}[/] [#fff]{additional}[/]"
+columnSeries.columns.template.propertyFields.fillOpacity = "fillOpacity";
+columnSeries.columns.template.propertyFields.stroke = "stroke";
+columnSeries.columns.template.propertyFields.strokeWidth = "strokeWidth";
+columnSeries.columns.template.propertyFields.strokeDasharray = "columnDash";
+columnSeries.tooltip.label.textAlign = "middle";
+columnSeries.tooltip.getFillFromObject = false;
+columnSeries.tooltip.background.fill = am4core.color("#6b8fff");
+columnSeries.fill = am4core.color("#6b8fff");
+columnSeries.stroke = am4core.color("#6b8fff");
 
-    var latitudeAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    latitudeAxis.renderer.grid.template.disabled = true;
-    latitudeAxis.renderer.labels.template.disabled = true;
-    latitudeAxis.syncWithAxis = distanceAxis;
+var lineSeries = chart.series.push(new am4charts.LineSeries());
+lineSeries.name = "Skurczowe";
+lineSeries.dataFields.valueY = "skurczowe";
+lineSeries.dataFields.categoryX = "czasDodania";
 
-    // Create series
-    var distanceSeries = chart.series.push(new am4charts.ColumnSeries());
-    distanceSeries.dataFields.valueY = "tetno";
-    distanceSeries.dataFields.dateX = "data";
-    distanceSeries.yAxis = distanceAxis;
-    distanceSeries.tooltipText = "Tętno: {valueY}";
-    distanceSeries.name = "Tętno";
-    distanceSeries.columns.template.fillOpacity = 0.7;
-    distanceSeries.columns.template.propertyFields.strokeDasharray = "dashLength";
-    distanceSeries.columns.template.propertyFields.fillOpacity = "alpha";
-    distanceSeries.showOnInit = true;
+lineSeries.stroke = am4core.color("#ff0000");
+lineSeries.strokeWidth = 3;
+lineSeries.propertyFields.strokeDasharray = "lineDash";
+lineSeries.tooltip.label.textAlign = "middle";
 
-    var distanceState = distanceSeries.columns.template.states.create("hover");
-    distanceState.properties.fillOpacity = 0.9;
+var bullet = lineSeries.bullets.push(new am4charts.Bullet());
+bullet.fill = am4core.color("#ff0000"); // tooltips grab fill from parent by default
+bullet.tooltipText = "[#fff font-size: 15px]Ciśnienie skurczowe\n W dniu: {categoryX}\n[/][#fff font-size: 20px]{valueY}[/] [#fff]{additional}[/]"
+var circle = bullet.createChild(am4core.Circle);
+circle.radius = 4;
+circle.fill = am4core.color("#fff");
+circle.strokeWidth = 3;
 
-    var durationSeries = chart.series.push(new am4charts.LineSeries());
-    durationSeries.dataFields.valueY = "skurczowe";
-    durationSeries.dataFields.dateX = "data";
-    durationSeries.yAxis = durationAxis;
-    durationSeries.name = "Skurczowe";
-    durationSeries.strokeWidth = 2;
-    //durationSeries.propertyFields.strokeDasharray = "dashLength";
-    durationSeries.tooltipText = "{valueY}";
-    durationSeries.showOnInit = true;
 
-    var durationBullet = durationSeries.bullets.push(new am4charts.Bullet());
-    var durationRectangle = durationBullet.createChild(am4core.Rectangle);
-    durationBullet.horizontalCenter = "middle";
-    durationBullet.verticalCenter = "middle";
-    durationBullet.width = 7;
-    durationBullet.height = 7;
-    durationRectangle.width = 7;
-    durationRectangle.height = 7;
+var lineSeries2 = chart.series.push(new am4charts.LineSeries());
+lineSeries2.name = "Rozkurczowe";
+lineSeries2.dataFields.valueY = "rozkurczowe";
+lineSeries2.dataFields.categoryX = "czasDodania";
 
-    var durationState = durationBullet.states.create("hover");
-    durationState.properties.scale = 1.2;
+lineSeries2.stroke = am4core.color("#0D9B7F");
+lineSeries2.strokeWidth = 3;
+lineSeries2.propertyFields.strokeDasharray = "lineDash";
+lineSeries2.tooltip.label.textAlign = "middle";
 
-    var latitudeSeries = chart.series.push(new am4charts.LineSeries());
-    latitudeSeries.dataFields.valueY = "rozkurczowe";
-    latitudeSeries.dataFields.dateX = "data";
-    latitudeSeries.yAxis = latitudeAxis;
-    latitudeSeries.name = "Rozkurczowe";
-    latitudeSeries.strokeWidth = 2;
-    latitudeSeries.propertyFields.strokeDasharray = "dashLength";
-    latitudeSeries.tooltipText = "{valueY}";
-    latitudeSeries.showOnInit = true;
+var bullet1 = lineSeries2.bullets.push(new am4charts.Bullet());
+bullet1.fill = am4core.color("#0D9B7F"); // tooltips grab fill from parent by default
+bullet1.tooltipText = "[#fff font-size: 15px]Ciśnienie rozkurczowe\n W dniu: {categoryX}\n[/][#fff font-size: 20px]{valueY}[/] [#fff]{additional}[/]"
+var circle1 = bullet1.createChild(am4core.Circle);
+circle1.radius = 4;
+circle1.fill = am4core.color("#fff");
+circle1.strokeWidth = 3;
 
-    var latitudeBullet = latitudeSeries.bullets.push(new am4charts.CircleBullet());
-    latitudeBullet.circle.fill = am4core.color("#fff");
-    latitudeBullet.circle.strokeWidth = 2;
-    latitudeBullet.circle.propertyFields.radius = "townSize";
+chart.data = data;
 
-    var latitudeState = latitudeBullet.states.create("hover");
-    latitudeState.properties.scale = 1.2;
+chart.exporting.menu = new am4core.ExportMenu();
+chart.exporting.menu.items = [{
+  "label": "Pobierz",
+  "menu": [
+          { "type": "xlsx", "label": "Excel" },
+          { "type": "pdfdata", "label": "PDF" },
+        ]
+}];
+chart.exporting.menu.align = "left";
 
-    var latitudeLabel = latitudeSeries.bullets.push(new am4charts.LabelBullet());
-    latitudeLabel.label.text = "{townName2}";
-    latitudeLabel.label.horizontalCenter = "left";
-    latitudeLabel.label.dx = 14;
+chart.scrollbarX = new am4core.Scrollbar();
+chart.scrollbarX.parent = chart.bottomAxesContainer;
+chart.scrollbarX.background.fill = am4core.color("#6b8fff");
+chart.scrollbarX.thumb.background.fill = am4core.color("#0D9B7F");
+chart.scrollbarX.startGrip.icon.stroke = am4core.color("#ffffff");
+chart.scrollbarX.endGrip.icon.fill = am4core.color("#ffffff");
+chart.scrollbarX.startGrip.background.states.getKey("hover").properties.fill = am4core.color("#ff0000");
+chart.scrollbarX.endGrip.background.states.getKey("hover").properties.fill = am4core.color("#ff0000");
 
-    // Add legend
-    chart.legend = new am4charts.Legend();
+chart.legend = new am4charts.Legend();
+chart.legend.labels.template.text = "[font-size: 18px bold ]{name}[/]";
+}); //Dane statystyczne ciśnienia koniec
 
-    // Add cursor
-    chart.cursor = new am4charts.XYCursor();
-    chart.cursor.fullWidthLineX = true;
-    chart.cursor.xAxis = dateAxis;
-    chart.cursor.lineX.strokeOpacity = 0;
-    chart.cursor.lineX.fill = am4core.color("#000");
-    chart.cursor.lineX.fillOpacity = 0.1;
 
-    }); // end am4core.ready()
-    </script>
+//Dane statystyczne ilości leków
+
+am4core.ready(function() {
+am4core.useTheme(am4themes_animated);
+var chart = am4core.create("chartdiv2", am4charts.XYChart3D);
+
+chart.data = [@yield('statystykaLeki')];
+
+let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "nazwa";
+categoryAxis.renderer.labels.template.rotation = 0;
+categoryAxis.renderer.labels.template.hideOversized = false;
+categoryAxis.renderer.minGridDistance = 60;
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.renderer.labels.template.horizontalCenter = "center";
+categoryAxis.renderer.labels.template.verticalCenter = "middle";
+categoryAxis.renderer.labels.template.dx = -20;
+categoryAxis.cursorTooltipEnabled = false;
+
+let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.title.text = "Ilość leku";
+valueAxis.title.fontWeight = "bold";
+
+var series = chart.series.push(new am4charts.ColumnSeries3D());
+series.dataFields.valueY = "ilosc";
+series.dataFields.categoryX = "nazwa";
+series.name = "Ilosc";
+series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+series.columns.template.fillOpacity = .8;
+
+var columnTemplate = series.columns.template;
+columnTemplate.strokeWidth = 2;
+columnTemplate.strokeOpacity = 1;
+columnTemplate.stroke = am4core.color("#FFFFFF");
+
+columnTemplate.adapter.add("fill", function(fill, target) {
+  return chart.colors.getIndex(target.dataItem.index);
+})
+
+columnTemplate.adapter.add("stroke", function(stroke, target) {
+  return chart.colors.getIndex(target.dataItem.index);
+})
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.lineX.strokeOpacity = 0;
+chart.cursor.lineY.strokeOpacity = 0;
+
+});
+
+//Dane statystyczne ilości leków koniec
+
+</script>
+
 @endif

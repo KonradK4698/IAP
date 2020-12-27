@@ -545,6 +545,8 @@ nav.nawigacjaPrzewinieta {
 }
 
 .homeKontener span {
+  display: inline-block;
+  width: 100%;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -552,6 +554,159 @@ nav.nawigacjaPrzewinieta {
   font-size: 3em;
   text-transform: uppercase;
   padding: 10px 0;
+}
+
+.tytul {
+  font-size: 3em;
+  font-weight: bold;
+  padding: 10px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+img {
+  width: 25%;
+}
+
+.daneUzytkownika {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background: #ffffff;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 20px;
+  border: 3px solid #000;
+}
+
+.daneUzytkownika .wydarzeniaKontener {
+  -ms-flex-preferred-size: 40% !important;
+      flex-basis: 40% !important;
+  padding: 15px;
+  border: 3px solid black;
+  border-radius: 20px;
+  background: #c3ffb8;
+}
+
+.daneUzytkownika .informacjeUzytkownika {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+  color: #000000;
+  margin: 10px;
+}
+
+.daneUzytkownika .informacjeUzytkownika .tytulInformacji {
+  padding: 10px;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.daneUzytkownika .informacjeUzytkownika .daneInformacji {
+  padding: 10px;
+  font-size: 2.5em;
+  color: #127705;
+  font-weight: bold;
+}
+
+.daneUzytkownika .informacjeUzytkownika .daneWydarzenia {
+  padding: 10px;
+  font-size: 2.5em;
+  color: #ff0000;
+  font-weight: bold;
+}
+
+.daneUzytkownika .informacjeUzytkownika .opisWydarzenia {
+  padding: 10px;
+  font-size: 2em;
+  color: #000000;
+  font-weight: bold;
+  text-align: center;
+}
+
+.kontenerDanych {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background: #ffffff;
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 20px;
+  border: 3px solid #000;
+}
+
+.kontenerDanych .doPrzyjeciaKontener {
+  width: 30%;
+  margin: 20px 10px;
+  padding: 10px;
+  background: #99ffff;
+  border: 3px solid black;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.kontenerDanych .doPrzyjeciaKontener .nazwaLeku, .kontenerDanych .doPrzyjeciaKontener .godzinaLeku {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.kontenerDanych .doPrzyjeciaKontener .nazwaLeku {
+  font-size: 2.5em;
+}
+
+.kontenerDanych .doPrzyjeciaKontener .godzinaLeku {
+  font-size: 2em;
+}
+
+.kontenerDanych .doPrzyjeciaKontener .czyLek {
+  width: 80%;
+  font-size: 2.5em;
+  padding: 10px;
+  color: #000000;
+  font-weight: bold;
+  text-decoration: underline;
+  -webkit-text-decoration-color: red;
+          text-decoration-color: red;
+}
+
+.kontenerDanych .doPrzyjeciaKontener .blueButton {
+  background: #0066ff;
+  width: 80%;
+  cursor: pointer;
 }
 
 .uzupelnijDaneFormularz {
@@ -869,6 +1024,32 @@ div.openConfirm {
 
 #chartdiv {
   width: 100%;
-  height: 1000px;
+  height: 600px;
+}
+
+#chartdiv2 {
+  width: 100%;
+  height: 600px;
+}
+
+.amcharts-amexport-menu.amcharts-amexport-menu-level-0 {
+  left: 50px !important;
+}
+
+.amcharts-amexport-label.amcharts-amexport-label-level-1 {
+  font-size: 18px !important;
+  padding: 8px 10px !important;
+}
+
+.amcharts-amexport-item.amcharts-amexport-item-level-0 {
+  width: 80px !important;
+}
+
+.amcharts-amexport-label-level-0 {
+  font-size: 20px;
+}
+
+tspan {
+  font-size: 17px !important;
 }
 /*# sourceMappingURL=style.css.map */
