@@ -41,22 +41,36 @@ var showPopup = document.querySelector('.confirmPopupBox');
 let dodajDanePopup = document.querySelector('.popupInformacjeBox');
 let zmienDane = document.querySelector('.zmienDane');
 let poswiata = document.querySelector('.overlay');
+const potwierdz = document.querySelector('.potwierdzDane');
 document.addEventListener('click', function(e){
     if(e.target.classList.value == "openConfirm"){
     showPopup.style.display = "block";
     poswiata.style.display = "block";
      formularz  = document.querySelector("#"+e.target.parentElement.id);
      nazwy = formularz.querySelectorAll('input');
+     
      for(let i=0; i<nazwy.length; i++){
-         if(nazwy[i].name != "_token"){
+        
+         if(nazwy[i].name != "_token" || nazwy[i].type == "checkbox"){
             let newSpan = document.createElement("span");
             newSpan.classList.add('danaDoPotwierdzenia');
-             newSpan.textContent =  nazwy[i].dataset.opis + " - " + nazwy[i].value + "\n";
-             dodajDanePopup.appendChild(newSpan);
+             newSpan.textContent =  nazwy[i].dataset.opis + " - " + (nazwy[i].type=="checkbox" ? (nazwy[i].checked==true ? "Wyrażono zgodę" : "Brak zgody") : nazwy[i].value) + "\n";
+             dodajDanePopup.appendChild(newSpan);  
          }
+
+         if(nazwy[i].type == "checkbox"){
+            if(nazwy[i].checked == true){
+                potwierdz.style.display = "block";
+                przeslijDane(e.target.parentElement.id);
+            } else{
+                potwierdz.style.display = "none";
+            }   
+          }else{
+              przeslijDane(e.target.parentElement.id);
+          } 
      }
      
-     przeslijDane(e.target.parentElement.id);
+     
 
     }
 })

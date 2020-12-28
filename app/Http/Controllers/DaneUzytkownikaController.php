@@ -41,7 +41,6 @@ class DaneUzytkownikaController extends Controller
 
         $daneUzytkownika = DB::table('dane_uzytkownika')->get();
 
-
         return view('daneUzytkownika')->with(compact('daneUzytkownika'));
     }
     

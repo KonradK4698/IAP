@@ -16,7 +16,7 @@
     <img src="{{ asset('img/icons/lek.png') }}" >
     <span class="nazwaLeku">Nazwa: {{$lek->nazwa}} </span>
     <span class="godzinaLeku">Godzina: {{$lek->godzina}} </span>
-    @if($lek->godzina <= now())
+    @if($lek->godzina <= now()->format('H:i:s'))
     
     <form method="post" action="{{route('przyjmijLek', $lek->id)}}"> 
             <input type="hidden" name="_token" value="{{csrf_token()}}" />

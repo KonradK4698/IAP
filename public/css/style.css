@@ -710,29 +710,88 @@ img {
 }
 
 .uzupelnijDaneFormularz {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
   left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  width: 80%;
-  background: #333;
-  border-radius: 50px;
-  border: 1px solid black;
-  text-align: center;
-  margin: 20px 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 50%;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 3px solid black;
+  padding: 10px;
 }
 
-.uzupelnijDaneFormularz input, .uzupelnijDaneFormularz select, .uzupelnijDaneFormularz option {
-  width: 80%;
-  height: 50px;
-  background: #ddd;
-  border: 1px solid black;
-  margin: 20px 0px;
-  border-radius: 20px;
-  font-size: 1.5em;
+.uzupelnijDaneFormularz .opisPozycji {
+  display: inline-block;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
   color: #000000;
-  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2.5em;
+  margin: 2px 0px;
+  padding: 0 0 0 10px;
+}
+
+.uzupelnijDaneFormularz .dodajDane {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  height: 50px;
+  background: #ececec;
+  border: 3px solid #a2a2a2;
+  border-radius: 10px;
+  color: #000000;
   padding-left: 10px;
+  margin: 5px;
+  font-size: 2em;
+  -webkit-transition: .5s linear;
+  transition: .5s linear;
+}
+
+.uzupelnijDaneFormularz .dodajDane:focus, .uzupelnijDaneFormularz .dodajDane:active, .uzupelnijDaneFormularz .dodajDane:visited {
+  background: #a3ffa2;
+  border: 3px solid #14ea24;
+  border-radius: 10px;
+  outline: none;
+}
+
+.uzupelnijDaneFormularz .checkbox {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
+.uzupelnijDaneFormularz .politykaOpis {
+  -ms-flex-preferred-size: 60%;
+      flex-basis: 60%;
+  font-size: 2em;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.uzupelnijDaneFormularz .politykaOpis .politykaLink {
+  font-size: 1em;
+  text-decoration: none;
+  color: #2700ff;
+  font-weight: bold;
+}
+
+.uzupelnijDaneFormularz .politykaOpis .politykaLink:visited {
+  color: #30a71b;
 }
 
 .uzupelnijDaneFormularz .uzupelnijDanePrzycisk {
@@ -752,24 +811,56 @@ img {
 }
 
 .kontenerInformacji {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   position: relative;
   left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  width: 80%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 70%;
   text-align: center;
   margin-top: 30px;
-  background-color: #333;
+  background-color: #ffffff;
   border-radius: 20px;
+  -webkit-box-shadow: 6px 6px 30px #000000;
+          box-shadow: 6px 6px 30px #000000;
+  padding: 10px;
 }
 
-.kontenerInformacji span {
+.kontenerInformacji .daneOsobowe {
   position: relative;
-  display: inline-block;
-  width: 80%;
-  font-size: 25px;
-  color: #ffffff;
+  width: 40%;
   padding: 10px;
+}
+
+.kontenerInformacji .daneOsobowe span {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-size: 2em;
+  color: #000000;
+  padding: 5px;
+}
+
+.kontenerInformacji .daneOsobowe span:nth-of-type(2) {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.kontenerInformacji .daneOsobowe img {
+  width: 15%;
 }
 
 .update {
