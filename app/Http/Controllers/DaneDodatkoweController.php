@@ -106,9 +106,9 @@ class DaneDodatkoweController extends Controller
 
     public function widok(){
 
-        $wagi = DB::table('waga')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->limit(1)->get();
-        $wzrosty = DB::table('wzrost')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->limit(1)->get();;
-        $obwody = DB::table('obwody')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->limit(1)->get();;
-        return view('daneDodatkowe')->with(compact('wagi', 'wzrosty', 'obwody'));
+        $waga = DB::table('waga')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->first();
+        $wzrost = DB::table('wzrost')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->first();
+        $obwody = DB::table('obwody')->where('idUzytkownika', '=', Auth::id())->latest('created_at')->first();
+        return view('daneDodatkowe')->with(compact('waga', 'wzrost', 'obwody'));
     }
 }

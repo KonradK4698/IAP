@@ -908,7 +908,126 @@ img {
   background: #666666;
 }
 
-.tablica {
+.dodajDaneKontener {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background: #ffffff;
+  -webkit-box-shadow: 6px 6px 30px #000000;
+          box-shadow: 6px 6px 30px #000000;
+  margin: 40px 0;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.dodajDaneKontener .dodaneDaneKontener {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-preferred-size: 40%;
+      flex-basis: 40%;
+  border: 5px dotted #000000;
+  border-radius: 10px;
+  height: 100%;
+  padding: 10px;
+}
+
+.dodajDaneKontener .dodaneDaneKontener .dodaneDane {
+  text-align: center;
+  padding: 10px;
+  font-size: 2.5em;
+  -ms-flex-preferred-size: 90%;
+      flex-basis: 90%;
+}
+
+.dodajDaneKontener .dodaneDaneKontener .dodaneDane span {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.dodajDaneKontener form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 40%;
+  padding: 10px;
+  border: 5px dotted #000000;
+  border-radius: 10px;
+}
+
+.dodajDaneKontener form .opisPozycji {
+  display: inline-block;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  color: #000000;
+  font-weight: bold;
+  font-size: 2.5em;
+  margin: 2px 0px;
+  padding: 0 0 0 10px;
+}
+
+.dodajDaneKontener form .dodajDane {
+  -ms-flex-preferred-size: 90%;
+      flex-basis: 90%;
+  height: 50px;
+  background: #ececec;
+  border: 3px solid #a2a2a2;
+  border-radius: 10px;
+  color: #000000;
+  padding-left: 10px;
+  margin: 10px 0;
+  font-size: 2em;
+  -webkit-transition: .5s linear;
+  transition: .5s linear;
+}
+
+.dodajDaneKontener form .dodajDane:focus, .dodajDaneKontener form .dodajDane:active, .dodajDaneKontener form .dodajDane:visited {
+  background: #a3ffa2;
+  border: 3px solid #14ea24;
+  border-radius: 10px;
+  outline: none;
+}
+
+.dodajDaneKontener .tablica {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -916,17 +1035,13 @@ img {
       flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  position: relative;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
   background-color: #333333;
-  width: 80%;
+  width: 40%;
   margin-top: 50px;
   color: #ffffff;
 }
 
-.tablica .wiersz {
+.dodajDaneKontener .tablica .wiersz {
   -ms-flex-preferred-size: 30%;
       flex-basis: 30%;
   text-align: center;
@@ -936,7 +1051,7 @@ img {
   background: #666666;
 }
 
-.tablica .wiersz2 {
+.dodajDaneKontener .tablica .wiersz2 {
   -ms-flex-preferred-size: 40%;
       flex-basis: 40%;
   text-align: center;
@@ -946,7 +1061,7 @@ img {
   background: #666666;
 }
 
-.tablica .wiersz3 {
+.dodajDaneKontener .tablica .wiersz3 {
   -ms-flex-preferred-size: calc( 100% / 8 - 10px);
       flex-basis: calc( 100% / 8 - 10px);
   text-align: center;
