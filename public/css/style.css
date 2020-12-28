@@ -719,9 +719,9 @@ img {
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -734,6 +734,7 @@ img {
   border-radius: 20px;
   border: 3px solid black;
   padding: 10px;
+  margin: 10px 0;
 }
 
 .uzupelnijDaneFormularz .opisPozycji {
@@ -878,34 +879,6 @@ img {
   border: none;
   width: 80%;
   text-decoration: none;
-}
-
-.tablica {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  position: relative;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  background-color: #333333;
-  width: 80%;
-  margin-top: 50px;
-  color: #ffffff;
-}
-
-.tablica .wiersz {
-  -ms-flex-preferred-size: 30%;
-      flex-basis: 30%;
-  text-align: center;
-  font-size: 25px;
-  padding: 10px 0;
-  margin: 10px 0;
-  background: #666666;
 }
 
 .dodajDaneKontener {
@@ -1226,6 +1199,66 @@ div.openConfirm {
   padding: 10px 0;
   margin: 10px 5px;
   background: #666666;
+}
+
+.tablica {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: #ffffff;
+  width: 80%;
+  margin-top: 50px;
+  color: #000000;
+  -webkit-box-shadow: 6px 6px 30px #000000;
+          box-shadow: 6px 6px 30px #000000;
+  border-radius: 20px;
+}
+
+.tablica div {
+  -ms-flex-preferred-size: 24%;
+      flex-basis: 24%;
+  text-align: center;
+  padding: 10px 0;
+  margin: 10px 0;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000;
+  border-radius: 10px;
+}
+
+.tablica .naglowek {
+  font-size: 2.7em;
+  background: #295fb1;
+}
+
+.tablica .wiersz {
+  -ms-flex-preferred-size: 24%;
+      flex-basis: 24%;
+  font-size: 2.5em;
+  background: #97bbf1;
+}
+
+.brakPomiarow {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 3.5em;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  border-bottom: 4px solid #000000;
+  margin: 20px 0;
+  padding: 10px;
 }
 
 #chartdiv {

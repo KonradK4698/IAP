@@ -1,38 +1,38 @@
 @extends('layouts.panel')
 
 @section('content')
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
+    <span class="tytul"> Pomiar ciśnienia </span>
     <form id="dodajPomiarTable" method="POST" action="{{ route('dodajPomiary') }}" class="uzupelnijDaneFormularz">
-    
-    <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input data-opis="Skurczowe" name="skurczowe" placeholder="Podaj cisnienie skurczowe" type="text" />
-        <input data-opis="Rozkurczowe" name="rozkurczowe" placeholder="Podaj cisnienie rozkurczowe" type="text" />
-        <input data-opis="Tętno" name="tetno" placeholder="Podaj tętno" type="text" />
+        <span class="tytul"> Dane ciśnienia</span>
+        <input type="hidden" name="_token" value="{{csrf_token()}}" />
+        <span class="opisPozycji"> Wartość ciśnienia skurczowego </span>
+        <input data-opis="Skurczowe" class="dodajDane" name="skurczowe" placeholder="Podaj cisnienie skurczowe" type="text" />
+        <span class="opisPozycji"> Wartość ciśnienia rozkurczowego </span>
+        <input data-opis="Rozkurczowe" class="dodajDane" name="rozkurczowe" placeholder="Podaj cisnienie rozkurczowe" type="text" />
+        <span class="opisPozycji"> Wartość tętna </span>
+        <input data-opis="Tętno" class="dodajDane" name="tetno" placeholder="Podaj tętno" type="text" />
         <div class="openConfirm">Dodaj pomiar</div>
     </form>
     @if($pomiary->count() > 0)
+
+    
+    
+    
     <div class="tablica">
-        <div class="wiersz"> skurczowe </div>
-        <div class="wiersz"> rozkurczowe </div>
-        <div class="wiersz"> tetno </div>
+        <span class="tytul"> Wartości ciśnienia w dniu {{now()->format('d-m-Y')}}</span>
+        <div class="naglowek"> Godzina </div>
+        <div class="naglowek"> Skurczowe </div>
+        <div class="naglowek"> Rozkurczowe </div>
+        <div class="naglowek"> Tętno </div>
         @foreach($pomiary as $pomiar)
+        <div class="wiersz"> {{ date('H:i:s', strtotime($pomiar->created_at)) }} </div>
         <div class="wiersz"> {{ $pomiar->skurczowe }} </div>
         <div class="wiersz"> {{ $pomiar->rozkurczowe }}</div>
         <div class="wiersz"> {{ $pomiar->tetno }} </div>
         @endforeach
     </div>
     @else
-    <span> Brak pomiarów ciśnienia w dzisiejszym dniu <span>
+    <span class="brakPomiarow"> Brak pomiarów ciśnienia w dniu dzisiejszym. <span>
     
      @endif
 @endsection

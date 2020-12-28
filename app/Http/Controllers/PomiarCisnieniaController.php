@@ -39,7 +39,9 @@ class PomiarCisnieniaController extends Controller
 
         
 
-        $pomiary = DB::table('cisnienie')->select('id','skurczowe', 'rozkurczowe', 'tetno')->where('idUzytkownika', '=', Auth::id())->whereDate('created_at', '=', $aktualnaData)->get();
+        $pomiary = DB::table('cisnienie')->select('id','skurczowe', 'rozkurczowe', 'tetno', 'created_at')->where('idUzytkownika', '=', Auth::id())->whereDate('created_at', '=', $aktualnaData)->get();
+
+        
         
         return view('pomiarCisnienia')->with(compact('pomiary'));
     }
