@@ -36,11 +36,11 @@ $(document).ready(function() {
 
 //popup z pytaniem o poprawnośc danych
 let nazwy;
-var openPoup = document.querySelectorAll('.openConfirm');
-var showPopup = document.querySelector('.confirmPopupBox');
-let dodajDanePopup = document.querySelector('.popupInformacjeBox');
-let zmienDane = document.querySelector('.zmienDane');
-let poswiata = document.querySelector('.overlay');
+const openPoup = document.querySelectorAll('.openConfirm');
+const showPopup = document.querySelector('.confirmPopupBox');
+const dodajDanePopup = document.querySelector('.popupInformacjeBox');
+const zmienDane = document.querySelector('.zmienDane');
+const poswiata = document.querySelector('.overlay');
 const potwierdz = document.querySelector('.potwierdzDane');
 document.addEventListener('click', function(e){
     if(e.target.classList.value == "openConfirm"){
@@ -51,7 +51,7 @@ document.addEventListener('click', function(e){
      
      for(let i=0; i<nazwy.length; i++){
         
-         if(nazwy[i].name != "_token" || nazwy[i].type == "checkbox"){
+         if(nazwy[i].name != "_token"){
             let newSpan = document.createElement("span");
             newSpan.classList.add('danaDoPotwierdzenia');
              newSpan.textContent =  nazwy[i].dataset.opis + " - " + (nazwy[i].type=="checkbox" ? (nazwy[i].checked==true ? "Wyrażono zgodę" : "Brak zgody") : nazwy[i].value) + "\n";
@@ -69,9 +69,6 @@ document.addEventListener('click', function(e){
               przeslijDane(e.target.parentElement.id);
           } 
      }
-     
-     
-
     }
 })
 
@@ -95,3 +92,10 @@ function przeslijDane(formularz){
 //koniec popupa
 
 
+//datables
+
+$(document).ready(function() {
+    $('#leki').DataTable();
+} );
+
+//datatables koniec

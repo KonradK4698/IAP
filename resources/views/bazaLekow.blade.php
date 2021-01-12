@@ -1,40 +1,49 @@
 @extends('layouts.panel')
 
 @section('content')
-
-<div class="tablica">
-        <div class="wiersz4"> nazwa </div>
-        <div class="wiersz4"> dawkowanie </div>
-        <div class="wiersz4"> ilosc </div>
-        <div class="wiersz4"> cena </div>
-        <div class="wiersz4"> opis </div>
+<span class="tytul"> Baza leków </span>
+<table id="leki" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Nazwa leku</th>
+                <th>Więcej informacji</th>
+            </tr>
+        </thead>
+        <tbody>
         @foreach($leki as $lek)
-        <div class="wiersz4"> {{ $lek->nazwa}} </div>
-        <div class="wiersz4"> {{ $lek->zalecaneDawkowanie }}</div>
-        <div class="wiersz4"> {{ $lek->ilosc}} </div>
-        <div class="wiersz4"> {{ $lek->cena }}</div>
-        <div class="wiersz4"> {{ $lek->opis }}</div>
+            <tr>
+                <td>{{ $lek->nazwa}}</td>
+                <td><a href="{{route('opisLeku', $lek->id)}}"> Kliknij tutaj </a></td>
+            </tr>
         @endforeach
-</div>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Nazwa</th>
+                <th>Więcej informacji</th>
+            </tr> 
+        </tfoot>
+    </table>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
     <form id="dodajLekTable" method="POST" action="{{ route('dodajLek') }}" class="uzupelnijDaneFormularz">
-    
-    <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input data-opis="Nazwa leku" name="nazwa" placeholder="Podaj nazwe" type="text" />
-        <input data-opis="Zalecane dawkowanie"name="zalecaneDawkowanie" placeholder="Podaj zalecaneDawkowanie" type="text" />
-        <input data-opis="Ilość w opakowaniu" name="ilosc" placeholder="Podaj ilosc w opakowaniu" type="text" />
-        <input data-opis="Cena za opakowanie" name="cena" placeholder="Podaj cene" type="text" />
-        <input data-opis="Opis produktu" name="opis" placeholder="Podaj opis" type="text" />
+        <span class="tytul"> Dodaj lek</span>
+        <input type="hidden" name="_token" value="{{csrf_token()}}" />
+        <span class="opisPozycji"> Podaj nazwę leku</span>
+        <input data-opis="Nazwa leku" class="dodajDane"  name="nazwa" placeholder="Podaj nazwe" type="text" />
+
+        <span class="opisPozycji"> Podaj zalecane dawkowanie</span>
+        <input data-opis="Zalecane dawkowanie" class="dodajDane" name="zalecaneDawkowanie" placeholder="Podaj zalecaneDawkowanie" type="text" />
+
+        <span class="opisPozycji"> Ilość w opakowaniu</span>
+        <input data-opis="Ilość w opakowaniu" class="dodajDane" name="ilosc" placeholder="Podaj ilosc w opakowaniu" type="text" />
+
+        <span class="opisPozycji"> Cena za opakowanie</span>
+        <input data-opis="Cena za opakowanie" class="dodajDane" name="cena" placeholder="Podaj cene" type="text" />
+
+        <span class="opisPozycji"> Opis produktu</span>
+        <input data-opis="Opis produktu" class="dodajDane" name="opis" placeholder="Podaj opis" type="text" />
+
         <div class="openConfirm">Dodaj lek do bazy</div>
     </form>
 @endsection
@@ -47,3 +56,6 @@
     <button class="potwierdzDane" type="submit"> Tak </button>
     <button class="zmienDane"> Nie </button>
 </div>
+
+
+

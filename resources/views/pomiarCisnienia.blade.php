@@ -13,11 +13,8 @@
         <input data-opis="Tętno" class="dodajDane" name="tetno" placeholder="Podaj tętno" type="text" />
         <div class="openConfirm">Dodaj pomiar</div>
     </form>
+    
     @if($pomiary->count() > 0)
-
-    
-    
-    
     <div class="tablica">
         <span class="tytul"> Wartości ciśnienia w dniu {{now()->format('d-m-Y')}}</span>
         <div class="naglowek"> Godzina </div>

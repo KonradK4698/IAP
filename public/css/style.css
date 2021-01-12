@@ -565,10 +565,6 @@ nav.nawigacjaPrzewinieta {
   text-align: center;
 }
 
-img {
-  width: 25%;
-}
-
 .daneUzytkownika {
   width: 100%;
   display: -webkit-box;
@@ -616,6 +612,10 @@ img {
       flex-basis: 20%;
   color: #000000;
   margin: 10px;
+}
+
+.daneUzytkownika .informacjeUzytkownika img {
+  width: 25%;
 }
 
 .daneUzytkownika .informacjeUzytkownika .tytulInformacji {
@@ -707,6 +707,10 @@ img {
   background: #0066ff;
   width: 80%;
   cursor: pointer;
+}
+
+.kontenerDanych .doPrzyjeciaKontener img {
+  width: 25%;
 }
 
 .uzupelnijDaneFormularz {
@@ -1199,6 +1203,207 @@ div.openConfirm {
   padding: 10px 0;
   margin: 10px 5px;
   background: #666666;
+}
+
+.lekKontener {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #ffffff;
+  -webkit-box-shadow: 6px 6px 30px #000000;
+          box-shadow: 6px 6px 30px #000000;
+  width: 70%;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.lekKontener .kontenerOpisu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  padding: 10px;
+}
+
+.lekKontener .kontenerOpisu .fotoWielkosc {
+  width: 15%;
+}
+
+.lekKontener .kontenerOpisu .nazwa {
+  width: 100%;
+  text-align: center;
+  font-size: 4em;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.lekKontener .kontenerOpisu .opis {
+  width: 80%;
+  text-align: center;
+  font-size: 2.5em;
+  padding: 10px;
+}
+
+.lekKontener .kontenerOpisu.wielkosc2 {
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
+}
+
+.lekKontener .kontenerOpisu.wielkosc2 .fotoWielkosc2 {
+  width: 30%;
+  margin: 10px;
+}
+
+.lekKontener .kontenerOpisu.wielkosc2 span:nth-of-type(1) {
+  font-size: 2.5em;
+  padding: 5px;
+}
+
+.lekKontener .kontenerOpisu.wielkosc2 span:nth-of-type(2) {
+  padding: 5px;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+#leki_wrapper {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 80%;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 3px solid #000000;
+  background: #ffffff;
+  font-size: 2em;
+}
+
+#leki_length label {
+  font-size: 20px;
+}
+
+#leki_length label select {
+  padding: 6px;
+  background: #ececec;
+  color: black;
+  font-size: 15px;
+}
+
+#leki_length label select option {
+  font-size: 13px;
+}
+
+#leki_filter label {
+  font-size: 20px;
+}
+
+#leki_filter label input {
+  background: #ececec;
+  border: 3px solid #a2a2a2;
+  border-radius: 10px;
+  color: #000000;
+  padding-left: 10px;
+  -webkit-transition: .5s linear;
+  transition: .5s linear;
+  font-size: 18px;
+}
+
+#leki_filter label input:focus, #leki_filter label input:active, #leki_filter label input:visited {
+  background: #a3ffa2;
+  border: 3px solid #14ea24;
+  border-radius: 10px;
+  outline: none;
+}
+
+#leki {
+  padding: 10px;
+}
+
+#leki thead, #leki tfoot {
+  background: #909090;
+}
+
+#leki thead tr th, #leki tfoot tr th {
+  font-size: 20px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 50% !important;
+}
+
+#leki tbody tr {
+  text-align: center;
+}
+
+#leki tbody tr.odd td {
+  background: #dedcdc;
+}
+
+#leki tbody tr.even td {
+  background: #afafaf;
+}
+
+#leki tbody tr td {
+  font-size: 20px;
+  padding: 10px;
+}
+
+#leki tbody tr td:hover {
+  background: #93ffb4;
+}
+
+#leki tbody tr td a {
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  background: #6698cb;
+  padding: 5px 20px;
+  -webkit-box-shadow: 2px 2px 6px #1c3e61;
+          box-shadow: 2px 2px 6px #1c3e61;
+  text-shadow: 1px 1px 1px black;
+  letter-spacing: 1.5px;
+}
+
+#leki_info {
+  font-size: 20px;
+}
+
+#leki_paginate a {
+  font-size: 16px;
+}
+
+#leki_paginate span a {
+  background: #ececec;
+  border: 3px solid #a2a2a2;
+  border-radius: 10px;
+  color: #000000;
+  font-size: 16px;
+  padding: 5px 10px;
 }
 
 .tablica {

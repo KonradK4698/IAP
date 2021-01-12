@@ -6,7 +6,6 @@
 <script src="https://cdn.amcharts.com/lib/4/fonts/notosans-sc.js"></script>
 
 
-
 @if(Route::current()->getName() == 'home')
 
 <script>

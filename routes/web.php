@@ -47,6 +47,7 @@ Route::delete('/home/pomiarCisnienia/usunPomiary/{id}', 'PomiarCisnieniaControll
 //baza leków 
 Route::get('/home/bazaLekow', 'BazaLekowController@widok')->name('bazaLekow');
 Route::post('/home/bazaLekow/dodajLek', 'BazaLekowController@dodajLek')->name('dodajLek');
+Route::get('/home/bazaLekow/lek/{id}', 'BazaLekowController@opisLeku')->name('opisLeku');
 
 //twoje leki
 Route::get('/home/twojeLeki', 'TwojeLekiController@widok')->name('twojeLeki');

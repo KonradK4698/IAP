@@ -37,3 +37,134 @@
         padding: 10px 0
         margin: 10px 5px
         background: #666666
+.lekKontener
+    position: relative
+    left: 50%
+    transform: translateX(-50%)
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-around
+    align-items: center
+    background: #ffffff
+    box-shadow: 6px 6px 30px #000000
+    width: 70%
+    border-radius: 20px
+    padding: 20px
+    .kontenerOpisu
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        align-items: center
+        justify-content: space-around
+        width: 100%
+        padding: 10px
+        .fotoWielkosc
+            width: 15%
+        .nazwa
+            width: 100%
+            text-align: center
+            font-size: 4em
+            font-weight: bold
+            padding: 20px
+        .opis
+            width: 80%
+            text-align: center
+            font-size: 2.5em
+            padding: 10px
+        &.wielkosc2
+            flex-basis: 30%
+            .fotoWielkosc2
+                width: 30%
+                margin: 10px
+            span:nth-of-type(1)
+                font-size: 2.5em
+                padding: 5px
+            span:nth-of-type(2)
+                padding: 5px
+                font-size: 2.5em
+                font-weight: bold
+
+#leki_wrapper
+    left: 50%
+    transform: translateX(-50%)
+    width: 80%
+    margin: 15px
+    padding: 10px
+    border-radius: 20px
+    border: 3px solid #000000
+    background: #ffffff
+    font-size: 2em
+#leki_length
+    label
+        font-size: 20px
+        select
+            padding: 6px
+            background: #ececec
+            color: black
+            font-size: 15px
+            option
+                font-size: 13px
+
+#leki_filter
+    label
+        font-size: 20px
+        input
+            background: #ececec
+            border: 3px solid #a2a2a2
+            border-radius: 10px
+            color: #000000
+            padding-left: 10px
+            transition: .5s linear
+            font-size: 18px
+            &:focus, &:active, &:visited
+                background: #a3ffa2
+                border: 3px solid #14ea24
+                border-radius: 10px
+                outline: none
+#leki
+    padding: 10px
+    thead, tfoot
+        background: #909090
+        tr
+            th
+                font-size: 20px
+                border-top: 1px solid black
+                border-bottom: 1px solid black
+                width: 50%!important
+    tbody
+        tr
+            text-align: center
+            &.odd
+                td
+                    background: #dedcdc
+            &.even
+                td
+                    background: #afafaf
+            td
+                font-size: 20px
+                padding: 10px
+                &:hover
+                    background: #93ffb4
+                a
+                    font-size: 20px
+                    color: #fff
+                    text-decoration: none
+                    background: #6698cb
+                    padding: 5px 20px
+                    box-shadow: 2px 2px 6px #1c3e61
+                    text-shadow: 1px 1px 1px black
+                    letter-spacing: 1.5px
+#leki_info
+    font-size: 20px
+#leki_paginate
+    a
+        font-size: 16px
+    span
+        a
+            background: #ececec
+            border: 3px solid #a2a2a2
+            border-radius: 10px
+            color: #000000
+            font-size: 16px
+            padding: 5px 10px

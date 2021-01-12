@@ -26,10 +26,14 @@ class BazaLekowController extends Controller
         $dodajLek->save();
         return redirect()->route('bazaLekow');
     }
-
+    public function opisLeku($id)
+    {
+        $lek = Leki::where('id', '=', $id)->firstOrFail();
+        return view('opisLeku')->with(compact('lek'));
+    }
     public function widok(){
 
-        $leki = DB::table('leki')->select('nazwa', 'zalecaneDawkowanie', 'ilosc', 'cena', 'opis')->get();
+        $leki = DB::table('leki')->select('id', 'nazwa')->get();
 
         return view('bazaLekow')->with(compact('leki'));
     }

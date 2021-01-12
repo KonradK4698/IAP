@@ -37,12 +37,8 @@ class PomiarCisnieniaController extends Controller
     public function widok(){
         $aktualnaData = Carbon::now()->format('Y-m-d');
 
-        
-
         $pomiary = DB::table('cisnienie')->select('id','skurczowe', 'rozkurczowe', 'tetno', 'created_at')->where('idUzytkownika', '=', Auth::id())->whereDate('created_at', '=', $aktualnaData)->get();
 
-        
-        
         return view('pomiarCisnienia')->with(compact('pomiary'));
     }
 }
