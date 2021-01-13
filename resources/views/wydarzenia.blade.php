@@ -2,23 +2,27 @@
 
 @section('content')
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
     <form id="dodajPomiarTable" method="POST" action="{{ route('dodajWydarzenie') }}" class="uzupelnijDaneFormularz">
-    
-    <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <input data-opis="Tytuł" name="tytul" placeholder="Wpisz krótki tytuł" type="text" />
-        <input data-opis="Data" name="data" placeholder="Data wydarzenia" type="date" />
-        <input data-opis="Godzina" name="godzina" placeholder="Godzina wydarzenia" type="time" />
-        <input data-opis="Opis" name="opis" placeholder="Opis wydarzenia" type="text" />
+        <span class="tytul"> Dodaj wydarzenie </span>
+        <input type="hidden" name="_token" value="{{csrf_token()}}" />
+
+        <span class="opisPozycji"> Wybierz tytuł: </span>
+        <select id="wybierzTytul" data-opis="Tytuł" name="tytul" class="form-control">
+            <option>Wizyta lekarska</option>
+            <option>Zabieg</option>
+            <option>Rehabilitacja</option>
+        </select>
+
+        <span class="opisPozycji"> Wprowadź datę </span>
+        <input data-opis="Data" class="dodajDane" name="data" placeholder="Data wydarzenia" type="date" />
+
+        <span class="opisPozycji"> Wprowadź godzinę </span>
+        <input data-opis="Godzina" class="dodajDane" name="godzina" placeholder="Godzina wydarzenia" type="time" />
+
+        <span class="opisPozycji"> Informacje dodatkowe </span>
+        <input data-opis="Informacje dodatkowe:" class="dodajDane" name="opis" placeholder="Wprowadź informacje dodatkowe" type="text" />
+
         <div class="openConfirm">Dodaj wydarzenie</div>
     </form>
 

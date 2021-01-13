@@ -1004,7 +1004,46 @@ nav.nawigacjaPrzewinieta {
   outline: none;
 }
 
-.dodajDaneKontener .tablica {
+span.select2.select2-container {
+  width: 98% !important;
+}
+
+.select2-container--default .select2-selection--single, .select2-container--default .select2-search--dropdown .select2-search__field {
+  background: #ececec;
+  border: 3px solid #a2a2a2;
+  height: 50px;
+  border-radius: 10px;
+  color: #000000;
+  font-size: 2em;
+  -webkit-transition: .5s linear;
+  transition: .5s linear;
+}
+
+.select2-container--default .select2-selection--single:active, .select2-container--default .select2-selection--single:hover, .select2-container--default .select2-selection--single:focus, .select2-container--default .select2-selection--single:-webkit-autofill, .select2-container--default .select2-selection--single:-webkit-autofill:active, .select2-container--default .select2-selection--single:-webkit-autofill:focus, .select2-container--default .select2-search--dropdown .select2-search__field:active, .select2-container--default .select2-search--dropdown .select2-search__field:hover, .select2-container--default .select2-search--dropdown .select2-search__field:focus, .select2-container--default .select2-search--dropdown .select2-search__field:-webkit-autofill, .select2-container--default .select2-search--dropdown .select2-search__field:-webkit-autofill:active, .select2-container--default .select2-search--dropdown .select2-search__field:-webkit-autofill:focus {
+  background: #a3ffa2;
+  border: 3px solid #14ea24;
+  border-radius: 10px;
+  outline: none;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  font-size: 20px !important;
+  line-height: 40px;
+}
+
+.select2-selection__arrow {
+  top: 14px !important;
+}
+
+.select2-dropdown.select2-dropdown--below {
+  background: #ececec;
+}
+
+.select2-results__option {
+  font-size: 16px;
+}
+
+.tablica {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1018,7 +1057,7 @@ nav.nawigacjaPrzewinieta {
   color: #ffffff;
 }
 
-.dodajDaneKontener .tablica .wiersz {
+.tablica .wiersz {
   -ms-flex-preferred-size: 30%;
       flex-basis: 30%;
   text-align: center;
@@ -1028,7 +1067,7 @@ nav.nawigacjaPrzewinieta {
   background: #666666;
 }
 
-.dodajDaneKontener .tablica .wiersz2 {
+.tablica .wiersz2 {
   -ms-flex-preferred-size: 40%;
       flex-basis: 40%;
   text-align: center;
@@ -1038,7 +1077,7 @@ nav.nawigacjaPrzewinieta {
   background: #666666;
 }
 
-.dodajDaneKontener .tablica .wiersz3 {
+.tablica .wiersz3 {
   -ms-flex-preferred-size: calc( 100% / 8 - 10px);
       flex-basis: calc( 100% / 8 - 10px);
   text-align: center;

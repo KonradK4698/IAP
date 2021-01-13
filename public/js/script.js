@@ -31,7 +31,14 @@ button.addEventListener('click', function(){
 //select2
 
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
+    $('#wybierzTytul').select2({
+        tags: true,
+        
+    });
+});
+
+$('#wybierzTytul').one('select2:open', function(e) {
+    $('input.select2-search__field').prop('placeholder', 'Wpisz tytuł, jeżeli nie ma go w opcji wyboru i potwierdź klawiszem "Enter"');
 });
 
 //popup z pytaniem o poprawnośc danych
@@ -47,8 +54,8 @@ document.addEventListener('click', function(e){
     showPopup.style.display = "block";
     poswiata.style.display = "block";
      formularz  = document.querySelector("#"+e.target.parentElement.id);
-     nazwy = formularz.querySelectorAll('input');
-     
+     nazwy = formularz.querySelectorAll('[data-opis]');
+     console.log(nazwy);
      for(let i=0; i<nazwy.length; i++){
         
          if(nazwy[i].name != "_token"){

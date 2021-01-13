@@ -18,7 +18,7 @@ class WydarzeniaController extends Controller
         $dodajWydarzenie->opis = $dodaj->opis;
         $dodajWydarzenie->save();
 
-        return redirect()->route('wydarzenia');
+        return redirect()->route('home');
     }
 
     public function widok(){
