@@ -33,7 +33,7 @@ class BazaLekowController extends Controller
     }
     public function widok(){
 
-        $leki = DB::table('leki')->select('id', 'nazwa')->get();
+        $leki = DB::table('leki')->select('id', 'nazwa')->where('potwierdzenieAdmina','=',1)->get();
 
         return view('bazaLekow')->with(compact('leki'));
     }

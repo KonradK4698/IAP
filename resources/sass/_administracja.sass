@@ -1,4 +1,4 @@
-#uzytkownicy_wrapper,#waga_wrapper,#wzrost_wrapper,#obwody_wrapper,#wydarzenia_wrapper,#lekiAdmin_wrapper
+#uzytkownicy_wrapper,#waga_wrapper,#wzrost_wrapper,#obwody_wrapper,#wydarzenia_wrapper,#lekiAdmin_wrapper,
     left: 50%
     transform: translateX(-50%)
     width: 100%
@@ -63,6 +63,15 @@
             td
                 font-size: 20px
                 padding: 10px
+                a.moreInfo
+                    font-size: 20px
+                    color: #fff
+                    text-decoration: none
+                    background: #6698cb
+                    padding: 5px 20px
+                    box-shadow: 2px 2px 6px #1c3e61
+                    text-shadow: 1px 1px 1px black
+                    letter-spacing: 1.5px
 
 #uzytkownicy_info,#waga_info,#wzrost_info,#obwody_info,#wydarzenia_info,#lekiAdmin_info
     font-size: 20px
@@ -90,3 +99,20 @@
     text-shadow: 1px 1px 1px black
     text-transform: uppercase
     letter-spacing: 1.5px
+
+.kontenerOpisu2
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    align-items: center
+    justify-content: flex-start
+    width: 100%
+    padding: 10px
+    margin-top: 40px
+    .deleteForm
+        width: 50%
+        .deleteButton
+            left: 0
+        .deleteButton.zmienkolor
+            min-width: 240px
+            background: #5fb94edd

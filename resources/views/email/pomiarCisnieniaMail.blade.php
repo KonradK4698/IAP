@@ -39,6 +39,6 @@
         <h1> Powiadomienie z aplikacji Inteligentny Asysten Pacjenta</h1>
             <br/>
 
-        <span class="potwierdz"> Nie wykonałeś dzisiaj pomiaru ciśnienia, proszę wykonaj pomiar, a następnie zapisz w aplikacji.</span>
+        <span class="potwierdz"> Nie wykonałeś dzisiaj pomiaru ciśnienia, proszę wykonaj pomiar, a następnie wprowadź go do aplikacji.</span>
 
 </html>

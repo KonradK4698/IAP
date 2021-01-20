@@ -2,9 +2,9 @@
 
 @section('content')
 
-<span class="tytul"> Zarządaj użytkownikami </span>
+<span class="tytul"> Potwierdź lekarstwa </span>
 
-<table id="potwierdzLek" class="display" >
+<table id="lekiAdmin" class="display" >
         <thead>
             <tr>
                 <th>Nazwa leku</th>
@@ -15,7 +15,7 @@
         @foreach($lekiDoPotwierdzenia as $lek)
             <tr>
                 <td>{{ $lek->nazwa}}</td>
-                <td><a href="{{route('opisLeku', $lek->id)}}"> Kliknij tutaj </a></td>
+                <td><a class="moreInfo" href="{{route('opisLeku', $lek->id)}}"> Kliknij tutaj </a></td>
             </tr>
         @endforeach
         </tbody>
@@ -26,7 +26,7 @@
             </tr> 
         </tfoot>
     </table>
-
+<span class="tytul"> Zarządzaj użytkownikami </span>
 <table id="uzytkownicy" class="display">
         <thead>
             <tr>

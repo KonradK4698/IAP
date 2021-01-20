@@ -55,6 +55,8 @@ class TwojeLekiController extends Controller
         $walidacja = $dodaj->validate([
             'idLeku' => 'required|numeric',
             'iloscPaczek' => 'required|numeric',
+            'dawkowanie' => 'required|numeric',
+            'czestotliwosc' => 'required|numeric',
         ]);
 
         $idLeku = $dodaj->idLeku;

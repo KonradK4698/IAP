@@ -28,6 +28,6 @@ class cisnienieMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('email.pomiarCisnieniaMail')->subject('Przypomnienie - wykonaj pomiar cisnienia');
     }
 }

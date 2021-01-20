@@ -4,28 +4,91 @@
     <link href="{{ asset('css/pdf.css') }}" rel="stylesheet">
 </head>
 <body>
+<table class="tabelaWymiary">
+    <tr> <td class="tytul"> Raport użytkownika</td> </tr>
+</table>
+<table class="tabelaWymiary">
+    <tr>   
+    @if($imieNazwisko->count() == 0)
+    <td class="tytul2"> Email: {{Auth::user()->email}} </td>
+    @else
+    <td class="tytul2">Imię i Nazwisko: {{$imieNazwisko->first()->imie}} {{$imieNazwisko->first()->nazwisko}} </td>
+    @endif
+    </tr>
+</table>  
+<table class="tabelaWymiary">
+    <tr>
+       <td class="tytul3"> Podsumowanie leków</td>
+    </tr>
+</table> 
+<table class="tabelaWymiary leki">
 
-<span class="tytul"> Raport użytkownika </span>
-<span class="raportDane">Imię i Nazwisko: {{$imieNazwisko->first()->imie}} {{$imieNazwisko->first()->nazwisko}} </span>
-<br/>
-Twoje dane o lekach
-<br/><br/>
+    <tr>
+        <th> Nazwa </th>
+        <th> Ilość  </th>
+        <th> Cena </th>
+        <th> Koszt w miesiącu </th>
+    </tr>
 @foreach($kolekcja as $lek)
-
-    Nazwa: {{$lek['nazwa']}}<br/>
-    sztuki: {{$lek['sztuki']}}<br/>
-    cena: {{$lek['cena']}}<br/>
-    kosztMiesiac: {{$lek['kosztMiesiac']}}<br/><br/>
-
+    <tr>
+    <td>{{$lek['nazwa']}}</td>
+    <td>{{$lek['sztuki']}}</td>
+    <td>{{$lek['cena']}} zł</td>
+    <td>{{$lek['kosztMiesiac']}} zł</td>
+    </tr>
 @endforeach
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Suma: {{ round($kosztCalkowity,2) }} zł</td>
+</tr>
+</table>
 
-Twoje obwody
-<br/><br/>
+<table class="tabelaWymiary">
+    <tr>
+       <td class="tytul3"> Podsumowanie wymiarów użytkownika</td>
+    </tr>
+</table>
+<table class="tabelaWymiary">
+    <tr>
+        <th> Nazwa </th>
+        <th> Wartość minimalna </th>
+        <th> Wartość średnia </th>
+        <th> Wartość maksymalna </th>
+    </tr>
+
 @foreach($obwodyDane as $key=>$obwod)
-    Obwód: {{$key}}<br/>
-    Min: {{$obwod['min']}}<br/>
-    Max: {{$obwod['max']}}
-    <br/><br/>
+    <tr>
+    <td>{{$key}}</td>
+    <td>{{$obwod['min']}}</td>
+    <td>{{$obwod['avg']}}</td>
+    <td>{{$obwod['max']}}</td>
+    </tr>
 @endforeach
+</table>
+
+<table class="tabelaWymiary">
+    <tr>
+       <td class="tytul3"> Podsumowanie pomiarów ciśnienia</td>
+    </tr>
+</table>
+<table class="tabelaWymiary">
+    <tr>
+        <th> Nazwa pomiaru </th>
+        <th> Wartość minimalna </th>
+        <th> Wartość średnia </th>
+        <th> Wartość maksymalna </th>
+    </tr>
+
+@foreach($cisnienieDane as $key=>$cisnienie)
+    <tr>
+    <td>{{$key}}</td>
+    <td>{{$cisnienie['min']}}</td>
+    <td>{{$cisnienie['avg']}}</td>
+    <td>{{$cisnienie['max']}}</td>
+    </tr>
+@endforeach
+</table>
 </body>
 </html>

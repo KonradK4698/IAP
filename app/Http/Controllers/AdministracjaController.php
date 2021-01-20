@@ -10,6 +10,7 @@ use App\Obwody;
 use App\Wzrost;
 use App\Wydarzenia;
 use App\daneUzytkownika;
+use App\Leki;
 class AdministracjaController extends Controller
 {
 
@@ -120,5 +121,18 @@ class AdministracjaController extends Controller
         $lekiDoPotwierdzenia = DB::table('leki')->where('potwierdzenieAdmina', '=', 0)->get();
 
         return view('administracja.panel')->with(compact('uzytkownicy','lekiDoPotwierdzenia'));
+    }
+
+    public function potwierdzLek($idLeku){
+        $potwierdzenie = Leki::findOrFail($idLeku);
+        $potwierdzenie->potwierdzenieAdmina = 1;
+        $potwierdzenie->save();
+
+        return redirect()->route('panelAdmina');
+    }
+    public function usunLek($idLeku){
+        daneUzytkownika::findOrFail($idLeku)->delete();
+        
+        return redirect()->route('panelAdmina');
     }
 }

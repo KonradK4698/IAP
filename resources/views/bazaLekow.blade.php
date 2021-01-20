@@ -32,8 +32,8 @@
         <span class="opisPozycji"> Podaj nazwę leku</span>
         <input data-opis="Nazwa leku" class="dodajDane"  name="nazwa" placeholder="Podaj nazwe" type="text" />
 
-        <span class="opisPozycji"> Podaj zalecane dawkowanie</span>
-        <input data-opis="Zalecane dawkowanie" class="dodajDane" name="zalecaneDawkowanie" placeholder="Podaj zalecaneDawkowanie" type="text" />
+        <span class="opisPozycji"> Podaj zalecane dzienne dawkowanie</span>
+        <input data-opis="Zalecane dawkowanie" class="dodajDane" name="zalecaneDawkowanie" placeholder="Podaj zalecane dzienne dawkowanie" type="text" />
 
         <span class="opisPozycji"> Ilość w opakowaniu</span>
         <input data-opis="Ilość w opakowaniu" class="dodajDane" name="ilosc" placeholder="Podaj ilosc w opakowaniu" type="text" />

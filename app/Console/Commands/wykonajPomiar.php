@@ -5,7 +5,9 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use DB;
+use Carbon\Carbon;
 use App\Mail\cisnienieMail;
+use Illuminate\Support\Facades\Mail;
 class wykonajPomiar extends Command
 {
     /**
@@ -40,7 +42,16 @@ class wykonajPomiar extends Command
     public function handle()
     {   
         $aktualnaData = Carbon::now()->toDateString();
-        $uzytkownicy = DB::table('cisnienie')->select('idUzytkownika')->where('created_at','=', $aktualnaData);
+        $dataDoSprawdzenia1 = Carbon::createFromFormat('Y-m-d H:i:s', $aktualnaData.'00:00:00')->toDateTimeString();
+        $dataDoSprawdzenia2 = Carbon::createFromFormat('Y-m-d H:i:s', $aktualnaData.'15:00:00')->toDateTimeString();
+        $uzytkownicy = DB::table('users')->select('id','email')->get();
+        foreach($uzytkownicy as $uzytkownik){
+            $pomiar = DB::table('cisnienie')->where('idUzytkownika','=',$uzytkownik->id)->whereBetween('created_at',[$dataDoSprawdzenia1, $dataDoSprawdzenia2])->count();
+            if($pomiar > 0){
+                Mail::to($uzytkownik->email)->send(new cisnienieMail());
+            }
+        }
+        
         return 0;
     }
 }

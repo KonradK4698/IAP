@@ -33,12 +33,16 @@ button.addEventListener('click', function(){
 $(document).ready(function() {
     $('#wybierzTytul').select2({
         tags: true,
-        
     });
+    $('#wybierzLekSelect').select2();
 });
 
 $('#wybierzTytul').one('select2:open', function(e) {
     $('input.select2-search__field').prop('placeholder', 'Wpisz tytuł, jeżeli nie ma go w opcji wyboru i potwierdź klawiszem "Enter"');
+});
+
+$('#wybierzLekSelect').one('select2:open', function(e) {
+    $('input.select2-search__field').prop('placeholder', 'Wyszukaj lek');
 });
 
 

@@ -9,7 +9,7 @@
     </div>
     <div class="kontenerOpisu wielkosc2">
         <img class="fotoWielkosc2 " src="{{ asset('img/icons/dawka.png') }}" /> 
-        <span> Zalecane dawkowanie: </span>
+        <span> Zalecana dzienna dawka: </span>
         <span> {{ $lek->zalecaneDawkowanie }} </span>
     </div>
     <div class="kontenerOpisu wielkosc2">
@@ -26,12 +26,19 @@
         <span class="tytul"> Opis leku </span>
         <span class="opis"> {{ $lek->opis }} </span>
     </div>
-    <div class="kontenerOpisu">
-    <form method="POST" action="{{ route('potwierdzLek') }}" class="deleteForm">
+    <div class="kontenerOpisu2">
+    @can('admin')
+    <form method="POST" action="{{ route('potwierdzLek', $lek->id) }}" class="deleteForm">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button type="submit" class="deleteButton">Usuń</button>
-                    </form> 
+                    <button type="submit" class="deleteButton zmienkolor"> Potwierdź lek </button>
+    </form> 
+    <form method="POST" action="{{ route('usunLek', $lek->id) }}" class="deleteForm">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="deleteButton"> Usuń lek </button>
+    </form> 
+    @endcan
     </div>
 </div>
 

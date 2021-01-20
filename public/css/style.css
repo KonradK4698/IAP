@@ -244,6 +244,33 @@ nav.nawigacjaPrzewinieta {
   font-size: 1em;
 }
 
+.dodajDane2 {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  height: 50px;
+  background: #ececec;
+  border: 3px solid #a2a2a2;
+  border-radius: 10px;
+  color: #000000;
+  padding-left: 10px;
+  margin: 5px;
+  font-size: 2em;
+  -webkit-transition: .5s linear;
+  transition: .5s linear;
+}
+
+.dodajDane2:focus, .dodajDane2:active, .dodajDane2:visited {
+  background: #a3ffa2;
+  border: 3px solid #14ea24;
+  border-radius: 10px;
+  outline: none;
+}
+
+.small {
+  font-size: 14px;
+  width: 200px !important;
+}
+
 .kontenerRejestracja {
   height: 100vh;
   background-image: url("../img/rejestracja.jpg");
@@ -986,8 +1013,8 @@ nav.nawigacjaPrzewinieta {
 }
 
 .dodajDaneKontener form .dodajDane {
-  -ms-flex-preferred-size: 90%;
-      flex-basis: 90%;
+  -ms-flex-preferred-size: 98%;
+      flex-basis: 98%;
   height: 50px;
   background: #ececec;
   border: 3px solid #a2a2a2;
@@ -1635,6 +1662,18 @@ tspan {
   padding: 10px;
 }
 
+#uzytkownicy tbody tr td a.moreInfo, #waga tbody tr td a.moreInfo, #wzrost tbody tr td a.moreInfo, #obwody tbody tr td a.moreInfo, #wydarzenia tbody tr td a.moreInfo, #lekiAdmin tbody tr td a.moreInfo {
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  background: #6698cb;
+  padding: 5px 20px;
+  -webkit-box-shadow: 2px 2px 6px #1c3e61;
+          box-shadow: 2px 2px 6px #1c3e61;
+  text-shadow: 1px 1px 1px black;
+  letter-spacing: 1.5px;
+}
+
 #uzytkownicy_info, #waga_info, #wzrost_info, #obwody_info, #wydarzenia_info, #lekiAdmin_info {
   font-size: 20px;
 }
@@ -1666,6 +1705,40 @@ tspan {
   text-shadow: 1px 1px 1px black;
   text-transform: uppercase;
   letter-spacing: 1.5px;
+}
+
+.kontenerOpisu2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+  padding: 10px;
+  margin-top: 40px;
+}
+
+.kontenerOpisu2 .deleteForm {
+  width: 50%;
+}
+
+.kontenerOpisu2 .deleteForm .deleteButton {
+  left: 0;
+}
+
+.kontenerOpisu2 .deleteForm .deleteButton.zmienkolor {
+  min-width: 240px;
+  background: #5fb94edd;
 }
 
 .kontenerRaportow {

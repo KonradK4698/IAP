@@ -88,4 +88,5 @@ Route::delete('/home/administrator/usunLekUzytkownika/{lekID}', 'AdministracjaCo
 
 Route::delete('/home/administrator/usunWydarzenieUzytkownika/{wydarzenieID}', 'AdministracjaController@usunWydarzenieUzytkownika')->name('usunWydarzenieUzytkownika')->middleware('auth');
 
-Route::delete('/home/administrator/potwierdzLek', 'AdministracjaController@potwierdzLek')->name('potwierdzLek')->middleware('auth');
+Route::delete('/home/administrator/potwierdzLek/{idLeku}', 'AdministracjaController@potwierdzLek')->name('potwierdzLek')->middleware('auth');
+Route::delete('/home/administrator/usunLek/{idLeku}', 'AdministracjaController@usunLek')->name('usunLek')->middleware('auth');
