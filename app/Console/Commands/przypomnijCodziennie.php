@@ -6,19 +6,11 @@ use Illuminate\Console\Command;
 
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
-use App\Harmonogram;
 use App\lekiUzytkownika;
-use App\Wydarzenia;
-use Auth;
+use App\Users;
 use DB;
 use App\Mail\Przypomnij;
 use Illuminate\Support\Facades\Mail;
-
-
-function pobierzDane(){
-    
-        return $posortowane;
-}
 
 class przypomnijCodziennie extends Command
 {
@@ -54,22 +46,24 @@ class przypomnijCodziennie extends Command
     public function handle()
     {
         $aktualnaData = Carbon::now()->toDateString();
-        $lekUzytownika = DB::table('harmonogram')->select('idLekuUzytkownika','data')->get();
-        
-        foreach($lekUzytownika as $idLeku){
-           $uzytkownicy = DB::table('leki_uzytkownika')->select('idUzytkownika')->where('id', '=', $idLeku->idLekuUzytkownika)->get();
-        }
-       
+
+        $uzytkownicy = DB::table('users')->select('id','email')->get();
         foreach($uzytkownicy as $uzytkownik){
-            $leki = lekiUzytkownika::where('idUzytkownika', '=', $uzytkownik->idUzytkownika)->get();
-        $wydarzeniaNaDzis = DB::table('wydarzenia')->where('idUzytkownika', '=', $uzytkownik->idUzytkownika)->get();
+            $leki = lekiUzytkownika::where('idUzytkownika', '=', $uzytkownik->id)->get();
+            $nadchodzaceWydarzenia = DB::table('wydarzenia')->where('idUzytkownika', '=', $uzytkownik->id)
+                                    ->whereBetween('data',[$aktualnaData, Carbon::now()->addDays(7)->toDateString()])->get();
             foreach($leki as $lek){
-                $lekiNaDzis = DB::table('harmonogram')->join('leki_uzytkownika', 'harmonogram.idLekuUzytkownika' ,'=','leki_uzytkownika.id')
-                                                      ->join('leki', 'leki_uzytkownika.idLeku' ,'=', 'leki.id')->select('harmonogram.*', 'leki.nazwa')->where('leki_uzytkownika.id','=',$lek->id)->get();
+                $lekiNaDzis = DB::table('harmonogram')
+                            ->join('leki_uzytkownika', 'harmonogram.idLekuUzytkownika' ,'=','leki_uzytkownika.id')
+                            ->join('leki', 'leki_uzytkownika.idLeku' ,'=', 'leki.id')->select('harmonogram.*', 'leki.nazwa')
+                            ->where('leki_uzytkownika.id','=',$lek->id)->where('harmonogram.data','=',$aktualnaData)->get();
             }
 
-            $posortowane = $lekiNaDzis->sortBy('data');
-           Mail::to("inzyniermedic@gmail.com")->send(new Przypomnij($posortowane, $wydarzeniaNaDzis));
+            $posortowane = $lekiNaDzis->sortBy('godzina');
+
+            if($posortowane->count() > 0 || $nadchodzaceWydarzenia->count() > 0){
+           Mail::to($uzytkownik->email)->send(new Przypomnij($posortowane, $nadchodzaceWydarzenia));
+            }
         }
         
         return 0;

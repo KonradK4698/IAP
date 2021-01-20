@@ -48,6 +48,9 @@
     <a href="{{route('twojeLeki')}}"> Twoje leki </a>
     <a href="{{route('wydarzenia')}}"> Dodaj wydarzenie </a>
     <a href="{{route('raport')}}"> Raport </a>
+    @can('admin')
+    <a href="{{route('panelAdmina')}}"> Administracja </a>
+    @endcan
 </aside>
 
 <div class="glownyDiv">

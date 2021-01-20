@@ -20,7 +20,7 @@ class Leki extends Migration
             $table->smallInteger('ilosc');
             $table->double('cena',6,2);
             $table->text('opis');
-            $table->boolean('potwierdzenieAdmina')->nullable();
+            $table->boolean('potwierdzenieAdmina')->default('0');
             $table->timestamps();
         });
     }

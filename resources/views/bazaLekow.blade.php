@@ -2,7 +2,7 @@
 
 @section('content')
 <span class="tytul"> Baza leków </span>
-<table id="leki" class="display" style="width:100%">
+<table id="leki" class="display" >
         <thead>
             <tr>
                 <th>Nazwa leku</th>

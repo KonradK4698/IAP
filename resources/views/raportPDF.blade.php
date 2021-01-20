@@ -1,6 +1,12 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="{{ asset('css/pdf.css') }}" rel="stylesheet">
+</head>
+<body>
 
-Twój raport {{$imieNazwisko->first()->imie}} {{$imieNazwisko->first()->nazwisko}}
-
+<span class="tytul"> Raport użytkownika </span>
+<span class="raportDane">Imię i Nazwisko: {{$imieNazwisko->first()->imie}} {{$imieNazwisko->first()->nazwisko}} </span>
 <br/>
 Twoje dane o lekach
 <br/><br/>
@@ -21,3 +27,5 @@ Twoje obwody
     Max: {{$obwod['max']}}
     <br/><br/>
 @endforeach
+</body>
+</html>

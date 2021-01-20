@@ -13,8 +13,10 @@
 
     <div class="dodaneDaneKontener">
         <span class="tytul"> Ostatnio dodany wzrost</span>
-        <span class="dodaneDane"> Data: <span>{{ $wzrost->created_at }}</span></span>
-        <span class="dodaneDane"> Wzrost: <span>{{ $wzrost->wzrost }}</span></span>
+        @if(is_null($wzrost) == false)
+        <span class="dodaneDane"> Data dodania: <span>{{ $wzrost->created_at }}</span></span>
+        <span class="dodaneDane"> Wzrost: <span>{{ $wzrost->wzrost }} cm </span></span>
+        @endif
     </div>
 </div>   
 <div class="dodajDaneKontener"> 
@@ -27,8 +29,10 @@
     
     <div class="dodaneDaneKontener">
         <span class="tytul"> Ostatnio dodana waga</span>
-        <span class="dodaneDane"> Data: <span>{{ $waga->created_at }}</span></span>
-        <span class="dodaneDane"> Waga: <span>{{ $waga->waga }}</span></span>
+        @if(is_null($waga) == false)
+        <span class="dodaneDane"> Data dodania: <span>{{ $waga->created_at }}</span></span>
+        <span class="dodaneDane"> Waga: <span>{{ $waga->waga }} kg</span></span>
+        @endif
     </div>
 </div> 
 <div class="dodajDaneKontener"> 
@@ -46,14 +50,16 @@
     </form>
     <div class="dodaneDaneKontener">
         <span class="tytul"> Ostatnio dodane obwody</span>
-        <span class="dodaneDane"> Data: <span>{{ $obwody->created_at }}</span></span>
-        <span class="dodaneDane"> Biceps: <span>{{ $obwody->biceps }}</span></span>
-        <span class="dodaneDane"> Klatka piersiowa: <span>{{ $obwody->klataPiersiowa}}</span></span>
-        <span class="dodaneDane"> Talia: <span>{{ $obwody->talia }}</span></span>
-        <span class="dodaneDane"> Pas: <span>{{ $obwody->pas }}</span></span>
-        <span class="dodaneDane"> Biodra: <span>{{ $obwody->biodra }}</span></span>
-        <span class="dodaneDane"> Uda: <span>{{ $obwody->uda }}</span></span>
-        <span class="dodaneDane"> Łydka: <span>{{ $obwody->lydka }}</span></span>
+        @if(is_null($obwody) == false)
+        <span class="dodaneDane"> Data dodania: <span>{{ $obwody->created_at }} cm</span></span>
+        <span class="dodaneDane"> Biceps: <span>{{ $obwody->biceps }} cm</span></span>
+        <span class="dodaneDane"> Klatka piersiowa: <span>{{ $obwody->klataPiersiowa}} cm</span></span>
+        <span class="dodaneDane"> Talia: <span>{{ $obwody->talia }} cm</span></span>
+        <span class="dodaneDane"> Pas: <span>{{ $obwody->pas }} cm</span></span>
+        <span class="dodaneDane"> Biodra: <span>{{ $obwody->biodra }} cm</span></span>
+        <span class="dodaneDane"> Uda: <span>{{ $obwody->uda }} cm</span></span>
+        <span class="dodaneDane"> Łydka: <span>{{ $obwody->lydka }} cm</span></span>
+        @endif
     </div>
 
 </div> 

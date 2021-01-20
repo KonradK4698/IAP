@@ -6,7 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-class Przypomnij extends Mailable
+
+class przypomnijLeki extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -15,13 +16,12 @@ class Przypomnij extends Mailable
      *
      * @return void
      */
-
-    public $leki;
-    public $wydarzenia;
-    public function __construct($leki, $wydarzenia)
+    public $lekDoPrzyjecia;
+    public $nadchodzaceWydarzenie;
+    public function __construct($lekDoPrzyjecia, $nadchodzaceWydarzenie)
     {
-        $this->leki = $leki;
-        $this->wydarzenia = $wydarzenia;
+        $this->lekDoPrzyjecia = $lekDoPrzyjecia;
+        $this->nadchodzaceWydarzenie = $nadchodzaceWydarzenie;
     }
 
     /**
@@ -31,8 +31,6 @@ class Przypomnij extends Mailable
      */
     public function build()
     {
-        
-        return $this->view('email.przypomnijCodziennie')
-                    ->subject("Inteligentny asystent pacjenta - przypomnienie");
+        return $this->view('email.przypomnijCoMinute')->subject("Inteligentny asystent pacjenta - przypomnienie");
     }
 }

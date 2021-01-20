@@ -26,6 +26,13 @@
         <span class="tytul"> Opis leku </span>
         <span class="opis"> {{ $lek->opis }} </span>
     </div>
+    <div class="kontenerOpisu">
+    <form method="POST" action="{{ route('potwierdzLek') }}" class="deleteForm">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="deleteButton">Usuń</button>
+                    </form> 
+    </div>
 </div>
 
 @endsection

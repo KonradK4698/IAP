@@ -10,6 +10,7 @@
 </div>
 
 <div class="kontenerDanych">
+@if($harmonogramLekow->count() > 0)
 <span class="tytul"> Leki na dziś</span>
 @foreach($harmonogramLekow as $lek)
 <div class="doPrzyjeciaKontener">
@@ -25,9 +26,13 @@
     @endif
 </div>
 @endforeach
+@else
+<span class="tytul"> Brak leków </span>
+@endif
 </div>
 
 <div class="daneUzytkownika">
+@if($najblizszeWydarzenia->count() > 0)
 <span class="tytul"> Wydarzenia w tym tygodniu</span>
 @foreach($najblizszeWydarzenia as $wydarzenie)
 <div class="informacjeUzytkownika wydarzeniaKontener">
@@ -37,6 +42,9 @@
     <span class="opisWydarzenia">{{$wydarzenie->opis}}  </span>
 </div>
 @endforeach
+@else
+<span class="tytul"> Brak wydarzeń w tym tygodniu</span>
+@endif
 </div>
 
 <div class="daneUzytkownika">
@@ -44,17 +52,19 @@
     <div class="informacjeUzytkownika">
         <img src="{{ asset('img/icons/waga.png') }}" >
         <span class="tytulInformacji"> Aktualna waga </span>
-        <span class="daneInformacji"> {{$aktualnaWaga->waga}} kg </span>
+        <span class="daneInformacji"> {{is_null($aktualnaWaga) == true ? "Brak danych" : $aktualnaWaga->waga.' kg'}}  </span>
     </div>
     <div class="informacjeUzytkownika">
         <img src="{{ asset('img/icons/wzrost.png') }}" >
         <span class="tytulInformacji"> Aktualny wzrost </span>
-        <span class="daneInformacji"> {{$aktualnyWzrost->wzrost}} cm </span>
+        <span class="daneInformacji"> {{is_null($aktualnyWzrost) == true ? "Brak danych" : $aktualnyWzrost->wzrost.' cm'}} </span>
     </div>
 </div>
 
 <div class="daneUzytkownika">
+
     <span class="tytul"> Aktualne obwody </span>
+    @if(is_null($aktualneObwody) == false)
     <div class="informacjeUzytkownika">
         <img src="{{ asset('img/icons/biceps.png') }}" >
         <span class="tytulInformacji"> Wymiar bicepsu </span>
@@ -90,14 +100,25 @@
         <span class="tytulInformacji"> Wymiar łydki </span>
         <span class="daneInformacji"> {{$aktualneObwody->lydka}} cm </span>
     </div>
+    @else
+    <span class="tytul"> Brak wprowadzonych informacji o obwodach </span>
+    @endif
 </div>
 
 
 <div class="kontenerDanych">
+@if($daneCisnienia->count() > 0)
 <span class="tytul"> Dane ciśnienia w ostatnim tygodniu</span>
 <div id="chartdiv"></div>
+@else
+<span class="tytul"> Brak wprowadzonych pomiarów ciśnienia</span>
+@endif
+@if($statyskaLekow->count() > 0)
 <span class="tytul"> Ilość pozostałych leków</span>
 <div id="chartdiv2"></div>
+@else
+<span class="tytul"> Brak wprowadzonych leków</span>
+@endif
 </div>
     @endsection
 @section('statystykaCisnienie')

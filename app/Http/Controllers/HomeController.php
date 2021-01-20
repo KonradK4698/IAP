@@ -11,6 +11,7 @@ use App\Cisnienie;
 use App\Waga;
 use App\Wzrost;
 use App\Obwody;
+use App\lekiUzytkownika;
 use Auth;
 use DB;
 use daneUzytkownika;
@@ -34,6 +35,8 @@ class HomeController extends Controller
 
     public function przyjmijLek($id){
         Harmonogram::findOrFail($id)->update(['potwierdzenie'=>1]);
+        $idLeku = DB::table('harmonogram')->select('idLekuUzytkownika')->where('id','=',$id)->first();
+        DB::table('leki_uzytkownika')->where('id','=',$idLeku->idLekuUzytkownika)->decrement('iloscLeku');
         return redirect()->route('home');
     }
     public function index()

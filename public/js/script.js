@@ -41,6 +41,25 @@ $('#wybierzTytul').one('select2:open', function(e) {
     $('input.select2-search__field').prop('placeholder', 'Wpisz tytuł, jeżeli nie ma go w opcji wyboru i potwierdź klawiszem "Enter"');
 });
 
+
+//datables
+
+$(document).ready(function() {
+    $('#leki').DataTable();
+} );
+
+$(document).ready(function() {
+    $('#uzytkownicy').DataTable();
+    $('#waga').DataTable();
+    $('#wzrost').DataTable();
+    $('#obwody').DataTable();
+    $('#lekiAdmin').DataTable();
+    $('#wydarzenia').DataTable();
+} );
+
+
+//datatables koniec
+
 //popup z pytaniem o poprawnośc danych
 let nazwy;
 const openPoup = document.querySelectorAll('.openConfirm');
@@ -98,11 +117,3 @@ function przeslijDane(formularz){
 
 //koniec popupa
 
-
-//datables
-
-$(document).ready(function() {
-    $('#leki').DataTable();
-} );
-
-//datatables koniec

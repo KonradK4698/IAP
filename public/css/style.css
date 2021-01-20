@@ -173,12 +173,15 @@ nav.nawigacjaPrzewinieta {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   width: 150px;
-  margin: 10px 0;
   padding: 10px;
   color: white;
   text-shadow: 1px 1px 0 #000;
   font-size: 20px;
   background: #ff0000;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  -webkit-box-shadow: 2px 2px 10px #3c3c3c;
+          box-shadow: 2px 2px 10px #3c3c3c;
 }
 
 .harmonogramTest {
@@ -1159,18 +1162,16 @@ span.select2.select2-container {
 }
 
 div.openConfirm {
-  position: relative;
-  bottom: 10px;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  width: 250px;
+  width: 200px;
   padding: 5px 10px;
   margin: 10px 0;
-  font-size: 2em;
+  font-size: 2.2em;
   background: #114d4d;
   color: white;
-  text-shaodw: 1px 1px 0 0 black;
+  text-shadow: 1px 1px 1px black;
+  -webkit-box-shadow: 2px 2px 6px black;
+          box-shadow: 2px 2px 6px black;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -1534,5 +1535,197 @@ div.openConfirm {
 
 tspan {
   font-size: 17px !important;
+}
+
+#uzytkownicy_wrapper, #waga_wrapper, #wzrost_wrapper, #obwody_wrapper, #wydarzenia_wrapper, #lekiAdmin_wrapper {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 3px solid #000000;
+  background: #ffffff;
+  font-size: 2em;
+}
+
+#uzytkownicy_length label, #waga_length label, #wzrost_length label, #obwody_length label, #wydarzenia_length label, #lekiAdmin_length label {
+  font-size: 20px;
+}
+
+#uzytkownicy_length label select, #waga_length label select, #wzrost_length label select, #obwody_length label select, #wydarzenia_length label select, #lekiAdmin_length label select {
+  padding: 6px;
+  background: #ececec;
+  color: black;
+  font-size: 15px;
+}
+
+#uzytkownicy_length label select option, #waga_length label select option, #wzrost_length label select option, #obwody_length label select option, #wydarzenia_length label select option, #lekiAdmin_length label select option {
+  font-size: 13px;
+}
+
+#uzytkownicy_filter label, #waga_filter label, #wzrost_filter label, #obwody_filter label, #wydarzenia_filter label, #lekiAdmin_filter label {
+  font-size: 20px;
+}
+
+#uzytkownicy_filter label input, #waga_filter label input, #wzrost_filter label input, #obwody_filter label input, #wydarzenia_filter label input, #lekiAdmin_filter label input {
+  background: #ececec;
+  border: 3px solid #a2a2a2;
+  border-radius: 10px;
+  color: #000000;
+  padding-left: 10px;
+  -webkit-transition: .5s linear;
+  transition: .5s linear;
+  font-size: 18px;
+}
+
+#uzytkownicy_filter label input:focus, #uzytkownicy_filter label input:active, #uzytkownicy_filter label input:visited, #waga_filter label input:focus, #waga_filter label input:active, #waga_filter label input:visited, #wzrost_filter label input:focus, #wzrost_filter label input:active, #wzrost_filter label input:visited, #obwody_filter label input:focus, #obwody_filter label input:active, #obwody_filter label input:visited, #wydarzenia_filter label input:focus, #wydarzenia_filter label input:active, #wydarzenia_filter label input:visited, #lekiAdmin_filter label input:focus, #lekiAdmin_filter label input:active, #lekiAdmin_filter label input:visited {
+  background: #a3ffa2;
+  border: 3px solid #14ea24;
+  border-radius: 10px;
+  outline: none;
+}
+
+#uzytkownicy, #waga, #wzrost, #obwody, #wydarzenia, #lekiAdmin {
+  padding: 10px;
+}
+
+#uzytkownicy thead, #uzytkownicy tfoot, #waga thead, #waga tfoot, #wzrost thead, #wzrost tfoot, #obwody thead, #obwody tfoot, #wydarzenia thead, #wydarzenia tfoot, #lekiAdmin thead, #lekiAdmin tfoot {
+  background: #23ec73;
+}
+
+#uzytkownicy thead tr th, #uzytkownicy tfoot tr th, #waga thead tr th, #waga tfoot tr th, #wzrost thead tr th, #wzrost tfoot tr th, #obwody thead tr th, #obwody tfoot tr th, #wydarzenia thead tr th, #wydarzenia tfoot tr th, #lekiAdmin thead tr th, #lekiAdmin tfoot tr th {
+  font-size: 20px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 25% !important;
+}
+
+#uzytkownicy tbody tr, #waga tbody tr, #wzrost tbody tr, #obwody tbody tr, #wydarzenia tbody tr, #lekiAdmin tbody tr {
+  text-align: center;
+}
+
+#uzytkownicy tbody tr.odd, #waga tbody tr.odd, #wzrost tbody tr.odd, #obwody tbody tr.odd, #wydarzenia tbody tr.odd, #lekiAdmin tbody tr.odd {
+  background: #c8fffe;
+}
+
+#uzytkownicy tbody tr.odd td.sorting_1, #waga tbody tr.odd td.sorting_1, #wzrost tbody tr.odd td.sorting_1, #obwody tbody tr.odd td.sorting_1, #wydarzenia tbody tr.odd td.sorting_1, #lekiAdmin tbody tr.odd td.sorting_1 {
+  background: #c8fffe;
+}
+
+#uzytkownicy tbody tr.even, #waga tbody tr.even, #wzrost tbody tr.even, #obwody tbody tr.even, #wydarzenia tbody tr.even, #lekiAdmin tbody tr.even {
+  background: #d2d2d2;
+}
+
+#uzytkownicy tbody tr.even td.sorting_1, #waga tbody tr.even td.sorting_1, #wzrost tbody tr.even td.sorting_1, #obwody tbody tr.even td.sorting_1, #wydarzenia tbody tr.even td.sorting_1, #lekiAdmin tbody tr.even td.sorting_1 {
+  background: #d2d2d2;
+}
+
+#uzytkownicy tbody tr:hover, #waga tbody tr:hover, #wzrost tbody tr:hover, #obwody tbody tr:hover, #wydarzenia tbody tr:hover, #lekiAdmin tbody tr:hover {
+  background: #2f60fd;
+}
+
+#uzytkownicy tbody tr:hover td.sorting_1, #waga tbody tr:hover td.sorting_1, #wzrost tbody tr:hover td.sorting_1, #obwody tbody tr:hover td.sorting_1, #wydarzenia tbody tr:hover td.sorting_1, #lekiAdmin tbody tr:hover td.sorting_1 {
+  background: #2f60fd;
+}
+
+#uzytkownicy tbody tr td, #waga tbody tr td, #wzrost tbody tr td, #obwody tbody tr td, #wydarzenia tbody tr td, #lekiAdmin tbody tr td {
+  font-size: 20px;
+  padding: 10px;
+}
+
+#uzytkownicy_info, #waga_info, #wzrost_info, #obwody_info, #wydarzenia_info, #lekiAdmin_info {
+  font-size: 20px;
+}
+
+#uzytkownicy_paginate a, #waga_paginate a, #wzrost_paginate a, #obwody_paginate a, #wydarzenia_paginate a, #lekiAdmin_paginate a {
+  font-size: 16px;
+}
+
+#uzytkownicy_paginate span a, #waga_paginate span a, #wzrost_paginate span a, #obwody_paginate span a, #wydarzenia_paginate span a, #lekiAdmin_paginate span a {
+  background: #ececec;
+  border: 3px solid #a2a2a2;
+  border-radius: 10px;
+  color: #000000;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.edytujButton {
+  padding: 10px 40px;
+  -webkit-box-shadow: 2px 2px 10px #3c3c3c;
+          box-shadow: 2px 2px 10px #3c3c3c;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  background: #5fb94edd;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.kontenerRaportow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.kontenerRaportow img {
+  width: 30%;
+  margin-bottom: 10px;
+}
+
+.kontenerRaportow .pobierzPDF {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-preferred-size: 23%;
+      flex-basis: 23%;
+  min-height: 150px;
+  font-size: 2.5em;
+  background: #adadad;
+  border-radius: 20px;
+  border: 2px solid #00000075;
+  -webkit-box-shadow: 4px 4px 15px black;
+          box-shadow: 4px 4px 15px black;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
