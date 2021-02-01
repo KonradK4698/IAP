@@ -15,7 +15,7 @@
 <nav class="nawigacjaStronaGlowna">
         <div class="menu">
         <i class="fas fa-bars"></i>
-        <span class="logo">MediHelper</span>
+        <span class="logo">Inteligentny asystent pacjenta</span>
         </div>
         <div class="nawigacjaLinki">
         @guest
@@ -48,6 +48,7 @@
     <a href="{{route('twojeLeki')}}"> Twoje leki </a>
     <a href="{{route('wydarzenia')}}"> Dodaj wydarzenie </a>
     <a href="{{route('raport')}}"> Raport </a>
+    <a href="{{route('historia')}}"> Historia </a>
     @can('admin')
     <a href="{{route('panelAdmina')}}"> Administracja </a>
     @endcan
@@ -56,6 +57,7 @@
 <div class="glownyDiv">
 @if ($errors->any())
 <div class="errorContener">
+<span class="closeError"> X </span>
     <p>Wystąpiły błędy!!!</p>
     @foreach ($errors->all() as $error)
         <span>{{ $error }}</span>

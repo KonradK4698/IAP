@@ -37,22 +37,26 @@
             border: 3px solid #14ea24
             border-radius: 10px
             outline: none
-    .checkbox
-        width: 40px
-        height: 40px
-        margin: 10px
-    .politykaOpis
-        flex-basis: 60%
-        font-size: 2em
-        margin: 10px 0
-        font-weight: bold
-        .politykaLink
-            font-size: 1em
-            text-decoration: none
-            color: #2700ff
+    .pozycjaChecbox
+        width: 100%
+        display: flex
+        align-items: center
+        .checkbox
+            width: 40px
+            height: 40px
+            margin: 10px
+        .politykaOpis
+            flex-basis: 60%
+            font-size: 2em
+            margin: 10px 0
             font-weight: bold
-            &:visited
-                color: #30a71b
+            .politykaLink
+                font-size: 1em
+                text-decoration: none
+                color: #2700ff
+                font-weight: bold
+                &:visited
+                    color: #30a71b
     .uzupelnijDanePrzycisk
         display: inline-block
         width: 80%
@@ -113,3 +117,16 @@
     border: none
     width: 80%
     text-decoration: none
+.bigFirstLetter
+    text-transform: capitalize
+.politykaText
+    font-size: 25px
+    text-align: justify
+    line-height: 30px
+    margin: 10px 0
+    a
+        text-decoration: none
+.politykaLista
+    margin: 20px 0 20px 5%
+    li
+        font-size: 25px

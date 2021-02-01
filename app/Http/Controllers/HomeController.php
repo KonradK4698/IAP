@@ -53,7 +53,8 @@ class HomeController extends Controller
         
         $statyskaLekow = DB::table('leki_uzytkownika')->join('leki', 'leki_uzytkownika.idLeku', '=', 'leki.id')->select('leki_uzytkownika.*', 'leki.nazwa')->where('leki_uzytkownika.idUzytkownika', '=', Auth::id())->get();
        
-        $daneCisnienia = Cisnienie::where('idUzytkownika', '=', Auth::id())->get();
+        $dataTydzien = Carbon::now()->subDays(7)->toDateTimeString();
+        $daneCisnienia = DB::table('cisnienie')->where('idUzytkownika', '=', Auth::id())->whereBetween('created_at',[$dataTydzien, Carbon::now()->toDateTimeString()])->orderByDesc('created_at')->get();
         
         $imieUzytkownika = DB::table('dane_uzytkownika')->select('imie')->where('idUzytkownika', '=', Auth::id())->get();
         $aktualnaData = Carbon::now()->format('Y-m-d');

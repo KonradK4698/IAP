@@ -16,80 +16,50 @@ class DatabaseSeeder extends Seeder
     {
         
         DB::table('users')->insert([
-            'email' => "kwakus18@gmail.com",
+            'email' => "admin@admin.com",
             'email_verified_at' => NULL,
-            'password' => Hash::make('Kwakus1998'),
+            'password' => Hash::make('Admin'),
             'remember_token' => NULL,
+            'isAdmin' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
-        DB::table('wzrost')->insert([
-            'idUzytkownika' => 1,
-            'wzrost' => 187.56,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-        DB::table('obwody')->insert([
-            'idUzytkownika' => 1,
-            'biceps' => 35,
-            'klataPiersiowa' => 96.5,
-            'talia' => 100,
-            'pas' => 110,
-            'biodra' => 105.20,
-            'uda' => 40.5,
-            'lydka' => 20.5,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-        DB::table('cisnienie')->insert([
-            'idUzytkownika' => 1,
-            'skurczowe' => 80,
-            'rozkurczowe' => 120,
-            'tetno' => 96,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-        DB::table('dane_uzytkownika')->insert([
-            'idUzytkownika' => 1,
-            'imie' => "konrad",
-            'nazwisko' => "kmak",
-            'dataUrodzenia' => Carbon::parse('1998-04-06'),
-            'telefon' => 793596826,
-            'telefonPomocniczy' => 793596826,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-        DB::table('waga')->insert([
-            'idUzytkownika' => 1,
-            'waga' => 95.8,
+
+
+        DB::table('leki')->insert([
+            'nazwa' => "Euthyrox",
+            'zalecaneDawkowanie' => 1,
+            'ilosc' => 100,
+            'cena' => 8.16,
+            'opis' => "Euthyrox jest hormonem. Sotosowany w leczeniu zastępczym niedoczynności tarczycy",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('leki')->insert([
-            'nazwa' => "lek pierwszy",
-            'zalecaneDawkowanie' => 3,
+            'nazwa' => "Acard",
+            'zalecaneDawkowanie' => 1,
             'ilosc' => 30,
-            'cena' => 125.50,
-            'opis' => "lek przeznaczony do spożywania doustnego, w formie tabletek",
+            'cena' => 8.28,
+            'opis' => "Lek dostępny bez recepty. Lek hamujący agregację płytek krwi",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('leki')->insert([
-            'nazwa' => "lek drugi",
-            'zalecaneDawkowanie' => 2,
-            'ilosc' => 15,
-            'cena' => 12.5,
-            'opis' => "lek przeznaczony do spożywania doustnego, pamiętaj o bezpieczeństwie",
+            'nazwa' => "Letrox",
+            'zalecaneDawkowanie' => 1,
+            'ilosc' => 50,
+            'cena' => 6.52,
+            'opis' => "Lek dostępny na receptę. Hromon. Terapia zastępcza i uzupełniająca w niedoczynności tarczycy o różnej etiologii.",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
         DB::table('leki')->insert([
-            'nazwa' => "lek trzeci",
-            'zalecaneDawkowanie' => 4,
-            'ilosc' => 150,
-            'cena' => 55.99,
-            'opis' => "lek przeznaczony do spożywania doustnego, w formie plynnej",
+            'nazwa' => "Clonazepamum 0.5mg",
+            'zalecaneDawkowanie' => 1,
+            'ilosc' => 30,
+            'cena' => 5.16,
+            'opis' => "Lek dostępny na receptę. Pochodna benzodiazepiny. Leczenie padaczki u dorosłych i dzieci",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);

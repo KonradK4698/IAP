@@ -1,9 +1,12 @@
 
 const errorContener = document.querySelector('.errorContener');
+const zamknijBledy  = document.querySelector('.closeError');
+if(!!zamknijBledy){
+    zamknijBledy.addEventListener('click', function(){
+        errorContener.style.display = "none";
+    })
+}
 
-setTimeout(function(){
-    errorContener.style.display = 'none';
-}, 5000);
 
 // obsługa scrolowania nawigacji
 var nawigacja = document.querySelector('.nawigacjaStronaGlowna');
@@ -59,6 +62,7 @@ $(document).ready(function() {
     $('#obwody').DataTable();
     $('#lekiAdmin').DataTable();
     $('#wydarzenia').DataTable();
+    $('#cisnienie').DataTable();
 } );
 
 
@@ -84,7 +88,14 @@ document.addEventListener('click', function(e){
          if(nazwy[i].name != "_token"){
             let newSpan = document.createElement("span");
             newSpan.classList.add('danaDoPotwierdzenia');
-             newSpan.textContent =  nazwy[i].dataset.opis + " - " + (nazwy[i].type=="checkbox" ? (nazwy[i].checked==true ? "Wyrażono zgodę" : "Brak zgody") : nazwy[i].value) + "\n";
+             
+                
+             if(nazwy[i].id == "wybierzLekSelect"){
+                newSpan.textContent =  nazwy[i].dataset.opis + " - " + nazwy[i].options[nazwy[i].selectedIndex].text + "\n";
+             }else{
+                newSpan.textContent =  nazwy[i].dataset.opis + " - " + (nazwy[i].type=="checkbox" ? (nazwy[i].checked==true ? "Wyrażono zgodę" : "Brak zgody") : nazwy[i].value) + "\n";
+             }
+             
              dodajDanePopup.appendChild(newSpan);  
          }
 

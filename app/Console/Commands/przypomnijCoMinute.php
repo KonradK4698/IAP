@@ -48,18 +48,20 @@ class przypomnijCoMinute extends Command
     public function handle()
     {
         $aktualnaData = Carbon::now()->toDateString();
-
+        $lekiTablica = array();
         $uzytkownicy = DB::table('users')->select('id','email')->get();
         foreach($uzytkownicy as $uzytkownik){
             $leki = lekiUzytkownika::where('idUzytkownika', '=', $uzytkownik->id)->get();
+            foreach($leki as $numer=>$lek){
+                $lekiTablica[$numer] = $lek->id;
+            }
             $nadchodzaceWydarzenia = DB::table('wydarzenia')->where('idUzytkownika', '=', $uzytkownik->id)->where('data','=',$aktualnaData)
             ->whereBetween('godzina', [Carbon::now('Europe/Warsaw')->addMinutes(30)->toTimeString(), Carbon::now('Europe/Warsaw')->addMinutes(32)->toTimeString()])->get();
-            foreach($leki as $lek){
-                $aktualnyLek = DB::table('harmonogram')->join('leki_uzytkownika', 'harmonogram.idLekuUzytkownika' ,'=','leki_uzytkownika.id')
+            $aktualnyLek = DB::table('harmonogram')->join('leki_uzytkownika', 'harmonogram.idLekuUzytkownika' ,'=','leki_uzytkownika.id')
                                                       ->join('leki', 'leki_uzytkownika.idLeku' ,'=', 'leki.id')->select('harmonogram.*', 'leki.nazwa')
-                                                      ->where('leki_uzytkownika.id','=',$lek->id)->where('harmonogram.data','=',$aktualnaData)
+                                                      ->whereIn('harmonogram.idLekuUzytkownika',$lekiTablica)->where('harmonogram.data','=',$aktualnaData)
                                                       ->whereBetween('harmonogram.godzina', [Carbon::now('Europe/Warsaw')->addMinutes(30)->toTimeString(), Carbon::now('Europe/Warsaw')->addMinutes(35)->toTimeString()])->get();
-            }
+            
 
             
             

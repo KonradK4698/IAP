@@ -13,11 +13,11 @@
             @endforeach
         </select>
         <span class="opisPozycji"> Podaj ilość posiadanych opakowań </span>
-        <input data-opis="Ilość opakowań:" class="dodajDane" name="iloscPaczek" placeholder="Podaj ilość opakowań" type="text" />
+        <input data-opis="Ilość opakowań:" class="dodajDane" name="iloscPaczek" placeholder="Podaj ilość opakowań" type="number" />
         <span class="opisPozycji"> Podaj ilość leku, którą musisz przyjąć w ciagu dnia: </span>
-        <input data-opis="Dzienna ilość:" class="dodajDane" name="dawkowanie" placeholder="Wprowadź liczbę" type="text" />
+        <input data-opis="Dzienna ilość:" class="dodajDane" name="dawkowanie" placeholder="Wprowadź liczbę" type="number" />
         <span class="opisPozycji"> Podaj (w godzinach) odstęp czasowy pomiędzy dawkami leku: </span>
-        <input data-opis="Odstęp czasowy:" class="dodajDane" name="czestotliwosc" placeholder="Wprowadź liczbę " type="text" />
+        <input data-opis="Odstęp czasowy:" class="dodajDane" name="czestotliwosc" placeholder="Wprowadź liczbę " type="number" />
         <span class=" opisPozycji"> Podaj godzinę rozpoczęcia przyjmowania leku: </span>
         <input data-opis="Godzina rozpoczęcia:" class="dodajDane" name="rozpocznij" placeholder="Podaj godzine rozpoczęcia przyjmowania leku" type="time" />
         <span class="opisPozycji"> Podaj datę rozpoczęcia przyjmowania leku: </span>
@@ -35,7 +35,10 @@
     <span class="nazwaLeku">Ilość tabletek: {{$lek->iloscLeku}} </span>
     <span class="nazwaLeku">Ilość opakowań: {{$lek->iloscPaczek}} </span>
     <span class="nazwaLeku">Data zakończenia: {{$lek->zakoncz}} </span>
-
+    <span class="nazwaLeku">Godziny przyjmowania leku: <br/> 
+    @foreach($lek->godziny as $godzina)
+        {{$godzina->godzinaPrzyjmowania}} </br>
+    @endforeach</span>
     <span class="godzinaLeku">  </span>
     <form method="POST" action="{{ route('dodajOpakowanie', [$lek->id, $lek->idLeku] )}}" class="deleteForm">
         <input type="hidden" name="_token" value="{{csrf_token()}}" />
@@ -66,7 +69,7 @@
 <div class="overlay"></div>
 <div class="confirmPopupBox">
     <div class="popupInformacjeBox">
-        <span class="sprawdzDane"> Sprawdź poprawnośc danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
+        <span class="sprawdzDane"> Sprawdź poprawność danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
     </div>
     <button class="potwierdzDane" type="submit"> Tak </button>
     <button class="zmienDane"> Nie </button>

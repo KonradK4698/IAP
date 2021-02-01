@@ -2,10 +2,18 @@
 
 @section('content')
 
+<div class="kontenerRejestracja"></div>
 
+@if ($errors->any())
+<div class="errorContener">
+    <span class="closeError"> X </span>
+    <p>Wystąpiły błędy!!!</p>
+    @foreach ($errors->all() as $error)
+        <span>{{ $error }}</span>
+    @endforeach
+</div>
+@endif
 
-<div class="kontenerRejestracja">
-    </div>
     <form class="formularzRejestracyjny" method="POST" action="{{ route('register') }}">
         @csrf
         <span class="naglowekRejestracja"> Rejestracja </span>

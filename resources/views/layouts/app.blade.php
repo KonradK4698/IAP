@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
 
-    <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
+    <title>{{ config('app.name', 'Inteligentny asystent pacjenta') }}</title>
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -25,7 +25,7 @@
 <nav class="nawigacjaStronaGlowna">
         <div class="menu">
         <!-- <i class="fas fa-bars"></i> -->
-        <span class="logo">MediHelper</span>
+        <span class="logo">Inteligentny asystent pacjenta</span>
         </div>
         <div class="nawigacjaLinki">
         @guest
@@ -50,14 +50,7 @@
 </nav>
 
         <main class="py-4">
-        @if ($errors->any())
-<div class="errorContener">
-    <p>Wystąpiły błędy!!!</p>
-    @foreach ($errors->all() as $error)
-        <span>{{ $error }}</span>
-    @endforeach
-</div>
-@endif
+
             @yield('content')
         </main>
 

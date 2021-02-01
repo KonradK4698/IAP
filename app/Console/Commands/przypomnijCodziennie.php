@@ -46,21 +46,22 @@ class przypomnijCodziennie extends Command
     public function handle()
     {
         $aktualnaData = Carbon::now()->toDateString();
-
+        $lekiTablica = array();
         $uzytkownicy = DB::table('users')->select('id','email')->get();
         foreach($uzytkownicy as $uzytkownik){
-            $leki = lekiUzytkownika::where('idUzytkownika', '=', $uzytkownik->id)->get();
+            $leki = DB::table('leki_uzytkownika')->select('id')->where('idUzytkownika', '=', $uzytkownik->id)->get();
+            
+            foreach($leki as $numer=>$lek){
+                $lekiTablica[$numer] = $lek->id;
+            }
             $nadchodzaceWydarzenia = DB::table('wydarzenia')->where('idUzytkownika', '=', $uzytkownik->id)
                                     ->whereBetween('data',[$aktualnaData, Carbon::now()->addDays(7)->toDateString()])->get();
-            foreach($leki as $lek){
-                $lekiNaDzis = DB::table('harmonogram')
+            
+            $lekiNaDzis = DB::table('harmonogram')
                             ->join('leki_uzytkownika', 'harmonogram.idLekuUzytkownika' ,'=','leki_uzytkownika.id')
                             ->join('leki', 'leki_uzytkownika.idLeku' ,'=', 'leki.id')->select('harmonogram.*', 'leki.nazwa')
-                            ->where('leki_uzytkownika.id','=',$lek->id)->where('harmonogram.data','=',$aktualnaData)->get();
-            }
-
-            $posortowane = $lekiNaDzis->sortBy('godzina');
-
+                            ->whereIn('harmonogram.idLekuUzytkownika',$lekiTablica)->where('harmonogram.data','=',$aktualnaData)->get();
+            $posortowane = $lekiNaDzis->sortBy('godzina');    
             if($posortowane->count() > 0 || $nadchodzaceWydarzenia->count() > 0){
            Mail::to($uzytkownik->email)->send(new Przypomnij($posortowane, $nadchodzaceWydarzenia));
             }

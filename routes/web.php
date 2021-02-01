@@ -26,6 +26,8 @@ Route::post('/home/przyjmijLek/{id}', 'HomeController@przyjmijLek')->name('przyj
 //dane użytkownika
 Route::get('/home/daneUzytkownika', 'DaneUzytkownikaController@widok')->name('daneUzytkownika')->middleware('auth');
 Route::post('/home/daneUzytkownika', 'DaneUzytkownikaController@store')->middleware('auth');
+
+Route::get('/politykaPrywatności', 'DaneUzytkownikaController@polityka')->name('polityka')->middleware('auth');
 //dane dodatkowe uzytkownika
 Route::get('/home/daneDodatkowe', 'DaneDodatkoweController@widok')->name('daneDodatkowe')->middleware('auth');
 //wzrost
@@ -59,7 +61,10 @@ Route::get('/home/statystyka', 'StatystykaController@widok')->name('statystyka')
 Route::get('/home/raport', 'RaportUzytkownikaController@widok')->name('raport')->middleware('auth');
 Route::get('/home/raport/pdf/{miesiac}', 'RaportUzytkownikaController@utworzPDF')->name('utworzPDF')->middleware('auth');
 
-//panel adminsitratora
+//historia
+Route::get('/home/historia', 'HistoriaController@widok')->name('historia')->middleware('auth');
+
+//panel administratora
 Route::get('/home/administrator', 'AdministracjaController@widok')->name('panelAdmina')->middleware('auth');
 Route::get('/home/administrator/edytujUzytkownika/{id}', 'AdministracjaController@edytujUzytkownika')->name('edytujUzytkownika')->middleware('auth');
 Route::delete('/home/administrator/usunUzytkownika/{id}', 'AdministracjaController@usunUzytkownika')->name('usunUzytkownika')->middleware('auth');
@@ -90,3 +95,5 @@ Route::delete('/home/administrator/usunWydarzenieUzytkownika/{wydarzenieID}', 'A
 
 Route::delete('/home/administrator/potwierdzLek/{idLeku}', 'AdministracjaController@potwierdzLek')->name('potwierdzLek')->middleware('auth');
 Route::delete('/home/administrator/usunLek/{idLeku}', 'AdministracjaController@usunLek')->name('usunLek')->middleware('auth');
+
+Route::delete('/home/administrator/usunCisnienie/{idCisnienie}', 'AdministracjaController@usunCisnienieUzytkownika')->name('usunCisnienieUzytkownika')->middleware('auth');

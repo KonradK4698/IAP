@@ -11,6 +11,7 @@ use App\Wzrost;
 use App\Wydarzenia;
 use App\daneUzytkownika;
 use App\Leki;
+use App\Cisnienie;
 class AdministracjaController extends Controller
 {
 
@@ -22,8 +23,14 @@ class AdministracjaController extends Controller
         $obwodyU = Obwody::where('idUzytkownika','=',$id)->get();
         $wzrostU = Wzrost::where('idUzytkownika','=',$id)->get();
         $wydarzeniaU = Wydarzenia::where('idUzytkownika','=',$id)->get();
+        $cisnienieU = Cisnienie::where('idUzytkownika','=',$id)->get();
 
-        return view('administracja.edycjaUzytkownika')->with(compact('daneOsobowe', 'lekiU', 'wagiU', 'obwodyU', 'wzrostU', 'wydarzeniaU', 'email'));
+        return view('administracja.edycjaUzytkownika')->with(compact('daneOsobowe', 'lekiU', 'wagiU', 'obwodyU', 'wzrostU', 'wydarzeniaU', 'email','cisnienieU'));
+    }
+
+    public function usunCisnienieUzytkownika($cisnienieID){
+        Cisnienie::findOrFail($cisnienieID)->delete();
+        return redirect()->back();
     }
 
     public function usunWydarzenieUzytkownika($wydarzenieID){
@@ -117,7 +124,8 @@ class AdministracjaController extends Controller
 
     public function widok(){
 
-        $uzytkownicy = DB::table('users')->join('dane_uzytkownika','dane_uzytkownika.idUzytkownika', '=','users.id')->select('users.id', 'dane_uzytkownika.imie', 'users.email')->get();
+        $uzytkownicy = DB::table('users')->leftJoin('dane_uzytkownika','dane_uzytkownika.idUzytkownika', '=','users.id')->select('users.id', 'dane_uzytkownika.imie', 'users.email')->get();
+        
         $lekiDoPotwierdzenia = DB::table('leki')->where('potwierdzenieAdmina', '=', 0)->get();
 
         return view('administracja.panel')->with(compact('uzytkownicy','lekiDoPotwierdzenia'));

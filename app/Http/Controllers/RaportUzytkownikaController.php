@@ -15,12 +15,12 @@ class RaportUzytkownikaController extends Controller
 {
     
     public function widok(){
-        $aktualnyMiesiac = Carbon::now()->format('m');
-        /*if(date('Y-m-d') == Carbon::now()->endOfMonth()->toDateString()){
+        // $aktualnyMiesiac = Carbon::now()->format('m');
+        if(date('Y-m-d') == Carbon::now()->endOfMonth()->toDateString()){
             $aktualnyMiesiac = Carbon::now()->format('m');
         }else{
             $aktualnyMiesiac = Carbon::now()->format('m') - 1;
-        }*/
+        }
         
 
         return view('raport')->with(compact( 'aktualnyMiesiac'));

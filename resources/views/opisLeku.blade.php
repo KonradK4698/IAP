@@ -26,6 +26,7 @@
         <span class="tytul"> Opis leku </span>
         <span class="opis"> {{ $lek->opis }} </span>
     </div>
+    @if($lek->potwierdzenieAdmina == 0)
     <div class="kontenerOpisu2">
     @can('admin')
     <form method="POST" action="{{ route('potwierdzLek', $lek->id) }}" class="deleteForm">
@@ -40,6 +41,7 @@
     </form> 
     @endcan
     </div>
+    @endif
 </div>
 
 @endsection

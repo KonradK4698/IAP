@@ -13,7 +13,7 @@ class PomiarCisnieniaController extends Controller
 
     public function dodajPomiary(Request $dodaj){
 
-        $walidacja = $dodaj->validate([
+        $dodaj->validate([
             'skurczowe' => 'required|numeric',
             'rozkurczowe' => 'required|numeric',
             'tetno' => 'required|numeric',

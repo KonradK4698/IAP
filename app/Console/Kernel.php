@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         'App\Console\Commands\przypomnijCodziennie',
         'App\Console\Commands\przypomnijCoMinute',
+        'App\Console\Commands\wykonajPomiar',
     ];
 
     /**
@@ -30,6 +31,7 @@ class Kernel extends ConsoleKernel
     {
         
             $schedule->command('przypomnij:codziennie')->dailyAt('04:00');
+            $schedule->command('przypomnij:pomiar')->dailyAt('15:00');
             $schedule->command('przypomnij:cominute')->everyMinute();
     }
 

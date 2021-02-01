@@ -10,7 +10,7 @@
         <div class="daneOsobowe"> 
             <img src="{{ asset('img/icons/imieNazwisko.png') }}" >
             <span>Imię i Nazwisko</span> 
-            <span>{{ $dana->imie}} {{ $dana->nazwisko }}</span>
+            <span class="bigFirstLetter">{{ $dana->imie}} {{ $dana->nazwisko }}</span>
         </div>
         <div class="daneOsobowe"> 
             <img src="{{ asset('img/icons/urodziny.png') }}" >
@@ -44,7 +44,7 @@
 </div>
 
 <div class="kontenerInformacji"> 
-<span class="tytul"> Historia wagi użytkownika</span>
+<span class="tytul"> Edycja wag </span>
 <table id="waga" class="display">
         <thead>
             <tr>
@@ -78,7 +78,7 @@
             </tr>
         </tfoot>
     </table>
-    <span class="tytul"> Historia wzrostu użytkownika</span>
+    <span class="tytul"> Edycja wzrostu</span>
     <table id="wzrost" class="display">
         <thead>
             <tr>
@@ -112,7 +112,7 @@
             </tr>
         </tfoot>
     </table>
-    <span class="tytul"> Historia obwodów użytkownika</span>
+    <span class="tytul"> Edycja obwodów </span>
     <table id="obwody" class="display">
         <thead>
             <tr>
@@ -143,7 +143,7 @@
             </tr>
         </tfoot>
     </table>
-    <span class="tytul"> Historia leków użytkownika</span>
+    <span class="tytul"> Edycja leków</span>
     <table id="lekiAdmin" class="display">
         <thead>
             <tr>
@@ -174,7 +174,7 @@
             </tr>
         </tfoot>
     </table>
-    <span class="tytul"> Historia wydarzeń użytkownika</span>
+    <span class="tytul"> Edycja wydarzeń</span>
     <table id="wydarzenia" class="display">
         <thead>
             <tr>
@@ -201,6 +201,43 @@
             <tr>
                 <th>Data utworzenia</th>
                 <th>Tytuł wydarzenia</th>
+                <th>Usuń</th>
+            </tr>
+        </tfoot>
+    </table>
+    <span class="tytul"> Edycja ciśnienia</span>
+    <table id="cisnienie" class="display">
+        <thead>
+            <tr>
+                <th>Data utworzenia</th>
+                <th>Skurczowe</th>
+                <th>Rozkurczowe</th>
+                <th>Tętno</th>
+                <th>Usuń</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($cisnienieU as $cisnienie)
+            <tr>
+                <td>{{$cisnienie->created_at}}</td>
+                <td>{{$cisnienie->skurczowe}}</a></td>
+                <td>{{$cisnienie->rozkurczowe}}</a></td>
+                <td>{{$cisnienie->tetno}}</a></td>
+                <td><form method="POST" action="{{ route('usunCisnienieUzytkownika' , $cisnienie->id) }}" class="deleteForm">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="deleteButton">Usuń</button>
+                    </form> 
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Data utworzenia</th>
+                <th>Skurczowe</th>
+                <th>Rozkurczowe</th>
+                <th>Tętno</th>
                 <th>Usuń</th>
             </tr>
         </tfoot>

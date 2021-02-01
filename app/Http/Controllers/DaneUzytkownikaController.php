@@ -39,9 +39,13 @@ class DaneUzytkownikaController extends Controller
 
     public function widok(){
 
-        $daneUzytkownika = DB::table('dane_uzytkownika')->get();
+        $daneUzytkownika = DB::table('dane_uzytkownika')->where('idUzytkownika','=',Auth::id())->get();
 
         return view('daneUzytkownika')->with(compact('daneUzytkownika'));
+    }
+
+    public function polityka(){
+        return view('politykaPrywatnosci');
     }
     
     

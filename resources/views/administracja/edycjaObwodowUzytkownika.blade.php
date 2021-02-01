@@ -26,7 +26,7 @@
 <div class="overlay"></div>
 <div class="confirmPopupBox">
     <div class="popupInformacjeBox">
-        <span class="sprawdzDane"> Sprawdź poprawnośc danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
+        <span class="sprawdzDane"> Sprawdź poprawność danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
     </div>
     <button class="potwierdzDane" type="submit"> Tak </button>
     <button class="zmienDane"> Nie </button>

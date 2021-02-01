@@ -27,18 +27,18 @@
 </div>
 @endforeach
 @else
-<span class="tytul"> Brak leków </span>
+<span class="tytul"> Brak wprowadzonych leków </span>
 @endif
 </div>
 
 <div class="daneUzytkownika">
 @if($najblizszeWydarzenia->count() > 0)
-<span class="tytul"> Wydarzenia w tym tygodniu</span>
+<span class="tytul"> Wydarzenia w tym tygodniu </span>
 @foreach($najblizszeWydarzenia as $wydarzenie)
 <div class="informacjeUzytkownika wydarzeniaKontener">
     <img src="{{ asset('img/icons/wydarzenie.png') }}" >
     <span class="tytulInformacji">{{$wydarzenie->tytul}} </span>
-    <span class="daneWydarzenia">{{$wydarzenie->data}} {{$wydarzenie->godzina}}  </span>
+    <span class="daneWydarzenia">{{Carbon\Carbon::parse($wydarzenie->data)->format('d-m-Y')}} {{$wydarzenie->godzina}}  </span>
     <span class="opisWydarzenia">{{$wydarzenie->opis}}  </span>
 </div>
 @endforeach
@@ -47,8 +47,10 @@
 @endif
 </div>
 
+
 <div class="daneUzytkownika">
     <span class="tytul"> Waga i wzrost</span>
+    @if(is_null($aktualnaWaga) == false || is_null($aktualnyWzrost) == false)
     <div class="informacjeUzytkownika">
         <img src="{{ asset('img/icons/waga.png') }}" >
         <span class="tytulInformacji"> Aktualna waga </span>
@@ -59,6 +61,9 @@
         <span class="tytulInformacji"> Aktualny wzrost </span>
         <span class="daneInformacji"> {{is_null($aktualnyWzrost) == true ? "Brak danych" : $aktualnyWzrost->wzrost.' cm'}} </span>
     </div>
+    @else
+    <span class="tytul"> Brak wprowadzonych danych</span>
+    @endif
 </div>
 
 <div class="daneUzytkownika">

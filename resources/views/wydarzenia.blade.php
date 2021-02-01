@@ -26,13 +26,39 @@
         <div class="openConfirm">Dodaj wydarzenie</div>
     </form>
 
+    <span class="tytul"> Aktualne wydarzenia </span>
+    <table id="wydarzenia" class="display">
+        <thead>
+            <tr>
+                <th>Tytuł</th>
+                <th>Data i Godzina</th>
+                <th>Opis</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($aktualneWydarzenia as $wydarzenie)
+            <tr>
+                <td>{{$wydarzenie->tytul}}</td>
+                <td>{{$wydarzenie->data}} <br/> {{$wydarzenie->godzina}}</td>
+                <td>{{$wydarzenie->opis}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Tytuł</th>
+                <th>Data i Godzina</th>
+                <th>Opis</th>
+            </tr>
+        </tfoot>
+    </table>
 
 @endsection
 
 <div class="overlay"></div>
 <div class="confirmPopupBox">
     <div class="popupInformacjeBox">
-        <span class="sprawdzDane"> Sprawdź poprawnośc danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
+        <span class="sprawdzDane"> Sprawdź poprawność danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
     </div>
     <button class="potwierdzDane" type="submit"> Tak </button>
     <button class="zmienDane"> Nie </button>

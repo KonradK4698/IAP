@@ -1,11 +1,12 @@
 @extends('layouts.panel')
 
 @section('content')
-    <span class="tytul"> Pomiar ciśnienia </span>
-    <form id="dodajPomiarTable" method="POST" action="{{ route('dodajPomiary') }}" class="uzupelnijDaneFormularz">
+
+    <span class="tytul"> Pomiar ciśnienia  </span>
+    <form id="dodajPomiarTable" method="POST" action="{{ route('dodajPomiary') }}" class="uzupelnijDaneFormularz" role="form">
         <span class="tytul"> Dane ciśnienia</span>
         <input type="hidden" name="_token" value="{{csrf_token()}}" />
-        <span class="opisPozycji"> Wartość ciśnienia skurczowego </span>
+        <span for="skurczowe" class="opisPozycji"> Wartość ciśnienia skurczowego </span>
         <input data-opis="Skurczowe" class="dodajDane" name="skurczowe" placeholder="Podaj cisnienie skurczowe" type="text" />
         <span class="opisPozycji"> Wartość ciśnienia rozkurczowego </span>
         <input data-opis="Rozkurczowe" class="dodajDane" name="rozkurczowe" placeholder="Podaj cisnienie rozkurczowe" type="text" />
@@ -37,7 +38,7 @@
 <div class="overlay"></div>
 <div class="confirmPopupBox">
     <div class="popupInformacjeBox">
-        <span class="sprawdzDane"> Sprawdź poprawnośc danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
+        <span class="sprawdzDane"> Sprawdź poprawność danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
     </div>
     <button class="potwierdzDane" type="submit"> Tak </button>
     <button class="zmienDane"> Nie </button>

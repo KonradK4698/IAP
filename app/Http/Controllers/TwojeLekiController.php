@@ -56,7 +56,7 @@ class TwojeLekiController extends Controller
             'idLeku' => 'required|numeric',
             'iloscPaczek' => 'required|numeric',
             'dawkowanie' => 'required|numeric',
-            'czestotliwosc' => 'required|numeric',
+            'czestotliwosc' => 'required',
         ]);
 
         $idLeku = $dodaj->idLeku;
@@ -114,8 +114,8 @@ class TwojeLekiController extends Controller
         }
         
         for($i = 0; $i < $dawkowanie; $i++ ){
-            $dodajCzas = $dodaj->czestotliwosc * $i;
-            $godzinyPrzyjmowania[$i] = Carbon::parse($godzinaRozpoczecia)->addHours($dodajCzas)->format('H:i:s');
+            $dodajCzas = $dodaj->czestotliwosc * $i * 60;
+            $godzinyPrzyjmowania[$i] = Carbon::parse($godzinaRozpoczecia)->addMinutes($dodajCzas)->format('H:i:s');
         }
 
         foreach($godzinyPrzyjmowania as $godzina){
@@ -192,7 +192,10 @@ class TwojeLekiController extends Controller
                             ->select('leki_uzytkownika.*', 'leki.nazwa')
                             ->where('idUzytkownika', '=', Auth::id())->get();
         
-
+        foreach($lekiUzytkownika as $lek){
+            $godziny = DB::table('harmonogram_godziny')->select('godzinaPrzyjmowania')->where('idLekuUzytkownika','=',$lek->id)->get();
+            $lek->godziny= $godziny;
+        }
         
         return view('twojeLeki')->with(compact('wybierzLek', 'lekiUzytkownika'));
     }

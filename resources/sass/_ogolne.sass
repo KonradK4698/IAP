@@ -27,6 +27,7 @@
         .logo
             font-size: 2.5em
             text-transform: uppercase
+            padding-left: 20px
     .nawigacjaLinki
         display: flex
         justify-content: flex-end
@@ -86,6 +87,7 @@ nav.nawigacjaPrzewinieta
     width: 80%
     background: #eeeeee
     padding: 50px
+    min-height: calc(100% - 50px)
 .deleteForm
     position: relative
     display: block
@@ -127,15 +129,33 @@ nav.nawigacjaPrzewinieta
             color: white
 .kontenerReset
     width: 80%
+    min-height: calc(100vh - 50px)
     position: absolute
-    top: 100px
+    top: 50px
     left: 50%
     transform: translateX(-50%)
     background: #ddd
+    z-index: -1
+    .formularzReset
+        position: relative
+        top: 100px
+.przyciskEmail
+    min-width: 200px
+    padding: 5px 10px
+    margin: 10px 0
+    font-size: 2.2em
+    background: #114d4d
+    color: white
+    text-shadow: 1px 1px 1px black
+    -webkit-box-shadow: 2px 2px 6px black
+    box-shadow: 2px 2px 6px black
+    text-align: center
+    cursor: pointer
+
 .errorContener
     position: relative
     width: 80%
-    top: 50px
+    top: 0px
     left: 50%
     transform: translateX(-50%)
     background: #e04545e0
@@ -146,15 +166,30 @@ nav.nawigacjaPrzewinieta
     //z-index: 255
     font-size: 2em
     text-align: center
-    margin: 20px 0
+    margin: 50px 0 20px 0
+    z-index: 2
     p
         margin: 10px 0
         font-size: 2em
+    .closeError
+        position: absolute
+        top: 3px
+        right: 40px
+        width: 0
+        font-size: 1.5em
+        color: black
+        font-family: sans-serif
+        cursor: pointer
     span
         display: inline-block
         width: 100%
         margin: 5px 0
         font-size: 1em
+
+.succesContener
+    @extend .errorContener
+    background: #068206
+
 .dodajDane2
     flex-basis: 100%
     height: 50px

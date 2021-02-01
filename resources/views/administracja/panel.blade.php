@@ -15,7 +15,7 @@
         @foreach($lekiDoPotwierdzenia as $lek)
             <tr>
                 <td>{{ $lek->nazwa}}</td>
-                <td><a class="moreInfo" href="{{route('opisLeku', $lek->id)}}"> Kliknij tutaj </a></td>
+                <td><a class="moreInfo" href="{{route('opisLeku', $lek->id)}}"> Więcej informacji </a></td>
             </tr>
         @endforeach
         </tbody>

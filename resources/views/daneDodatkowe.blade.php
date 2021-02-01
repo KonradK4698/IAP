@@ -51,7 +51,7 @@
     <div class="dodaneDaneKontener">
         <span class="tytul"> Ostatnio dodane obwody</span>
         @if(is_null($obwody) == false)
-        <span class="dodaneDane"> Data dodania: <span>{{ $obwody->created_at }} cm</span></span>
+        <span class="dodaneDane"> Data dodania: <span>{{ $obwody->created_at }}</span></span>
         <span class="dodaneDane"> Biceps: <span>{{ $obwody->biceps }} cm</span></span>
         <span class="dodaneDane"> Klatka piersiowa: <span>{{ $obwody->klataPiersiowa}} cm</span></span>
         <span class="dodaneDane"> Talia: <span>{{ $obwody->talia }} cm</span></span>
@@ -69,7 +69,7 @@
 <div class="overlay"></div>
 <div class="confirmPopupBox">
     <div class="popupInformacjeBox">
-        <span class="sprawdzDane"> Sprawdź poprawnośc danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
+        <span class="sprawdzDane"> Sprawdź poprawność danych! <br/> <span class="alertText"> Pamiętaj nie będzie można ich zmienić!</span></span>
     </div>
     <button class="potwierdzDane" type="submit"> Tak </button>
     <button class="zmienDane"> Nie </button>

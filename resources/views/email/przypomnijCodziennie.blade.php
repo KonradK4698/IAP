@@ -47,7 +47,7 @@
         @endforeach
         @endif 
         <span class="potwierdz"> Przejdź proszę do panelu pacjenta, i potwierdź przyjęcie leku.</span>
-        @if(is_null($wydarzenia) == false)
+        @if($wydarzenia->count() > 0)
         <h2> Nadchodzące wydarzenia </h2>
         @foreach($wydarzenia as $wydarzenie)
 
