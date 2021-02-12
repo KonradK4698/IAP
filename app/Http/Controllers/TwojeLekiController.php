@@ -186,7 +186,7 @@ class TwojeLekiController extends Controller
 
     public function widok(){
 
-        $wybierzLek = DB::table('leki')->select('id', 'nazwa')->get();
+        $wybierzLek = DB::table('leki')->select('id', 'nazwa')->where('potwierdzenieAdmina','=',1)->get();
         $lekiUzytkownika = DB::table('leki_uzytkownika')
                             ->join('leki', 'leki_uzytkownika.idLeku', '=','leki.id')
                             ->select('leki_uzytkownika.*', 'leki.nazwa')
