@@ -16,18 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         
         DB::table('users')->insert([
-            'email' => "inzyniermedic@gmail.com",
+            'email' => "admin@admin.com",
             'email_verified_at' => NULL,
-            'password' => Hash::make('Kwakus1998'),
-            'remember_token' => NULL,
-            'isAdmin' => 1,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        ]);
-        DB::table('users')->insert([
-            'email' => "pacjent@pacjent.com",
-            'email_verified_at' => NULL,
-            'password' => Hash::make('Pacjent'),
+            'password' => Hash::make('Admin'),
             'remember_token' => NULL,
             'isAdmin' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
