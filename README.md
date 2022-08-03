@@ -23,4 +23,25 @@
     <li>CSS i SASS</li>
     <li>JavaScript</li>
     <li>MySQL</li>
+    <li>XAMPP i phpMyAdmin</li>
 </ul>
+
+<h2 align="center"> Instrukacja uruchomienia </h3>
+<ol>
+    <li><b>Utworzenie bazy danych</b> - Utwórz nową bazę danych MySQL, np. za pomocą phpMyAdmin. W trakcie tworzenia bazy, pamiętaj o wykorzystaniu odpowiedniego kodowania np. "utf8_unicode_ci".</li>
+    <li><b>Dostosuj plik konfiguracyjny</b></li>
+        <ul>
+            <li>Znjadź plik ".env.example" i usuń z niego rozszerzenie ".example"</li>
+            <li>W powstałym pliku ".env", uzupełnij niezbęde informacje w celu połączenia się z bazą danych </li>
+            `
+            DB_CONNECTION=mysql #tutaj wprowadź nazwę bazy danych
+            DB_HOST=127.0.0.1
+            DB_PORT=3306
+            DB_DATABASE= #nazwa bazy danych
+            DB_USERNAME= #login do bazy danych
+            DB_PASSWORD= #hasło do bazy danych
+            `
+        </ul>
+    <li><b>Wprowadź dane do 
+     
+</ol>
