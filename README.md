@@ -33,14 +33,14 @@
         <ul>
             <li>Znjadź plik ".env.example" i usuń z niego rozszerzenie ".example"</li>
             <li>W powstałym pliku ".env", uzupełnij niezbęde informacje w celu połączenia się z bazą danych </li>
-            `
+            ```
             DB_CONNECTION=mysql #tutaj wprowadź nazwę bazy danych
             DB_HOST=127.0.0.1
             DB_PORT=3306
             DB_DATABASE= #nazwa bazy danych
             DB_USERNAME= #login do bazy danych
             DB_PASSWORD= #hasło do bazy danych
-            `
+            ```
         </ul>
     <li><b>Wprowadź dane do 
      
