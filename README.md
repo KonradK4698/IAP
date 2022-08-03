@@ -32,7 +32,7 @@ Głównym celem programu jest dostarczenie użytkownikowi aplikacji wspierające
 Niniejsza aplikacja działa w oparciu o narzędzie XAMPP uruchomionym na systemie Windows. W celu poprawnego uruchomienia aplikacji, należy: 
     - upewnić się że posiadasz zainstalowane narzędzie XAMPP 
     - przejść do katalogu **htdocs** w folderze XAMPP
-    - umieścić pobrane pliki w kaalogu **htdocs**
+    - umieścić pobrane pliki w katalogu **htdocs**
 3. **Instalacja niezbędnych plików** <br/>
 W celu instalacji niezbędnych plików wykorzystano narzędzie composer, aby zainstalować pliki: 
     - Upewnij się że posiadasz zainstalowane narzędzie composer
