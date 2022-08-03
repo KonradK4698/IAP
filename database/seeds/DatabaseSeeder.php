@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'ilosc' => 100,
             'cena' => 8.16,
             'opis' => "Euthyrox jest hormonem. Sotosowany w leczeniu zastępczym niedoczynności tarczycy",
+            'potwierdzenieAdmina' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
             'ilosc' => 30,
             'cena' => 8.28,
             'opis' => "Lek dostępny bez recepty. Lek hamujący agregację płytek krwi",
+            'potwierdzenieAdmina' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -50,6 +52,7 @@ class DatabaseSeeder extends Seeder
             'ilosc' => 50,
             'cena' => 6.52,
             'opis' => "Lek dostępny na receptę. Hromon. Terapia zastępcza i uzupełniająca w niedoczynności tarczycy o różnej etiologii.",
+            'potwierdzenieAdmina' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -59,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'ilosc' => 30,
             'cena' => 5.16,
             'opis' => "Lek dostępny na receptę. Pochodna benzodiazepiny. Leczenie padaczki u dorosłych i dzieci",
+            'potwierdzenieAdmina' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
@@ -77,6 +81,7 @@ class DatabaseSeeder extends Seeder
             'ilosc' => 50,
             'cena' => 20.96,
             'opis' => "Preparat zawiera paracetamol, lek przeciwbólowy i przeciwgorączkowy. Należy zachować co najmniej 4 godzinny odstęp pomiędzy dawkami.",
+            'potwierdzenieAdmina' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
